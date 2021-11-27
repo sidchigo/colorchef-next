@@ -1,0 +1,72 @@
+.cardMain{
+    font-family: Poppins;
+    border-radius: 4px;
+    /* border: 0; */
+    border: 1px solid var(--lightgray);
+    box-shadow: -4px 9px 25px -6px rgba(86, 86, 86, 0.271);
+}
+
+.cardBody{
+    background-color: #FFD4D4;
+    color:#E1163A;
+    z-index: 1;
+    margin: 10px;
+    height: 300px;
+} 
+
+.cardBody h2 {
+    font-size: 1.25em;
+}
+
+.cardBody h3 {
+    font-size: 1em;
+}
+
+.cardFooter{
+    border: none;
+    background-color: #FFFFFF;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+}
+
+.buttonFooter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.SVGButton{
+    border: 0;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+.SVGButton svg {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.colorButton{
+    text-align: center;
+    font-size: 0.7em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 600px) {
+    .card-body {
+        height: 400px;
+    }
+
+    .card-body h2 {
+        font-size: 2em;
+    }
+
+    .SVGButton svg {
+        width: 1.75em;
+        height: 1.75em;
+    }
+}

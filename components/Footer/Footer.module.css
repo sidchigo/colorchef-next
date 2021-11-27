@@ -1,0 +1,38 @@
+.footerLinks {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.mainFooter {
+    background-color: var(--lightgreen);
+}
+
+.footerContent {
+    justify-content: start;
+    align-items: stretch;
+}
+
+.subFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: var(--emerald);
+}
+
+.footerLogo {
+    height: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .footerLinks {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footerContent {
+        justify-content: center;
+    }
+}

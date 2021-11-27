@@ -1,0 +1,71 @@
+.cardGrid {
+	padding: 1rem;
+}
+
+.inputform {
+	align-self: center;
+}
+
+.formRange::-webkit-slider-thumb {
+	background: white;
+	border: 2px solid var(--primary);
+}
+
+.formRange::-webkit-slider-runnable-track {
+	background: var(--primary);
+}
+
+.dropdown button {
+	width: -webkit-fill-available;
+}
+
+.page {
+	position: relative;
+}
+
+.separatorButton {
+	position: relative;
+	text-align: center;
+}
+
+.copyAlert {
+	position: fixed;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 3;
+	font-size: 1em;
+	/* background-color: var(--primary); */
+	color: white;
+	padding: 1rem;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.colorRectangle {
+	width: 100px;
+	background-color: aquamarine;
+	height: auto;
+	border: 0;
+}
+
+.alertEnter {
+	opacity: 0;
+	transform: scale(0.5);
+}
+
+.alertEnterActive {
+	opacity: 1;
+	transform: translateX(-50%);
+	transition: opacity 300ms, transform 300ms;
+}
+
+.alertExit {
+	opacity: 1;
+}
+
+.alertExitActive {
+	opacity: 0;
+	transform: scale(0.5);
+	transition: opacity 300ms, transform 300ms;
+}

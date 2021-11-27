@@ -1,0 +1,88 @@
+.btnEmerald {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btnEmerald:hover {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+.btnEmeraldOutline {
+    background-color: white;
+    border-style: solid;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btnEmeraldOutline:hover {
+    background-color: white;
+    border-style: solid;
+    border-color: var(--primary-hover);
+    color: var(--primary-hover);
+}
+
+.emeraldOutlineInput{
+    background-color: white;
+    border-style: solid;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.emeraldOutlineInput:hover{
+    background-color: white;
+    border-style: solid;
+    border-color: var(--primary-hover);
+    color: var(--primary-hover);
+}
+
+.emeraldOutlineInput::placeholder {
+    color: var(--primary);
+    text-align: center;
+}
+
+.contentHeading {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.recipeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.subTitle {
+    color: var(--subtext);
+}
+
+.recipeIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.content {
+    font-size: 0.8em;
+}
+
+.recipeIcon svg {
+    width: 50%;
+    height: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .content {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .content {
+        display: block;
+    }
+}

@@ -1,82 +1,102 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Link from 'next/link';
+
+import styles from '../styles/utils.module.css';
+
+// icons
+import Pancake from 'icons/pancake.svg';
+import Juice from 'icons/juice.svg';
+import Melon from 'icons/melon.svg';
+import Pastry from 'icons/pastry.svg';
+import Icecream from 'icons/icecream.svg';
+import hero from 'images/hero.png';
 
 export default function Home() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+	const pageContent = [
+		{
+			id: 1,
+			icon: Pancake,
+			name: 'Color generator',
+			description: `Color generator tool for generating combination of
+			background colors and foreground colors with
+			appropriate contrast. Specify desired contrast get
+			number of possible combinations.`,
+			link: '/colors',
+		},
+		{
+			id: 2,
+			icon: Juice,
+			name: 'Shadow generator',
+			description: `Days of black shadows are gone. Forget about all
+			that hassle to figure out colors for your shadows.
+			Shadow generator helps you to get styles of most
+			popular shadows only in few steps!`,
+			link: '/shadows',
+		},
+		{
+			id: 3,
+			icon: Melon,
+			name: 'Element colors',
+			description: `Don’t worry about selecting different colors for all
+			your different elements like buttons and links.
+			Element color generator will take care of all the
+			colors for you. Just provide primary color and get
+			started.`,
+			link: '/elements',
+		},
+		{
+			id: 4,
+			icon: Pastry,
+			name: 'Dark palette',
+			description: `Dark mode is the current UI trendsetter. Want to
+			reduce your efforts of selecting double of every
+			color for dark mode, just use dark palette generator
+			and relax.`,
+			link: '/dark-palette',
+		},
+		{
+			id: 5,
+			icon: Icecream,
+			name: 'Golden ratio',
+			description: `Selecting proper combination of colors is difficult,
+			we agree. That’s where the golden ratio generator
+			steps up the game of colors. Choose your favorite
+			palette of colors having ideal 60%, 30% and 10%
+			ratio.`,
+			link: '/golden-ratio',
+		},
+	];
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
+	return (
+		<div className="flex flex-col items-center justify-center min-h-screen py-2">
+			<Head>
+				<title>Colorchef - Colors, palettes and contrast</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
 
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
-    </div>
-  )
+			<main className="container">
+				<div className="grid grid-cols-1 lg:grid-cols-2">
+					<img
+						src={hero}
+						alt="hero-image"
+					/>
+					<div className="grid gap-4 px-8 my-8 text-center">
+						<h1 className="font-head text-5xl font-bold">
+							All-in-one color, palette and shadow generator.
+						</h1>
+						<h2 className="font-head text-2xl text-gray-400 font-bold">
+							Generate a new palette and inspire other creators.
+						</h2>
+						{/* <a
+							href="#recipes"
+							className={`bg-green-500 p-2 rounded`}
+						>
+							Get started
+						</a> */}
+					</div>
+				</div>
+			</main>
+		</div>
+	);
 }
