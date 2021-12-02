@@ -10,9 +10,9 @@ import Melon from 'icons/melon.svg';
 import Pastry from 'icons/pastry.svg';
 import Icecream from 'icons/icecream.svg';
 import hero from 'images/hero.png';
+import Button from 'components/Button';
 
 export default function Home() {
-
 	const pageContent = [
 		{
 			id: 1,
@@ -77,23 +77,35 @@ export default function Home() {
 
 			<main className="container">
 				<div className="grid grid-cols-1 lg:grid-cols-2">
-					<img
-						src={hero}
-						alt="hero-image"
-					/>
-					<div className="grid gap-4 px-8 my-8 text-center">
-						<h1 className="font-head text-5xl font-bold">
-							All-in-one color, palette and shadow generator.
+					<div className="px-8 my-8 text-left">
+						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-right">
+							Don't worry about colors. We've got you covered.
 						</h1>
-						<h2 className="font-head text-2xl text-gray-400 font-bold">
-							Generate a new palette and inspire other creators.
+						<h2 className="font-head text-4xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
+							Design. Explore. Innovate.
 						</h2>
-						{/* <a
-							href="#recipes"
-							className={`bg-green-500 p-2 rounded`}
+						<Button
+							variant={`
+							relative group overflow-hidden
+							mt-6 bg-transparent transition duration-500
+							text-gray-900 border-2 border-gray-900 
+							hover:text-white hover:border-purple-600 
+							text-l px-6 py-4
+							animate-fadein-right animation-duration-1200
+							`}
 						>
-							Get started
-						</a> */}
+							<span
+								className={`
+								absolute h-64 w-64 mt-16 top-0 left-0 
+								bg-purple-600 transition-all ease-out duration-500
+								group-hover:-mt-20
+								`}
+							></span>
+							<span className={`relative`}>
+								Start exploring{' '}
+								<span className={`animate-spin`}>--&gt;</span>
+							</span>
+						</Button>
 					</div>
 				</div>
 			</main>

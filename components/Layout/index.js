@@ -5,7 +5,7 @@ export default function Layout({ children }) {
     return (
 		<>
 			<Navigation />
-			<main className={`mt-20`}>{children}</main>
+			<main className={`mt-10`}>{children}</main>
 			<Footer />
 		</>
 	);

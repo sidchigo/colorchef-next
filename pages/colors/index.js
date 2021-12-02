@@ -61,15 +61,15 @@ const Colorgeneration = () => {
 				To generate the combinations of suitable colors for designers
 				who are facing difficulty with the selection of the colors.
 			</Header>
-			<div className={`flex flex-col`}>
+			<div className={`flex flex-col md:flex-row`}>
 				<div className="mb-3">
 					<div className="mb-2">Pick your color</div>
 					<Picker color={color} setColor={setColor} />
 				</div>
-				<div className="mb-3">
+				<div className="mb-3 ml-0 md:ml-8">
 					<div className="mb-2">Choose contrast quality</div>
 					<select
-						className={`px-4 py-2 border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 rounded w-full`}
+						className={`px-4 py-4 border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 rounded w-full`}
 						id="scaleSelect"
 						value={quality}
 						onChange={(e) => setQuality(e.currentTarget.value)}
@@ -81,9 +81,9 @@ const Colorgeneration = () => {
 					</select>
 				</div>
 			</div>
-			<div className="justify-content-center align-items-center pl-2 pr-2">
-				<div xl={6} lg={6} md={6} sm={12}>
-					<div className="d-grid gap-2">
+			<div className="justify-content-center align-items-center pl-2 pr-2 mt-8">
+				<div>
+					<div className="grid gap-2">
 						<Button
 							variant={`bg-gray-900 text-white rounded w-full`}
 							onClick={() =>
@@ -122,7 +122,7 @@ const Colorgeneration = () => {
 					</h2>
 				</div>
 			</div>
-			<div className="mx-20 grid grid-cols-1 md: grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
+			<div className="mx-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
 				{colorData.colors.slice(0, counter).map((color) => {
 					return (
 						<Colorcard

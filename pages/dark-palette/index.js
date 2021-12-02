@@ -11,12 +11,15 @@ import Picker from 'components/Colorpicker/Picker';
 // bootstrap
 import Button from 'components/Button';
 
+// utility
+import { generateDarkPalette } from 'utility/ColorGenerator';
+
 const tinycolor = require('tinycolor2');
 
 const Darkpalette = () => {
-	const [color1, setColor1] = useState('F5FFFF');
-	const [color2, setColor2] = useState('7EC5FF');
-	const [color3, setColor3] = useState('092666');
+	const [color1, setColor1] = useState('FCF3EC');
+	const [color2, setColor2] = useState('491515');
+	const [color3, setColor3] = useState('E78F2E');
 
     const dummyText = [
         {
@@ -31,7 +34,15 @@ const Darkpalette = () => {
             title: 'Third feature',
             descr: 'A feature that is the best for UX'
         },
-    ]
+    ];
+
+	const handleGenerate = () => {
+		const { primary, secondary, accent } = generateDarkPalette(color1, color2, color3);
+		console.log(primary, secondary, accent);
+		setColor1(primary);
+		setColor2(secondary);
+		setColor3(accent);
+	}
 
 	return (
 		<div className={`container mx-auto px-8`}>
@@ -60,7 +71,8 @@ const Darkpalette = () => {
 			</div>
 			<div className="flex justify-center items-center m-2">
 				<Button
-					variant={`bg-purple-800 text-white rounded hover:bg-purple-900 w-full md:w-auto`}
+					variant={`bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
+					onClick={handleGenerate}
 				>
 					Generate palette
 				</Button>
@@ -76,9 +88,9 @@ const Darkpalette = () => {
 			>
 				<div
 					className="flex justify-between p-4 rounded-t-lg"
-					style={{ 
-                        backgroundColor: '#' + tinycolor(color2).toHex(),
-                    }}
+					style={{
+						backgroundColor: '#' + tinycolor(color2).toHex(),
+					}}
 				>
 					<div>Your website</div>
 					<ul className="flex justify-between">
@@ -91,7 +103,7 @@ const Darkpalette = () => {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						<img
 							className="mt-4 px-5"
-							src='/images/hero.png'
+							src={require('/images/hero.png')}
 							alt="hero-image"
 						/>
 						<div

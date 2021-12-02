@@ -21,11 +21,11 @@ function Navbar() {
 			</div>
 			<Link href="/">
 				<a className="flex items-center">
-					<img src={logo} width="45" height="45" alt="Colorchef"/>
+					<img src={logo} width="45" height="45" alt="Colorchef" />
 					<span className={`font-logo text-3xl`}>Colorchef</span>
 				</a>
 			</Link>
-			<div className="hidden md:flex w-2/4 justify-between">
+			<div className="hidden md:flex w-2/4 justify-end">
 				<Link href="/colors">
 					<a className={styles.navLink}>Colors</a>
 				</Link>
@@ -41,8 +41,6 @@ function Navbar() {
 				<Link href="/golden-ratio">
 					<a className={styles.navLink}>Golden Ratio</a>
 				</Link>
-			</div>
-			<div className="hidden md:block">
 				<Link href="/about">
 					<a className={styles.navLink}>About Us</a>
 				</Link>
