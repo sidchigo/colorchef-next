@@ -10,7 +10,7 @@ import Melon from 'icons/melon.svg';
 import Pastry from 'icons/pastry.svg';
 import Icecream from 'icons/icecream.svg';
 import hero from 'images/hero.png';
-import Button from 'components/Button';
+import { Button, UpButton } from 'components/Button';
 
 export default function Home() {
 	const pageContent = [
@@ -76,7 +76,7 @@ export default function Home() {
 			</Head>
 
 			<main className="container">
-				<div className="grid grid-cols-1 lg:grid-cols-2">
+				<div className="grid grid-cols-1 lg:grid-cols-2 my-16">
 					<div className="px-8 my-8 text-left">
 						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-right">
 							Don't worry about colors. We've got you covered.
@@ -84,28 +84,32 @@ export default function Home() {
 						<h2 className="font-head text-4xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
 							Design. Explore. Innovate.
 						</h2>
-						<Button
-							variant={`
-							relative group overflow-hidden
-							mt-6 bg-transparent transition duration-500
-							text-gray-900 border-2 border-gray-900 
-							hover:text-white hover:border-purple-600 
-							text-l px-6 py-4
-							animate-fadein-right animation-duration-1200
-							`}
+						<UpButton
+							variant={`animate-fadein-right animation-duration-1200 hover:border-purple-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={'bg-purple-600'}
 						>
-							<span
-								className={`
-								absolute h-64 w-64 mt-16 top-0 left-0 
-								bg-purple-600 transition-all ease-out duration-500
-								group-hover:-mt-20
-								`}
-							></span>
-							<span className={`relative`}>
-								Start exploring{' '}
-								<span className={`animate-spin`}>--&gt;</span>
-							</span>
-						</Button>
+							Start exploring
+						</UpButton>
+					</div>
+				</div>
+				<div className="flex justify-center my-16">
+					<div className="px-8 my-8 text-left overflow-hidden">
+						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-left">
+							Start using appropriate background and text colors
+							for your next project.
+						</h1>
+						<h2 className="font-head text-4xl mt-6 text-gray-500 font-bold animate-fadein-left animation-duration-600">
+							Don't worry about contrast, we've taken care of
+							that.
+						</h2>
+						<UpButton
+							variant={`animate-fadein-left animation-duration-1200 hover:border-red-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={'bg-red-600'}
+						>
+							Start exploring
+						</UpButton>
 					</div>
 				</div>
 			</main>

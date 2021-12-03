@@ -6,7 +6,7 @@ import styles from './Colorpicker.module.css';
 import { CSSTransition } from 'react-transition-group';
 
 // components
-import Button from 'components/Button';
+import {Button} from 'components/Button';
 
 // color picker components
 const tinycolor = require('tinycolor2');

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Colorcard from 'components/Colorcards/Colorcard';
 import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
-import Button from 'components/Button';
+import {Button} from 'components/Button';
 
 // bootstrap & csstransition
 import { CSSTransition } from 'react-transition-group';

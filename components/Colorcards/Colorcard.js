@@ -6,7 +6,7 @@ import styles from './Colorcard.module.css';
 import { copyColor } from 'slices/colorsSlice';
 
 // components
-import Button from 'components/Button'
+import {Button} from 'components/Button'
 
 // icons
 import SaveIcon from 'icons/save.svg';

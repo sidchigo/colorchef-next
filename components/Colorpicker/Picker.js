@@ -5,7 +5,7 @@ import styles from './Colorpicker.module.css';
 
 // components
 import Colorpicker from './Colorpicker';
-import Button from 'components/Button';
+import {Button} from 'components/Button';
 
 const tinycolor = require('tinycolor2');
 

@@ -9,7 +9,7 @@ import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
 
 // bootstrap
-import Button from 'components/Button';
+import {Button} from 'components/Button';
 
 // utility
 import { generateDarkPalette } from 'utility/ColorGenerator';
@@ -38,7 +38,6 @@ const Darkpalette = () => {
 
 	const handleGenerate = () => {
 		const { primary, secondary, accent } = generateDarkPalette(color1, color2, color3);
-		console.log(primary, secondary, accent);
 		setColor1(primary);
 		setColor2(secondary);
 		setColor3(accent);

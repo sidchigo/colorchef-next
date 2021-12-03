@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './Navbar.module.css';
 
 // components
-import Button from 'components/Button';
+import {Button} from 'components/Button';
 import Burger from './Burger';
 
 // helpers
