@@ -14,7 +14,7 @@
     transition: transform 300ms ease-in-out;
 }
 
-.sideMenu div {
+.sideMenu a {
     margin: 1rem 0;
     font-size: 1.25em;
 }

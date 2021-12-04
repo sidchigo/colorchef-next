@@ -30,7 +30,7 @@ function Navbar() {
 					<a className={styles.navLink}>Colors</a>
 				</Link>
 				<Link href="/shadows">
-					<a className={`${styles.navLink}`}>Shadows</a>
+					<a className={styles.navLink}>Shadows</a>
 				</Link>
 				<Link href="/dark-palette">
 					<a className={styles.navLink}>Dark Palette</a>

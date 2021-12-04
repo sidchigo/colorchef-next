@@ -12,25 +12,23 @@ const Menu = ({ open }) => {
 				transform: open ? 'translateX(0)' : 'translateX(-100%)',
 			}}
 		>
-			<Link href="/services">
-				<div className={styles.navLink}>Services</div>
+			<Link href="/colors">
+				<a>Colors</a>
 			</Link>
-			<Link href="/solutions">
-				<div className={styles.navLink}>Solutions</div>
+			<Link href="/shadows">
+				<a>Shadows</a>
 			</Link>
-			<Link href="/works">
-				<div className={styles.navLink}>Works</div>
+			<Link href="/dark-palette">
+				<a>Dark Palette</a>
 			</Link>
-			<Link href="/insights">
-				<div className={styles.navLink}>Insights</div>
+			<Link href="/elements">
+				<a>Elements</a>
+			</Link>
+			<Link href="/golden-ratio">
+				<a>Golden Ratio</a>
 			</Link>
 			<Link href="/about">
-				<div className={styles.navLink}>About</div>
-			</Link>
-			<Link href="/contact">
-				<div>
-					<Button>Contact us</Button>
-				</div>
+				<a>About Us</a>
 			</Link>
 		</div>
 	);
