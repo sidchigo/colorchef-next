@@ -77,7 +77,7 @@ export default function Home() {
 
 			<main className="container">
 				<div className="grid grid-cols-1 lg:grid-cols-2 my-16">
-					<div className="px-8 my-8 text-left">
+					<div className="my-8 text-left">
 						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-right">
 							Don't worry about colors. We've got you covered.
 						</h1>
@@ -94,7 +94,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="flex justify-center my-16">
-					<div className="px-8 my-8 text-left overflow-hidden">
+					<div className="my-8 text-left overflow-hidden">
 						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-left">
 							Start using appropriate background and text colors
 							for your next project.

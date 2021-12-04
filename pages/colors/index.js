@@ -9,7 +9,7 @@ import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
 import {Button} from 'components/Button';
 
-// bootstrap & csstransition
+// csstransition
 import { CSSTransition } from 'react-transition-group';
 
 // redux
@@ -81,7 +81,7 @@ const Colorgeneration = () => {
 					</select>
 				</div>
 			</div>
-			<div className="justify-content-center align-items-center pl-2 pr-2 mt-8">
+			<div className="justify-content-center align-items-center px-2 mt-8">
 				<div>
 					<div className="grid gap-2">
 						<Button
@@ -122,7 +122,7 @@ const Colorgeneration = () => {
 					</h2>
 				</div>
 			</div>
-			<div className="mx-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
+			<div className="mx-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
 				{colorData.colors.slice(0, counter).map((color) => {
 					return (
 						<Colorcard

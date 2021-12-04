@@ -25,7 +25,7 @@ const Footer = () => {
 									Color generator
 								</a>
 							</Link>
-							<Link href="/shadow">
+							<Link href="/shadows">
 								<a className={`${styles.footerLinks} my-3`}>
 									Shadow generator
 								</a>

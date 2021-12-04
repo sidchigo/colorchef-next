@@ -12,7 +12,7 @@ const Shadows = () => {
 	const [color, setColor] = useState('#F59292');
 
 	return (
-		<div className="container mx-auto px-8 mb-4">
+		<div className="mb-4">
 			<Head>
 				<title>Generate perfect soft shadows for your website</title>
 			</Head>
