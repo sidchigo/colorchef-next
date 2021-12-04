@@ -44,7 +44,7 @@ const Darkpalette = () => {
 	}
 
 	return (
-		<div className={`container mx-auto px-8`}>
+		<div>
 			<Head>
 				<title>
 					Generate perfect dark color palette for your website
