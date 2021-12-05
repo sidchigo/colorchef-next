@@ -11,6 +11,7 @@
     border-radius: 8px;
     box-shadow: -4px 9px 25px -6px rgba(86, 86, 86, 0.271);
     margin-top: 1rem;
+    z-index: 10;
 }
 
 .saturationBackground {
