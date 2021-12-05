@@ -13,14 +13,18 @@ import { CSSTransition } from 'react-transition-group';
 const Elements = () => {
 	const [solid, setSolid] = useState('#E9FAE3');
 	const [outline, setOutline] = useState('#5094DE');
+	const [pill, setPill] = useState('#7950DE');
+	const [neu, setNeu] = useState('#FEEBD6');
+	const [float, setFloat] = useState('#E4293E');
+	const [shadow, setShadow] = useState('#188D46');
 	const isCopied = useSelector((state) => state.colorGeneration.isCopied);
 
 	return (
 		<div>
 			<Head>
-				<title>Generate perfect colors for your website elements</title>
+				<title>Generate perfect buttons for your website with perfect colors</title>
 			</Head>
-			<Header title={'Element color generator'}>
+			<Header title={'Button state generator'}>
 				To generate colors for different states of buttons
 			</Header>
 			<CSSTransition
@@ -41,6 +45,10 @@ const Elements = () => {
 			<div className={`grid grid-cols-1 md:grid-cols-2 my-8`}>
 				<ButtonGroup color={solid} setColor={setSolid} />
 				<ButtonGroup color={outline} setColor={setOutline} outline />
+				<ButtonGroup color={pill} setColor={setPill} pill />
+				<ButtonGroup color={neu} setColor={setNeu} neu />
+				<ButtonGroup color={float} setColor={setFloat} floating />
+				<ButtonGroup color={shadow} setColor={setShadow} shadow />
 			</div>
 		</div>
 	);

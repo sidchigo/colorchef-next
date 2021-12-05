@@ -35,8 +35,8 @@ function Navbar() {
 				<Link href="/dark-palette">
 					<a className={styles.navLink}>Dark Palette</a>
 				</Link>
-				<Link href="/elements">
-					<a className={styles.navLink}>Elements</a>
+				<Link href="/buttons">
+					<a className={styles.navLink}>Buttons</a>
 				</Link>
 				<Link href="/golden-ratio">
 					<a className={styles.navLink}>Golden Ratio</a>
