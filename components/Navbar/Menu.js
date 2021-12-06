@@ -21,8 +21,8 @@ const Menu = ({ open }) => {
 			<Link href="/dark-palette">
 				<a>Dark Palette</a>
 			</Link>
-			<Link href="/elements">
-				<a>Elements</a>
+			<Link href="/buttons">
+				<a>Buttons</a>
 			</Link>
 			<Link href="/golden-ratio">
 				<a>Golden Ratio</a>
