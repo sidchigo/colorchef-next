@@ -31,7 +31,7 @@ export default function Picker(props) {
 			></Button>
 			<Button
 				style={{ flex: 1 }}
-				variant={`px-7 py-4 bg-white`}
+				variant={`px-7 py-4 bg-white w-40`}
 				onClick={() => setOpenPicker(!openPicker)}
 			>
 				#{tinycolor(color).toHex().toUpperCase()} 🎨
