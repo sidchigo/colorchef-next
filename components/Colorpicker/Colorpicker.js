@@ -104,7 +104,7 @@ class ColorPicker extends React.Component {
 						</div>
 					</div>
 					<div className="grid gap-2 mt-3">
-						<Button variant={`bg-purple-800 text-white rounded`} onClick={this.handleSave}>Set Color</Button>
+						<Button variant={`bg-purple-800 text-white`} onClick={this.handleSave}>Set Color</Button>
 					</div>
 				</div>
 			</CSSTransition>

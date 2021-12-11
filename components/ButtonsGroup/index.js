@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux';
 
 // icons
 import play from 'icons/play.svg';
-import stop from 'icons/stop.svg';
-import pause from 'icons/pause.svg';
 
 // components
 import Picker from 'components/Colorpicker/Picker';

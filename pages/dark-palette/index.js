@@ -20,6 +20,7 @@ const Darkpalette = () => {
 	const [color1, setColor1] = useState('FCF3EC');
 	const [color2, setColor2] = useState('491515');
 	const [color3, setColor3] = useState('E78F2E');
+	const [generated, setGenerated] = useState(false);
 
     const dummyText = [
         {
@@ -41,6 +42,14 @@ const Darkpalette = () => {
 		setColor1(primary);
 		setColor2(secondary);
 		setColor3(accent);
+		setGenerated(true);
+	}
+
+	const handleReset = () => {
+		setColor1('FCF3EC');
+		setColor2('491515');
+		setColor3('E78F2E');
+		setGenerated(false);
 	}
 
 	return (
@@ -51,8 +60,8 @@ const Darkpalette = () => {
 				</title>
 			</Head>
 			<Header title={'Dark Palette Generator'}>
-				To generate a dark color palette from the colors which you
-				provide
+				Want to follow the ongoing trend of dark mode? <br /> Enter your
+				palette and explore the dark colors.
 			</Header>
 			<div className={`grid grid-cols-1 md:grid-cols-3 gap-8 my-4`}>
 				<div className="my-2">
@@ -71,24 +80,35 @@ const Darkpalette = () => {
 			<div className="flex justify-center items-center m-2">
 				<Button
 					variant={`bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
-					onClick={handleGenerate}
+					onClick={generated ? handleReset : handleGenerate}
 				>
-					Generate palette
+					{generated ? 'Reset palette' : 'Generate palette'}
 				</Button>
+				{generated && (
+					<Button
+						variant={`ml-4 bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
+					>
+						Save palette
+					</Button>
+				)}
 			</div>
 			<div className="flex justify-center items-center m-2 pt-4">
 				Preview Below
 			</div>
 			<div
-				className={`${styles.previewBody} rounded-lg`}
+				className={`${styles.previewBody} rounded`}
 				style={{
 					backgroundColor: '#' + tinycolor(color1).toHex(),
 				}}
 			>
 				<div
-					className="flex justify-between p-4 rounded-t-lg"
+					className="flex justify-between p-4 rounded-t"
 					style={{
 						backgroundColor: '#' + tinycolor(color2).toHex(),
+						color:
+							tinycolor(color2).toHsl().l > 0.8
+								? 'black'
+								: 'white',
 					}}
 				>
 					<div>Your website</div>
@@ -129,13 +149,30 @@ const Darkpalette = () => {
 							backgroundColor: '#' + tinycolor(color2).toHex(),
 						}}
 					>
-						<div className="text-lg md:text-2xl font-bold mb-4 text-gray-800">
+						<div
+							className="text-lg md:text-2xl font-bold mb-4"
+							style={{
+								color:
+									tinycolor(color2).toHsl().l > 0.8
+										? 'black'
+										: 'white',
+							}}
+						>
 							These are demo text
 						</div>
 						<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 							{dummyText.map((para) => (
 								<div key={para.title}>
-									<div className={`font-bold text-gray-800`}>
+									<div
+										className={`font-bold`}
+										style={{
+											color:
+												tinycolor(color2).toHsl().l >
+												0.8
+													? 'black'
+													: 'white',
+										}}
+									>
 										{para.title}
 									</div>
 									{para.descr}
@@ -150,14 +187,10 @@ const Darkpalette = () => {
 							return (
 								<div className={``} key={item}>
 									<div
-										className={`${styles.cubeBox}`}
-										style={{
-											backgroundColor: '#FFFFFF',
-											border: `1px solid #${color3}`,
-										}}
+										className={`${styles.cubeBox} bg-slate-200`}
 									>
 										<div>Card Title</div>
-										<div className="mb-2 text-muted">
+										<div className="mb-2 text-slate-800">
 											Card Subtitle
 										</div>
 									</div>
