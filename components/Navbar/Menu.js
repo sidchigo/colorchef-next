@@ -1,37 +1,95 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './Menu.module.css';
+import { useRouter } from 'next/router';
 
-import {Button} from 'components/Button';
+import { Button } from 'components/Button';
 
-const Menu = ({ open }) => {
+const Menu = ({ open, setOpen }) => {
+	const router = useRouter();
+
     return (
 		<div
-			className={styles.sideMenu}
+			className={`
+				flex flex-col justify-end
+				bg-white h-full w-full
+				fixed top-0 right-0 px-12 pb-16
+				-z-10 items-center transition
+				text-xl
+			`}
 			style={{
-				transform: open ? 'translateX(0)' : 'translateX(-100%)',
+				transform: open ? 'translateX(0)' : 'translateX(100%)',
 			}}
 		>
-			<Link href="/services">
-				<div className={styles.navLink}>Services</div>
+			<Link href="/colors">
+				<a
+					onClick={() => setOpen(false)}
+					className={`${
+						router.pathname === '/colors'
+							? 'text-violet-600'
+							: 'text-gray-600'
+						} m-4
+					`}
+				>
+					Colors
+				</a>
 			</Link>
-			<Link href="/solutions">
-				<div className={styles.navLink}>Solutions</div>
+			<Link href="/shadows">
+				<a
+					onClick={() => setOpen(false)}
+					className={`${
+						router.pathname === '/shadows'
+							? 'text-violet-600'
+							: 'text-gray-600'
+						} m-4
+					`}
+				>
+					Shadows
+				</a>
 			</Link>
-			<Link href="/works">
-				<div className={styles.navLink}>Works</div>
+			<Link href="/dark-palette">
+				<a
+					onClick={() => setOpen(false)}
+					className={`${
+						router.pathname === '/dark-palette'
+							? 'text-violet-600'
+							: 'text-gray-600'
+						} m-4
+					`}
+				>
+					Dark Palette
+				</a>
 			</Link>
-			<Link href="/insights">
-				<div className={styles.navLink}>Insights</div>
+			<Link href="/buttons">
+				<a
+					onClick={() => setOpen(false)}
+					className={`${
+						router.pathname === '/buttons'
+							? 'text-violet-600'
+							: 'text-gray-600'
+						} m-4
+					`}
+				>
+					Buttons
+				</a>
 			</Link>
-			<Link href="/about">
-				<div className={styles.navLink}>About</div>
+			<Link href="/golden-ratio">
+				<a
+					onClick={() => setOpen(false)}
+					className={`${
+						router.pathname === '/golden-ratio'
+							? 'text-violet-600'
+							: 'text-gray-600'
+						} m-4
+					`}
+				>
+					Golden Ratio
+				</a>
 			</Link>
-			<Link href="/contact">
-				<div>
-					<Button>Contact us</Button>
-				</div>
-			</Link>
+			<Button
+				variant={`m-4 bg-violet-600 text-white py-2 px-8 hover:bg-violet-800`}
+			>
+				Login
+			</Button>
 		</div>
 	);
 };

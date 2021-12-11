@@ -1,10 +1,9 @@
-import { useRef, useState } from 'react';
-
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from './Navbar.module.css';
 
 // components
-import {Button} from 'components/Button';
+import { Button } from 'components/Button';
 import Burger from './Burger';
 
 // helpers
@@ -13,38 +12,80 @@ import logo from 'icons/logo.svg';
 
 function Navbar() {
 	const { ref, show, setShow } = useOutsideAlerter(false);
+	const router = useRouter();
 
 	return (
-		<nav className="bg-white fixed top-0 w-full z-50 flex justify-center md:justify-between items-center px-8 py-2">
-			<div className="block lg:hidden" ref={ref}>
-				<Burger open={show} setOpen={setShow} />
-			</div>
+		<nav className="bg-white fixed top-0 w-full z-50 flex justify-between items-center px-8 py-3 lg:py-3">
 			<Link href="/">
-				<a className="flex items-center">
-					<img src={logo} width="45" height="45" alt="Colorchef" />
-					<span className={`font-logo text-3xl`}>Colorchef</span>
+				<a className="flex justify-self-center items-center">
+					<img src={logo} width="150" height="150" alt="Colorchef" />
 				</a>
 			</Link>
-			<div className="hidden md:flex w-2/4 justify-end">
+			<div className="relative block lg:hidden" ref={ref}>
+				<Burger open={show} setOpen={setShow} />
+			</div>
+			<div className="hidden lg:flex justify-end">
 				<Link href="/colors">
-					<a className={styles.navLink}>Colors</a>
+					<a
+						className={`
+							text-sm mx-2 hover:text-violet-600 
+							${router.pathname === '/colors' ? 'text-violet-600' : 'text-gray-600'} 
+							${styles.navLink}
+						`}
+					>
+						Colors
+					</a>
 				</Link>
 				<Link href="/shadows">
-					<a className={`${styles.navLink}`}>Shadows</a>
+					<a
+						className={`
+							text-sm mx-2 hover:text-violet-600 
+							${router.pathname === '/shadows' ? 'text-violet-600' : 'text-gray-600'} 
+							${styles.navLink}
+						`}
+					>
+						Shadows
+					</a>
 				</Link>
 				<Link href="/dark-palette">
-					<a className={styles.navLink}>Dark Palette</a>
+					<a
+						className={`
+							text-sm mx-2 hover:text-violet-600 
+							${router.pathname === '/dark-palette' ? 'text-violet-600' : 'text-gray-600'} 
+							${styles.navLink}
+						`}
+					>
+						Dark Palette
+					</a>
 				</Link>
 				<Link href="/buttons">
-					<a className={styles.navLink}>Buttons</a>
+					<a
+						className={`
+							text-sm mx-2 hover:text-violet-600 
+							${router.pathname === '/buttons' ? 'text-violet-600' : 'text-gray-600'} 
+							${styles.navLink}
+						`}
+					>
+						Buttons
+					</a>
 				</Link>
 				<Link href="/golden-ratio">
-					<a className={styles.navLink}>Golden Ratio</a>
-				</Link>
-				<Link href="/about">
-					<a className={styles.navLink}>About Us</a>
+					<a
+						className={`
+							text-sm mx-2 hover:text-violet-600 
+							${router.pathname === '/golden-ratio' ? 'text-violet-600' : 'text-gray-600'} 
+							${styles.navLink}
+						`}
+					>
+						Golden Ratio
+					</a>
 				</Link>
 			</div>
+			<Button
+				variant={`hidden bg-violet-600 lg:block text-white text-sm py-2 px-6 hover:bg-violet-800`}
+			>
+				Login
+			</Button>
 		</nav>
 	);
 }
