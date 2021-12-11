@@ -15,7 +15,7 @@ export default function Picker(props) {
 
     return (
 		<div
-			className={`${styles.colorPicker} rounded`}
+			className={`${styles.colorPicker}`}
 			style={{
 				padding: 0,
 				border: `1px solid #${tinycolor(color).toHex().toUpperCase()}`,

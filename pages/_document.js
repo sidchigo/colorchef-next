@@ -19,6 +19,7 @@ class ColorDoc extends Document {
 						href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&family=Poppins:wght@600&display=swap&family=Josefin+Sans:wght@700"
 						rel="stylesheet"
 					/>
+					<link rel="icon" href="favicon.ico" />
 				</Head>
 				<body>
 					<Main />

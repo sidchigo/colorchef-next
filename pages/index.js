@@ -72,7 +72,6 @@ export default function Home() {
 		<div className="flex flex-col items-center justify-center min-h-screen py-2">
 			<Head>
 				<title>Colorchef - Colors, palettes and contrast</title>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<main className="container">

@@ -69,7 +69,7 @@ const Colorgeneration = () => {
 				<div className="mb-3 ml-0 md:ml-8">
 					<div className="mb-2">Choose contrast quality</div>
 					<select
-						className={`px-4 py-4 border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 rounded w-full`}
+						className={`px-4 py-4 border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 w-full`}
 						id="scaleSelect"
 						value={quality}
 						onChange={(e) => setQuality(e.currentTarget.value)}
@@ -85,7 +85,7 @@ const Colorgeneration = () => {
 				<div>
 					<div className="grid gap-2">
 						<Button
-							variant={`bg-gray-900 py-4 text-white w-full`}
+							variant={`bg-gray-800 hover:bg-slate-900 py-4 text-white w-full`}
 							onClick={() =>
 								dispatch(
 									inputColor({
@@ -103,7 +103,7 @@ const Colorgeneration = () => {
 							OR
 						</div>
 						<Button
-							variant={`bg-gray-900 py-4 text-white w-full`}
+							variant={`bg-gray-800 hover:bg-slate-900 py-4 text-white w-full`}
 							onClick={() => {
 								dispatch(randomColors());
 								setCounter(12);
@@ -140,8 +140,7 @@ const Colorgeneration = () => {
 			) ? (
 				<div className="justify-center items-center pb-4 px-4">
 					<Button
-						variant={`border border-purple-800 py-4 bg-white hover:bg-purple-800 text-purple-800 hover:text-white`}
-						size="sm"
+						variant={`border border-purple-800 mt-6 py-4 bg-white hover:bg-purple-800 text-purple-800 hover:text-white`}
 						onClick={() => showNextCards()}
 					>
 						Show More
