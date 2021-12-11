@@ -1,7 +1,7 @@
 export const Button = ({ variant, children, style, onClick }) => {
 	return (
 		<button
-			className={`px-4 py-4 ${variant}`}
+			className={`${variant} px-4 py-2`}
 			style={style}
 			onClick={onClick}
 		>

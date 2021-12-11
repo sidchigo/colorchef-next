@@ -1,48 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:url(#SVGID_1_);}
-	.st1{fill:#FFFFFF;}
-	.st2{fill:none;stroke:#DDDDDD;stroke-width:5.8118;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st3{fill:#DDDDDD;}
-	.st4{fill:none;stroke:#DDDDDD;stroke-width:6.4054;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-</style>
-<g>
-	<g>
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="153.0882" y1="41.1413" x2="362.0521" y2="489.2658">
-			<stop  offset="0" style="stop-color:#E5B2CA"/>
-			<stop  offset="0.8595" style="stop-color:#7028E4"/>
-		</linearGradient>
-		<path class="st0" d="M496,249c0,103.7-64.1,192.4-154.9,228.5c-28.2,11.2-58.9,17.4-91.1,17.4c-32.2,0-62.9-6.2-91-17.4
-			C68.2,441.4,4,352.7,4,249C4,113.1,114.2,3,250,3S496,113.1,496,249z"/>
-	</g>
-	<g>
-		<g>
-			<g>
-				<path class="st1" d="M341.1,477.5V497H159v-19.5c28.2,11.2,58.9,17.4,91,17.4C282.2,494.9,312.9,488.8,341.1,477.5z"/>
-			</g>
-			<g>
-				<path class="st1" d="M405,280c0,37-28,67.4-63.9,71.3v126.2c-28.2,11.2-58.9,17.4-91.1,17.4c-32.2,0-62.9-6.2-91-17.4V351.7
-					c-39.6,0-71.7-32.1-71.7-71.7c0-39.6,32.1-71.7,71.7-71.7c1.4,0,2.7,0,4.1,0.1c11.5-37.1,46.1-64,87-64c40.9,0,75.5,26.9,87,64
-					C374.9,210.4,405,241.7,405,280z"/>
-			</g>
-			<path class="st2" d="M334.3,211.3c1.7,5,4.9,16.6,1.9,31c-3.1,14.7-10.9,24.2-14.5,28.1"/>
-			<path class="st2" d="M156.1,292.6c-7.6,19.2-4.8,40.8,7.7,56.2c15.2,18.7,42.1,25.3,65.9,15.5"/>
-			<g>
-				<circle class="st3" cx="182.2" cy="474.7" r="6.8"/>
-				<circle class="st3" cx="216.1" cy="474.7" r="6.8"/>
-				<circle class="st3" cx="250" cy="474.7" r="6.8"/>
-				<circle class="st3" cx="283.9" cy="474.7" r="6.8"/>
-				<circle class="st3" cx="317.8" cy="474.7" r="6.8"/>
-			</g>
-		</g>
-		<line class="st4" x1="182.7" y1="444.3" x2="182.7" y2="372.6"/>
-		<line class="st4" x1="283.9" y1="444.3" x2="283.9" y2="372.6"/>
-		<line class="st4" x1="317.3" y1="444.3" x2="317.3" y2="372.6"/>
-		<line class="st4" x1="216.1" y1="444.3" x2="216.1" y2="372.6"/>
-		<line class="st4" x1="250.6" y1="444.3" x2="250.6" y2="372.6"/>
-	</g>
-</g>
+<svg width="2651" height="327" viewBox="0 0 2651 327" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1738.68 61.2712C1720.06 50.5226 1698.94 44.8639 1677.44 44.8639C1655.94 44.8639 1634.83 50.5226 1616.21 61.2712C1597.59 72.0199 1582.13 87.4797 1571.38 106.097C1560.63 124.714 1554.98 145.833 1554.98 167.33C1554.98 188.827 1560.63 209.946 1571.38 228.563C1582.13 247.18 1597.59 262.64 1616.21 273.389C1634.83 284.138 1655.95 289.796 1677.44 289.796C1698.94 289.796 1720.06 284.137 1738.68 273.389" stroke="black" stroke-width="40" stroke-linecap="square"/>
+<path d="M228.525 61.2331C209.908 50.4845 188.789 44.8258 167.292 44.8258C145.795 44.8258 124.676 50.4845 106.059 61.2331C87.4416 71.9818 71.9817 87.4417 61.2331 106.059C50.4844 124.676 44.8257 145.795 44.8257 167.292C44.8257 188.789 50.4844 209.908 61.2331 228.525C71.9817 247.142 87.4416 262.602 106.059 273.351C124.676 284.099 145.795 289.758 167.292 289.758C188.789 289.758 209.908 284.099 228.525 273.351" stroke="black" stroke-width="40" stroke-linecap="square"/>
+<circle cx="460" cy="167.998" r="123" stroke="black" stroke-width="40"/>
+<circle cx="1060" cy="167.998" r="123" stroke="black" stroke-width="40"/>
+<line x1="1889" y1="24.9976" x2="1889" y2="309.998" stroke="black" stroke-width="40"/>
+<line x1="2051.84" y1="24.9976" x2="2051.84" y2="309.998" stroke="black" stroke-width="40"/>
+<line x1="2051" y1="176.681" x2="1869" y2="176.681" stroke="black" stroke-width="40"/>
+<line x1="2343.75" y1="165.784" x2="2177" y2="165.784" stroke="black" stroke-width="40"/>
+<line x1="2343.75" y1="44.9976" x2="2177" y2="44.9976" stroke="black" stroke-width="40"/>
+<line x1="2343.75" y1="289.998" x2="2177" y2="289.998" stroke="black" stroke-width="40"/>
+<line x1="2489" y1="157.087" x2="2489" y2="309.997" stroke="black" stroke-width="40"/>
+<line x1="2586.82" y1="177.087" x2="2469" y2="177.087" stroke="black" stroke-width="40"/>
+<line x1="2651" y1="43.9976" x2="2469" y2="43.9976" stroke="black" stroke-width="40"/>
+<line x1="719" y1="24.9976" x2="719" y2="297.998" stroke="black" stroke-width="40"/>
+<line x1="820" y1="290.316" x2="699" y2="290.316" stroke="black" stroke-width="40"/>
+<line x1="1343.82" y1="204.553" x2="1436.12" y2="296.855" stroke="black" stroke-width="40"/>
+<path d="M1328 44.9976C1454.71 44.9976 1454.71 214.499 1328 214.499" stroke="black" stroke-width="40"/>
 </svg>

@@ -85,7 +85,7 @@ const Colorgeneration = () => {
 				<div>
 					<div className="grid gap-2">
 						<Button
-							variant={`bg-gray-900 text-white rounded w-full`}
+							variant={`bg-gray-900 py-4 text-white w-full`}
 							onClick={() =>
 								dispatch(
 									inputColor({
@@ -103,7 +103,7 @@ const Colorgeneration = () => {
 							OR
 						</div>
 						<Button
-							variant={`bg-gray-900 text-white rounded w-full`}
+							variant={`bg-gray-900 py-4 text-white w-full`}
 							onClick={() => {
 								dispatch(randomColors());
 								setCounter(12);
@@ -140,7 +140,7 @@ const Colorgeneration = () => {
 			) ? (
 				<div className="justify-center items-center pb-4 px-4">
 					<Button
-						variant={`border border-purple-800 bg-white hover:bg-purple-800 text-purple-800 hover:text-white rounded`}
+						variant={`border border-purple-800 py-4 bg-white hover:bg-purple-800 text-purple-800 hover:text-white`}
 						size="sm"
 						onClick={() => showNextCards()}
 					>
