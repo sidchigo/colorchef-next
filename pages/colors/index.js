@@ -123,7 +123,7 @@ const Colorgeneration = () => {
 				</div>
 			</div>
 			<div className="mx-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
-				{colorData.colors.slice(0, counter).map((color) => {
+				{colorData.colors.map((color) => {
 					return (
 						<Colorcard
 							key={color.hex}
@@ -133,27 +133,23 @@ const Colorgeneration = () => {
 					);
 				})}
 			</div>
-			{colorData.totalColors !== 0 &&
-			!(
-				counter >= colorData.totalColors &&
-				counter - 12 < colorData.totalColors
-			) ? (
-				<div className="justify-center items-center pb-4 px-4">
-					<Button
-						variant={`border border-purple-800 mt-6 py-4 bg-white hover:bg-purple-800 text-purple-800 hover:text-white`}
-						onClick={() => showNextCards()}
-					>
-						Show More
-					</Button>
-				</div>
-			) : (
+			{colorData.totalColors === 0 ? (
 				<div className="flex flex-col items-center my-4">
-					<h3 className="text-gray-500 mt-3 flex justify-center items-center">
+					<h3 className="text-gray-500 my-8 flex justify-center items-center">
 						We are out of colors. This color has low contrast value.
-						You can go with more lighter or darker variant{' '}
+						You can go with more lighter or darker variant
 					</h3>
 					<a href="#" className={`text-xl font-bold`}>
 						Try other colors or randomize!
+					</a>
+				</div>
+			) : (
+				<div className="flex flex-col items-center my-4">
+					<h3 className="text-gray-500 my-6 flex justify-center items-center">
+						We are out of colors.
+					</h3>
+					<a href="#" className={`text-xl font-bold`}>
+						Explore more colors!
 					</a>
 				</div>
 			)}
