@@ -24,11 +24,11 @@ const Colorgeneration = () => {
 	const isCopied = useSelector((state) => state.colorGeneration.isCopied);
 	const [counter, setCounter] = useState(12);
 	const [color, setColor] = useState('#E9FAE3');
-	const [quality, setQuality] = useState(3);
+	const [quality, setQuality] = useState(1);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		dispatch(inputColor({ hex: 'E9FAE3', scale: 3 }));
+		dispatch(inputColor({ hex: 'E9FAE3', scale: 1 }));
 	}, []);
 
 	function showNextCards() {
@@ -115,14 +115,14 @@ const Colorgeneration = () => {
 				</div>
 				<div>
 					<h2
-						className={`text-2xl mt-3 flex justify-center items-center`}
+						className={`text-lg md:text-2xl mt-3 flex justify-center items-center`}
 					>
 						{colorData.totalColors} color cards generated!
 						<span className="font-normal">✨</span>
 					</h2>
 				</div>
 			</div>
-			<div className="mx-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
+			<div className="mx-4 sm:mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
 				{colorData.colors.map((color) => {
 					return (
 						<Colorcard

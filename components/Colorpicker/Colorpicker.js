@@ -68,22 +68,23 @@ class ColorPicker extends React.Component {
 			<CSSTransition
 				in={this.props.isOpen}
 				timeout={300}
-				classNames={
-					{
-						enterActive: styles.pickerEnterActive,
-						enter: styles.pickerEnter,
-						exitActive: styles.pickerExitActive,
-						exit: styles.pickerExit
-					}
-				}
+				classNames={{
+					enterActive: styles.pickerEnterActive,
+					enter: styles.pickerEnter,
+					exitActive: styles.pickerExitActive,
+					exit: styles.pickerExit,
+				}}
 				unmountOnExit
 			>
 				<div className={`${styles.picker} ${styles.pickerContainer}`}>
 					<EditableInput
-                        style={{
-                            width: '300px',
-							border: '1px solid #121212'
-                        }}
+						style={{
+							input: {
+								width: '100%',
+								border: '1px solid #d9dfe6a0',
+								padding: '0.5rem',
+							},
+						}}
 						value={this.props.hex}
 						onChange={(data) => this.handleChange(data)}
 					/>
@@ -104,7 +105,12 @@ class ColorPicker extends React.Component {
 						</div>
 					</div>
 					<div className="grid gap-2 mt-3">
-						<Button variant={`bg-purple-800 text-white`} onClick={this.handleSave}>Set Color</Button>
+						<Button
+							variant={`bg-purple-800 text-white`}
+							onClick={this.handleSave}
+						>
+							Set Color
+						</Button>
 					</div>
 				</div>
 			</CSSTransition>

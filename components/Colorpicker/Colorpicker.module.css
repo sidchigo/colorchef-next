@@ -1,22 +1,24 @@
 .picker {
     position: absolute;
-    z-index: 3;
     top: 3rem;
+	left: 50%;
+    transform: translateX(-50%);
 }
 
 .pickerContainer {
     background-color: white;
     padding: 0.75rem;
-    border: 1px solid var(--lightgray);
+	border: 1px solid #d9dfe6;
     border-radius: 8px;
     box-shadow: -4px 9px 25px -6px rgba(86, 86, 86, 0.271);
     margin-top: 1rem;
     z-index: 10;
+	box-sizing: border-box;
 }
 
 .saturationBackground {
     position: relative;
-    width: 300px;
+    width: 250px;
     height: 200px;
 }
 
@@ -29,7 +31,7 @@
 .hueBar {
     margin-top: 1rem;
     position: relative;
-    width: 300px;
+    width: 250px;
     height: 18px;
 }
 
@@ -61,4 +63,15 @@
 .colorPicker {
 	position: relative;
 	display: flex;
+}
+
+/* support for galaxy fold */
+@media only screen and (max-width: 300px) {
+	.saturationBackground {
+		width: 230px;
+	}
+
+	.hueBar {
+		width: 230px;
+	}
 }

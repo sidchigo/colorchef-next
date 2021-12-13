@@ -37,12 +37,7 @@ export default function Picker(props) {
 				#{tinycolor(color).toHex().toUpperCase()} 🎨
 			</Button>
 			{openPicker && (
-				<div
-					style={{
-						position: 'absolute',
-						zIndex: '3',
-					}}
-				>
+				<div>
 					<div
 						style={{
 							position: 'fixed',
