@@ -22,10 +22,15 @@ const Elements = () => {
 	return (
 		<div>
 			<Head>
-				<title>Generate perfect buttons for your website with perfect colors</title>
+				<title>
+					Generate perfect buttons for your website with perfect
+					colors
+				</title>
 			</Head>
 			<Header title={'Button state generator'}>
-				To generate colors for different states of buttons
+				Buttons, Buttons, Buttons....! <br />
+				These buttons are everywhere. Get the perfect 
+				button state ccording to your style.
 			</Header>
 			<CSSTransition
 				in={isCopied}

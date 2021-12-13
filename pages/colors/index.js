@@ -58,8 +58,8 @@ const Colorgeneration = () => {
 				</div>
 			</CSSTransition>
 			<Header title={'Color Generator'}>
-				To generate the combinations of suitable colors for designers
-				who are facing difficulty with the selection of the colors.
+				Still confused finding the perfect color combo? let us help you
+				solve your confusion.
 			</Header>
 			<div className={`flex flex-col md:flex-row`}>
 				<div className="mb-3">

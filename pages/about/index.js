@@ -9,11 +9,11 @@ const About = () => {
 			</div>
 			<div className="flex justify-center items-center">
 				<div className={`${styles.context}`}>
-					Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's
-					standard dummy text ever since the 1500s, when an unknown
-					printer took a galley of type and scrambled it to make a
-					type specimen book.
+					Colorchef is a product derived from the idea to solve the
+					basic color-based problems faced by the UI/UX designers
+					which is majorly selection of colors and color combinations.
+					Two MSc grads from Mumbai decide to work on this and hence,
+					Colorchef was created.
 				</div>
 			</div>
 			<h2 className="grid mt-5 text-3xl text-center pt-4">Ping Us</h2>
