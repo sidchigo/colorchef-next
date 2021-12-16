@@ -4,7 +4,7 @@ import styles from './colors.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 // components
-import Colorcard from 'components/Colorcards/Colorcard';
+import {Colorcard} from 'components/Colorcards/Colorcard';
 import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
 import {Button} from 'components/Button';

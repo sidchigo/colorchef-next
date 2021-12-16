@@ -11,7 +11,7 @@ import { copyColor } from 'slices/colorsSlice';
 // components
 import {Button} from 'components/Button';
 
-const Colorcard = ({ data, originalColor }) => {
+export const Colorcard = ({ data, originalColor }) => {
 	const color1 = data.hex;
 	const color2 = '#' + originalColor;
 	const [bgStyle, setBgStyle] = useState({
@@ -120,4 +120,9 @@ const Colorcard = ({ data, originalColor }) => {
 	);
 };
 
-export default Colorcard;
+
+export const Palettecard =()=>{
+	return(
+		<h1>HEllOO</h1>
+	)
+};

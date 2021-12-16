@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
+import { Palettecard } from 'components/Colorcards/Colorcard';
 
 // components
 import Header from 'components/Header/Header';
@@ -35,7 +36,9 @@ const GoldenRatio = () => {
 			</div>
 			{
 				type=="1"?
-					<div>Random</div>
+					<div>Random
+						<Palettecard/>
+					</div>
 				:
 					<div>Image</div>
 			}
