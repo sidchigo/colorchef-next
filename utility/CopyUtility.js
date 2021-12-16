@@ -4,7 +4,4 @@ export default async function Copy(data) {
 	} else {
 		document.execCommand('copy', true, data);
 	}
-	// setTimeout(() => {
-	// 	dispatch(copyColor(false));
-	// }, 3000);
 }
