@@ -17,7 +17,7 @@ const About = () => {
 				</div>
 			</div>
 			<h2 className="grid mt-5 text-3xl text-center pt-4">Ping Us</h2>
-			<div className="grid grid-cols-1 md:grid-cols-3 text-center pb-3 pt-2 pb-5">
+			<div className="grid grid-cols-1 md:grid-cols-3 text-center pt-2 pb-5">
 				<div className="pb-3">
 					<h3 className={`text-xl`}>Telegram</h3>Siddhesh
 					<br />

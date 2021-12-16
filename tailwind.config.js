@@ -21,7 +21,7 @@ module.exports = {
 					},
 					'70%': {
 						opacity: '0.8',
-						transform: 'translateX(50px)',
+						transform: 'translateX(10px)',
 					},
 					'100%': {
 						opacity: '1',
