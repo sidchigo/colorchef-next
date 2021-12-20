@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // utility
 import { findColors, findRandomColors } from 'utility/ColorGenerator';
@@ -10,16 +11,27 @@ const initialState = {
 	inputColor: '',
 	quote: '',
 	isCopied: false,
+	palette: []
 };
 
-// export const randomQuote = createAsyncThunk('colors/randomQuote', async () => {
-// 	const response = await zenquotes.get('/random/');
-// 	return response.data;
-// });
+export const extractPalette = createAsyncThunk(
+	'colors/extractPalette',
+	async (image) => {
+		const url = 'http://127.0.0.1:8000/v1/palette/3';
+		let imageFile = new FormData();
+		imageFile.append('image', image);
+		const response = await axios.post(url, imageFile, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		});
+		return response.data;
+	}
+)
 
 export const randomColors = createAsyncThunk(
 	'colors/randomColors',
-	async () => {
+	() => {
 		const response = findRandomColors();
 		return response;
 	}
@@ -27,7 +39,7 @@ export const randomColors = createAsyncThunk(
 
 export const inputColor = createAsyncThunk(
 	'colors/inputColor',
-	async (args) => {
+	(args) => {
 		const response = findColors(args.hex, [], args.scale);
 		return response;
 	}
@@ -60,6 +72,13 @@ export const colorgenSlice = createSlice({
 				state.colors = action.payload.colors;
 				state.totalColors = action.payload.totalColors;
 				state.inputColor = action.payload.inputColor;
+			})
+			.addCase(extractPalette.pending, (state) => {
+				state.status = 'loading';
+			})
+			.addCase(extractPalette.fulfilled, (state, action) => {
+				state.status = 'idle';
+				state.palette = action.payload.palette;
 			});
 	},
 });

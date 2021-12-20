@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 
 // components
 import Header from 'components/Header/Header';
+import Canvas from 'components/Canvas';
+import ImagePalette from 'components/ImagePalette';
 
-// utility
-import { extractImageData } from 'utility/ExtractPalette';
+// colorpicker
+const tinycolor = require('tinycolor2');
 
 const GoldenRatio = () => {
-	const [type, setType] = useState(1);
+	const [type, setType] = useState(2);
 	const handleSelect = (id) =>{
 		setType(parseInt(id));
     }
@@ -29,6 +31,7 @@ const GoldenRatio = () => {
 				<select
 					className={`px-4 py-4 border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 w-full`}
 					id="scaleSelect"
+					value={type}
 					onChange={(e) => handleSelect(e.target.value)}
 				>
 					<option value="1">Random Palette</option>
@@ -38,11 +41,7 @@ const GoldenRatio = () => {
 			{type == '1' ? (
 				<div>Random</div>
 			) : (
-				<div>
-					{extractImageData(
-						'https://images.unsplash.com/photo-1639346865246-9b26fc0a5663?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-					)}
-				</div>
+				<ImagePalette />
 			)}
 		</div>
 	);
