@@ -127,7 +127,7 @@ const Colorgeneration = () => {
 					return (
 						<Colorcard
 							key={color.hex}
-							colorData={[color.hex, `#${colorData.inputColor}`, '#121211']}
+							colorData={[color.hex, `#${colorData.inputColor}`, '#121211','#fffdd','#1392fe','#fefefe','#131231']}
 							isQuote
 							quote="Two things are infinite: the universe and human
 							stupidity; and I'm not sure about the universe."
