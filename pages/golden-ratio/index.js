@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 
 // components
 import Header from 'components/Header/Header';
-import Canvas from 'components/Canvas';
 import ImagePalette from 'components/ImagePalette';
 
 // colorpicker
