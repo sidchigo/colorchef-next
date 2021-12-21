@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 // api
 import { extractPalette } from 'slices/colorsSlice';
 
+// components
+import { Colorcard } from 'components/Colorcards/Colorcard';
+
 const ImagePalette = () => {
     const dispatch = useDispatch();
     const [dragged, setDragged] = useState('border-gray-200 w-full');
-    const palette = useSelector(state => state.palette);
+    const palette = useSelector((state) => state.colorGeneration.palette);
     
     const dragOver = (e) => {
 		e.preventDefault();
@@ -26,10 +29,11 @@ const ImagePalette = () => {
     const handleDrop = (e) => {
         e.preventDefault();
         const image = e.dataTransfer.files[0];
-        console.log(image)
         setDragged('border-gray-200 w-2/4');
         dispatch(extractPalette(image));
     }
+
+	useEffect(() => console.log(palette), [palette]); 
 
     return (
 		<div
@@ -58,7 +62,12 @@ const ImagePalette = () => {
 				</svg>
 				<div>Drop image to get started!</div>
 			</div>
-			<div></div>
+			<div>
+				{palette.length !== 0 &&
+				<Colorcard
+					colorData={palette}
+				/>}
+			</div>
 		</div>
 	);
 }
