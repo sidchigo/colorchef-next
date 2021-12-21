@@ -4,7 +4,7 @@ import styles from './colors.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 // components
-import Colorcard from 'components/Colorcards/Colorcard';
+import {Colorcard} from 'components/Colorcards/Colorcard';
 import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
 import {Button} from 'components/Button';
@@ -127,8 +127,10 @@ const Colorgeneration = () => {
 					return (
 						<Colorcard
 							key={color.hex}
-							data={color}
-							originalColor={colorData.inputColor}
+							colorData={[color.hex, `#${colorData.inputColor}`, '#121211','#fffdd','#1392fe','#fefefe','#131231']}
+							isQuote
+							quote="Two things are infinite: the universe and human
+							stupidity; and I'm not sure about the universe."
 						/>
 					);
 				})}
