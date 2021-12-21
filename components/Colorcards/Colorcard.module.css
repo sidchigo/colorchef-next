@@ -13,6 +13,10 @@
     height: 300px;
 } 
 
+.cardRows {
+    grid-template-rows: repeat(6, calc(300px/6));
+}
+
 .cardBody h2 {
     font-size: 1.25em;
 }

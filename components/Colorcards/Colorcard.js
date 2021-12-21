@@ -45,7 +45,7 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '' }) => {
 		}
 
 		return (
-			<div className={`flex flex-col px-2 py-6`}>
+			<div className={`grid ${styles.cardRows} h-[300px] px-2 py-6`}>
 				{colorData.map((color) => {
 					return (
 						<button
