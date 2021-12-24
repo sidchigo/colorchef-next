@@ -4,6 +4,8 @@ import axios from 'axios';
 // utility
 import { findColors, findRandomColors } from 'utility/ColorGenerator';
 
+const BASE = 'https://colorchef-4szplmrbda-el.a.run.app/v1/';
+
 const initialState = {
 	colors: [],
 	totalColors: 0,
@@ -17,7 +19,7 @@ const initialState = {
 export const extractPalette = createAsyncThunk(
 	'colors/extractPalette',
 	async (image) => {
-		const url = 'http://127.0.0.1:8000/v1/palette/3';
+		const url = BASE + 'palette/3';
 		let imageFile = new FormData();
 		imageFile.append('image', image);
 		const response = await axios.post(url, imageFile, {
