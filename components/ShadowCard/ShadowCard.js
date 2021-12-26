@@ -1,15 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './ShadowCard.module.css';
-import colorStyles from 'pages/colors/colors.module.css';
 
-// csstransition
-import { CSSTransition } from 'react-transition-group';
 
 // utility
 import Copy from 'utility/CopyUtility';
+import showToast from 'components/Toast';
 
 export default function ShadowCard({ background, hue, backgroundLum }) {
-	const [copied, setCopied] = useState(false);
 	const [xcord, setXCord] = useState('50%');
 	const [ycord, setYCord] = useState('20px');
 	const [pageX, setPageX] = useState(0);
@@ -97,7 +94,6 @@ export default function ShadowCard({ background, hue, backgroundLum }) {
 			onMouseLeave={(e) => resetLightSource(e)}
 			ref={playground}
 			onClick={() => {
-				setCopied(true);
 				Copy(
 					`box-shadow(${pageX / -25}px ${
 						pageY / -25
@@ -105,29 +101,12 @@ export default function ShadowCard({ background, hue, backgroundLum }) {
 						2
 					)}deg ${shadowSat}% ${shadowLum}% / 0.5))`
 				);
-				setTimeout(() => {
-					setCopied(false);
-				}, 3000);
+				showToast('Shadow styles copied!')
 			}}
 			style={{
 				backgroundColor: background,
 			}}
 		>
-			<CSSTransition
-				in={copied}
-				timeout={300}
-				classNames={{
-					enterActive: colorStyles.alertEnterActive,
-					enter: colorStyles.alertEnter,
-					exitActive: colorStyles.alertExitActive,
-					exit: colorStyles.alertExit,
-				}}
-				unmountOnExit
-			>
-				<div className={`${colorStyles.copyAlert} bg-purple-800`}>
-					Color successfully copied!
-				</div>
-			</CSSTransition>
 			<div
 				className={styles.centerCard}
 				style={{

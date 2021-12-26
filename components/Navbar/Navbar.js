@@ -2,13 +2,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Navbar.module.css';
 
-// components
-import { Button } from 'components/Button';
 import Burger from './Burger';
+import Auth from 'components/Auth';
+
+// icons
+import logo from 'icons/logo.svg';
 
 // helpers
 import useOutsideAlerter from 'utility/OutsideClickHandler';
-import logo from 'icons/logo.svg';
 
 function Navbar() {
 	const { ref, show, setShow } = useOutsideAlerter(false);
@@ -81,11 +82,7 @@ function Navbar() {
 					</a>
 				</Link>
 			</div>
-			<Button
-				variant={`hidden bg-violet-600 lg:block text-white text-sm py-2 px-6 hover:bg-violet-800`}
-			>
-				Login
-			</Button>
+			<Auth />
 		</nav>
 	);
 }

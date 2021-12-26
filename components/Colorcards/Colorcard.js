@@ -10,6 +10,8 @@ import { copyColor } from 'slices/colorsSlice';
 
 // components
 import { Button } from 'components/Button';
+import Save from 'components/Save';
+import showToast from 'components/Toast';
 
 // colorpicker
 const tinycolor = require('tinycolor2');
@@ -18,6 +20,10 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 	const dispatch = useDispatch();
 	const [inView, setInView] = useState(false);
 	const cardRef = useRef();
+	const [bgStyle, setBgStyle] = useState({
+		backgroundColor: `#${colorData[1]}`,
+		color: `#${colorData[0]}`,
+	});
 	useInView(cardRef, () => {
 		setInView(true);
 	});
@@ -27,10 +33,7 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 			return (
 				<div
 					className={`${styles.cardBody} rounded pb-16 m-2`}
-					style={{
-						backgroundColor: colorData[1],
-						color: colorData[0],
-					}}
+					style={bgStyle}
 				>
 					<div className="px-4 py-6">
 						<div className="font-head text-xl">{quote}</div>
@@ -65,23 +68,22 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 	};
 
 	function swapColors(currentColor) {
-		if (bgStyle.color === currentColor) {
-			setBgStyle({ color: color2, backgroundColor: color1 });
+		console.log(currentColor)
+		console.log(bgStyle.color === `#${currentColor}`);
+		if (bgStyle.color === `#${currentColor}`) {
+			setBgStyle({ color: `#${colorData[1]}`, backgroundColor: `#${colorData[0]}` });
 		} else {
-			setBgStyle({ color: color1, backgroundColor: color2 });
+			setBgStyle({ color: `#${colorData[0]}`, backgroundColor: `#${colorData[1]}` });
 		}
 	}
 
 	async function copyHex(text) {
-		dispatch(copyColor(true));
 		if ('clipboard' in navigator) {
 			await navigator.clipboard.writeText(text);
 		} else {
 			document.execCommand('copy', true, text);
 		}
-		setTimeout(() => {
-			dispatch(copyColor(false));
-		}, 3000);
+		showToast('Color copied!');
 	}
 
 	const copyPalette = (palette) => {
@@ -135,7 +137,7 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 							{colorData.length === 2 && (
 								<button
 									className={`${styles.SVGButton}`}
-									onClick={() => swapColors(color1)}
+									onClick={() => swapColors(colorData[0])}
 								>
 									<svg
 										className="h-6 w-6 hover:text-violet-600"
@@ -154,8 +156,8 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 									<Button
 										variant={`${styles.colorButton} px-2`}
 										style={{
-											color: colorData[1],
-											backgroundColor: colorData[0],
+											color: `#${colorData[0]}`,
+											backgroundColor: `#${colorData[1]}`,
 										}}
 										onClick={() =>
 											copyHex(colorData[1].toUpperCase())
@@ -166,8 +168,8 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 									<Button
 										variant={`${styles.colorButton} px-2`}
 										style={{
-											color: colorData[0],
-											backgroundColor: colorData[1],
+											color: `#${colorData[1]}`,
+											backgroundColor: `#${colorData[0]}`,
 										}}
 										onClick={() =>
 											copyHex(colorData[0].toUpperCase())
@@ -177,20 +179,7 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 									</Button>
 								</>
 							)}
-							<button className={`${styles.SVGButton}`}>
-								<svg
-									className="h-6 w-6 hover:text-violet-600"
-									viewBox="0 0 24 24"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-									stroke="currentColor"
-								>
-									<path
-										strokeWidth={2}
-										d="M11.6414 13.4163L4.5 20.7677V2.5H19.5V20.7677L12.3586 13.4163L12 13.0471L11.6414 13.4163Z"
-									/>
-								</svg>
-							</button>
+							<Save data={colorData} />
 						</div>
 					</div>
 				</div>

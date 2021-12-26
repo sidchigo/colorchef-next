@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import styles from './colors.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 // components
@@ -8,9 +7,6 @@ import {Colorcard} from 'components/Colorcards/Colorcard';
 import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
 import {Button} from 'components/Button';
-
-// csstransition
-import { CSSTransition } from 'react-transition-group';
 
 // redux
 import { randomColors, inputColor } from 'slices/colorsSlice';
@@ -21,7 +17,6 @@ const tinycolor = require('tinycolor2');
 const Colorgeneration = () => {
 	const dispatch = useDispatch();
 	const colorData = useSelector((state) => state.colorGeneration);
-	const isCopied = useSelector((state) => state.colorGeneration.isCopied);
 	const [counter, setCounter] = useState(12);
 	const [color, setColor] = useState('#E9FAE3');
 	const [quality, setQuality] = useState(1);
@@ -42,21 +37,6 @@ const Colorgeneration = () => {
 			<Head>
 				<title>Generate color combinations with perfect contrast</title>
 			</Head>
-			<CSSTransition
-				in={isCopied}
-				timeout={300}
-				classNames={{
-					enterActive: styles.alertEnterActive,
-					enter: styles.alertEnter,
-					exitActive: styles.alertExitActive,
-					exit: styles.alertExit,
-				}}
-				unmountOnExit
-			>
-				<div className={`${styles.copyAlert} bg-purple-800`}>
-					Color successfully copied!
-				</div>
-			</CSSTransition>
 			<Header title={'Color Generator'}>
 				Still confused finding the perfect color combo? let us help you
 				solve your confusion.
@@ -127,11 +107,14 @@ const Colorgeneration = () => {
 					return (
 						<Colorcard
 							key={color.hex}
-							colorData={[color.hex, `#${colorData.inputColor}`]}
+							colorData={[
+								tinycolor(color.hex).toHex().toUpperCase(),
+								colorData.inputColor,
+							]}
 							isQuote
 							quote="Two things are infinite: the universe and human
 							stupidity; and I'm not sure about the universe."
-							quoteBy='Albert Einstein'
+							quoteBy="Albert Einstein"
 						/>
 					);
 				})}

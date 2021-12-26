@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 // icons
 import play from 'icons/play.svg';
@@ -7,28 +6,21 @@ import play from 'icons/play.svg';
 // components
 import Picker from 'components/Colorpicker/Picker';
 import { Button } from 'components/Button';
+import showToast from 'components/Toast';
 
 // colorpicker
 const tinycolor = require('tinycolor2');
 
-// actions
-import { copyColor } from 'slices/colorsSlice';
-import { translate } from 'tailwindcss/defaulttheme';
-
 export function ButtonGroup({ color, setColor, outline, pill, neu, floating, shadow }) {
-	const dispatch = useDispatch();
 	const [btnClass, setBtnClass] = useState('.button');
 
 	async function copyHex(text) {
-		dispatch(copyColor(true));
 		if ('clipboard' in navigator) {
 			await navigator.clipboard.writeText(text);
 		} else {
 			document.execCommand('copy', true, text);
 		}
-		setTimeout(() => {
-			dispatch(copyColor(false));
-		}, 3000);
+		showToast('Styles copied!')
 	}
 
 	const shadows = (type, color, isNeu, isFloating, isShadow) => {
