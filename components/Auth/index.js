@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth, provider } from 'lib/firebase';
@@ -9,15 +10,15 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Button } from 'components/Button';
 
 
-const Auth = () => {
+export const Auth = () => {
 	const [user] = useAuthState(auth);
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	useEffect(async () => {
 		if (user) {
-            dispatch(createUser(user));
+			dispatch(createUser(user));
 		}
-	}, [user]);
+	}, []);
 
 	function LoginButton() {
 		const loginWithGoogle = async () => {
@@ -38,32 +39,24 @@ const Auth = () => {
 		);
 	}
 
-	function LogoutButton() {
+	function ProfileButton() {
 		return (
-			<Button
-				variant={`hidden bg-gray-800 lg:block text-white text-sm py-2 px-6 hover:bg-gray-900`}
-				onClick={() => signOut(auth)}
-			>
-				Logout
-			</Button>
-			// <Link href="/profile">
-			// 	<a>
-			// 		<img
-			// 			className={`rounded-full`}
-			// 			src={user?.photoURL}
-			// 			alt="profile"
-			// 			width={40}
-			// 			height={40}
-			// 		/>
-			// 	</a>
-			// </Link>
+			<Link href="/profile">
+				<a>
+					<img
+						className={`rounded-full`}
+						src={user?.photoURL}
+						alt="profile"
+						width={40}
+						height={40}
+					/>
+				</a>
+			</Link>
 		);
 	}
 
 	if (user) {
-		return <LogoutButton />;
+		return <ProfileButton />;
 	}
 	return <LoginButton />;
 };
-
-export default Auth;

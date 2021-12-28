@@ -7,6 +7,7 @@ import styles from './darkpalette.module.css';
 // components
 import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
+import Save from 'components/Save';
 
 // bootstrap
 import {Button} from 'components/Button';
@@ -17,9 +18,12 @@ import { generateDarkPalette } from 'utility/ColorGenerator';
 const tinycolor = require('tinycolor2');
 
 const Darkpalette = () => {
-	const [color1, setColor1] = useState('FCF3EC');
-	const [color2, setColor2] = useState('491515');
-	const [color3, setColor3] = useState('E78F2E');
+	const [lightPrimary, setLPrimary] = useState('FCF3EC');
+	const [lightSecondary, setLSecondary] = useState('491515');
+	const [lightAccent, setLAccent] = useState('E78F2E');
+	const [darkPrimary, setDPrimary] = useState('');
+	const [darkSecondary, setDSecondary] = useState('');
+	const [darkAccent, setDAccent] = useState('');
 	const [generated, setGenerated] = useState(false);
 
     const dummyText = [
@@ -38,17 +42,20 @@ const Darkpalette = () => {
     ];
 
 	const handleGenerate = () => {
-		const { primary, secondary, accent } = generateDarkPalette(color1, color2, color3);
-		setColor1(primary);
-		setColor2(secondary);
-		setColor3(accent);
+		const { primary, secondary, accent, darkPrimary, darkSecondary, darkAccent } = generateDarkPalette(lightPrimary, lightSecondary, lightAccent);
+		setLPrimary(primary);
+		setLSecondary(secondary);
+		setLAccent(accent);
+		setDPrimary(darkPrimary);
+		setDSecondary(darkSecondary);
+		setDAccent(darkAccent);
 		setGenerated(true);
 	}
 
 	const handleReset = () => {
-		setColor1('FCF3EC');
-		setColor2('491515');
-		setColor3('E78F2E');
+		setDPrimary('FCF3EC');
+		setDSecondary('491515');
+		setDAccent('E78F2E');
 		setGenerated(false);
 	}
 
@@ -66,15 +73,24 @@ const Darkpalette = () => {
 			<div className={`grid grid-cols-1 md:grid-cols-3 gap-8 my-4`}>
 				<div className="my-2">
 					<div className="mb-2">Primary Color</div>
-					<Picker color={color1} setColor={setColor1} />
+					<Picker
+						color={generated ? darkPrimary : lightPrimary}
+						setColor={generated ? setDPrimary : setLPrimary}
+					/>
 				</div>
 				<div className="my-2">
 					<div className="mb-2">Secondary Color</div>
-					<Picker color={color2} setColor={setColor2} />
+					<Picker
+						color={generated ? darkSecondary : lightSecondary}
+						setColor={generated ? setDSecondary : setLSecondary}
+					/>
 				</div>
 				<div className="my-2">
 					<div className="mb-2">Accent Color</div>
-					<Picker color={color3} setColor={setColor3} />
+					<Picker
+						color={generated ? darkAccent : lightAccent}
+						setColor={generated ? setDAccent : setLAccent}
+					/>
 				</div>
 			</div>
 			<div className="flex justify-center items-center m-2">
@@ -85,11 +101,24 @@ const Darkpalette = () => {
 					{generated ? 'Reset palette' : 'Generate palette'}
 				</Button>
 				{generated && (
-					<Button
-						variant={`ml-4 bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
-					>
-						Save palette
-					</Button>
+					<div className={`ml-4`}>
+						<Save
+							data={[
+								lightPrimary.toUpperCase(),
+								lightSecondary.toUpperCase(),
+								lightAccent.toUpperCase(),
+								darkPrimary.toUpperCase(),
+								darkSecondary.toUpperCase(),
+								darkAccent.toUpperCase(),
+							]}
+						/>
+					</div>
+
+					// <Button
+					// 	variant={`ml-4 bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
+					// >
+					// 	Save palette
+					// </Button>
 				)}
 			</div>
 			<div className="flex justify-center items-center m-2 pt-4">
@@ -98,15 +127,25 @@ const Darkpalette = () => {
 			<div
 				className={`${styles.previewBody} rounded`}
 				style={{
-					backgroundColor: '#' + tinycolor(color1).toHex(),
+					backgroundColor:
+						'#' +
+						tinycolor(
+							generated ? darkPrimary : lightPrimary
+						).toHex(),
 				}}
 			>
 				<div
 					className="flex justify-between p-4 rounded-t"
 					style={{
-						backgroundColor: '#' + tinycolor(color2).toHex(),
+						backgroundColor:
+							'#' +
+							tinycolor(
+								generated ? darkSecondary : lightSecondary
+							).toHex(),
 						color:
-							tinycolor(color2).toHsl().l > 0.8
+							tinycolor(
+								generated ? darkSecondary : lightSecondary
+							).toHsl().l > 0.8
 								? 'black'
 								: 'white',
 					}}
@@ -127,7 +166,13 @@ const Darkpalette = () => {
 						/>
 						<div
 							className="flex justify-center items-center"
-							style={{ color: '#' + tinycolor(color3).toHex() }}
+							style={{
+								color:
+									'#' +
+									tinycolor(
+										generated ? darkAccent : lightAccent
+									).toHex(),
+							}}
 						>
 							<div className="px-3 mt-4 mx-4 text-center">
 								<h2 className="text-3xl md:text-5xl text-center p-2">
@@ -146,14 +191,22 @@ const Darkpalette = () => {
 					<div
 						className={`${styles.spaceDemo} mt-4 p-6`}
 						style={{
-							backgroundColor: '#' + tinycolor(color2).toHex(),
+							backgroundColor:
+								'#' +
+								tinycolor(
+									generated ? darkSecondary : lightSecondary
+								).toHex(),
 						}}
 					>
 						<div
 							className="text-lg md:text-2xl font-bold mb-4"
 							style={{
 								color:
-									tinycolor(color2).toHsl().l > 0.8
+									tinycolor(
+										generated
+											? darkSecondary
+											: lightSecondary
+									).toHsl().l > 0.8
 										? 'black'
 										: 'white',
 							}}
@@ -167,8 +220,11 @@ const Darkpalette = () => {
 										className={`font-bold`}
 										style={{
 											color:
-												tinycolor(color2).toHsl().l >
-												0.8
+												tinycolor(
+													generated
+														? darkSecondary
+														: lightSecondary
+												).toHsl().l > 0.8
 													? 'black'
 													: 'white',
 										}}

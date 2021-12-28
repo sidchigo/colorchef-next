@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux";
+import { auth } from "lib/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function AuthCheck({ children, fallback }) {
-    const user = useSelector(state => state.auth.user);
+    const [user] = useAuthState(auth);
 
-    return !!Object.keys(user).length ? children : fallback ;
+    return user ? children : fallback ;
 }

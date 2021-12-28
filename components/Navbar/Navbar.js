@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styles from './Navbar.module.css';
 
 import Burger from './Burger';
-import Auth from 'components/Auth';
+import { Auth } from 'components/Auth';
 
 // icons
 import logo from 'icons/logo.svg';

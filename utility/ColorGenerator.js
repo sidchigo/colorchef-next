@@ -194,9 +194,12 @@ export function generateDarkPalette(primary, secondary, accent) {
 	darkAccent = getGoodContrast(accent, darkPrimary);
 
 	return {
-		primary: darkPrimary,
-		secondary: darkSecondary,
-		accent: darkAccent,
+		primary,
+		secondary,
+		accent,
+		darkPrimary,
+		darkSecondary,
+		darkAccent,
 	};
 }
 

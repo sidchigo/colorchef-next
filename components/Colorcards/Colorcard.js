@@ -16,13 +16,18 @@ import showToast from 'components/Toast';
 // colorpicker
 const tinycolor = require('tinycolor2');
 
-export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = '' }) => {
+export const Colorcard = ({
+	colorData,
+	isQuote = false,
+	quote = "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+	quoteBy = 'Albert Einstein',
+}) => {
 	const dispatch = useDispatch();
 	const [inView, setInView] = useState(false);
 	const cardRef = useRef();
 	const [bgStyle, setBgStyle] = useState({
-		backgroundColor: `#${colorData[1]}`,
-		color: `#${colorData[0]}`,
+		backgroundColor: `#${colorData[0]}`,
+		color: `#${colorData[1]}`,
 	});
 	useInView(cardRef, () => {
 		setInView(true);
@@ -46,8 +51,34 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 
 		return (
 			<div className={`flex flex-col px-2 py-2`}>
-				{colorData.map((color) => {
+				{colorData.map((color, index) => {
 					color = `#${tinycolor(color).toHex().toUpperCase()}`;
+					if (index === 3 || index === 0) {
+						return (
+							<React.Fragment key={index}>
+								{colorData.length > 3 && (
+									<div className={`my-2 text-center`}>
+										{index === 3 ? 'Dark ' : 'Light '}
+										palette
+									</div>
+								)}
+								<button
+									key={color}
+									className={`relative group text-center text-white`}
+									style={{ backgroundColor: color }}
+									onClick={() => copyHex(color)}
+								>
+									<div
+										className={`opacity-0 ${
+											colorData.length > 3
+												? 'py-4'
+												: 'py-8'
+										} px-20 lg:px-22 bg-black uppercase group-hover:opacity-40`}
+									>{`${color}`}</div>
+								</button>
+							</React.Fragment>
+						);
+					}
 					return (
 						<button
 							key={color}
@@ -58,7 +89,7 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 							<div
 								className={`opacity-0 ${
 									colorData.length > 3 ? 'py-4' : 'py-8'
-								} px-24 lg:px-20 bg-black uppercase group-hover:opacity-40`}
+								} px-20 lg:px-22 bg-black uppercase group-hover:opacity-40`}
 							>{`${color}`}</div>
 						</button>
 					);
@@ -68,12 +99,17 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 	};
 
 	function swapColors(currentColor) {
-		console.log(currentColor)
 		console.log(bgStyle.color === `#${currentColor}`);
 		if (bgStyle.color === `#${currentColor}`) {
-			setBgStyle({ color: `#${colorData[1]}`, backgroundColor: `#${colorData[0]}` });
+			setBgStyle({
+				color: `#${colorData[1]}`,
+				backgroundColor: `#${colorData[0]}`,
+			});
 		} else {
-			setBgStyle({ color: `#${colorData[0]}`, backgroundColor: `#${colorData[1]}` });
+			setBgStyle({
+				color: `#${colorData[0]}`,
+				backgroundColor: `#${colorData[1]}`,
+			});
 		}
 	}
 
@@ -97,7 +133,9 @@ export const Colorcard = ({ colorData, isQuote = false, quote = '', quoteBy = ''
 		} else {
 			let nameList = ['primary', 'secondary', 'accent'];
 			for (let i = 0; i < palette.length; i++) {
-				paletteCss[nameList[i]] = `#${tinycolor(palette[i]).toHex().toUpperCase()}`;
+				paletteCss[nameList[i]] = `#${tinycolor(palette[i])
+					.toHex()
+					.toUpperCase()}`;
 			}
 			copyHex(JSON.stringify(paletteCss));
 		}

@@ -10,6 +10,7 @@ import Loader from 'components/Loader';
 
 // image compression
 import Resizer from 'react-image-file-resizer';
+import tinycolor from 'tinycolor2';
 
 const ImagePalette = () => {
     const dispatch = useDispatch();
@@ -86,7 +87,8 @@ const ImagePalette = () => {
 		} else if (status === 'loading') {
 			return <Loader />
 		} else {
-			return <Colorcard ref={paletteRef} colorData={palette} />;
+			const hexPalette = palette.map(color => tinycolor(color).toHex().toUpperCase());
+			return <Colorcard colorData={hexPalette} />;
 		}
 	}
 

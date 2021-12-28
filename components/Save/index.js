@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import styles from 'components/Colorcards/Colorcard.module.css';
 import { useDocument } from 'react-firebase-hooks/firestore';
-import { db } from 'lib/firebase';
+import { auth, db } from 'lib/firebase';
 import {
 	doc,
 	increment,
@@ -12,6 +12,7 @@ import {
 // components
 import AuthCheck from 'components/AuthCheck';
 import showToast from 'components/Toast';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // action
 // import { savePalette } from 'slices/authSlice';
@@ -19,9 +20,9 @@ import showToast from 'components/Toast';
 const Save = ({data}) => {
 	const dispatch = useDispatch();
 	
-	const userId = useSelector(state => state.auth.user.id);
 	const paletteId = data.join('-');
-	const docId = `${userId}_${paletteId}`;
+	const [user] = useAuthState(auth);
+	const docId = `${user?.uid}_${paletteId}`;
 	const saveRef = doc(db, 'saves', docId);
 	const paletteRef = doc(db, 'palettes', paletteId);
 	
@@ -44,8 +45,12 @@ const Save = ({data}) => {
 		}
 
 		const batch = writeBatch(db);
+		const saveRef = doc(db, 'saves', docId);
+		const userRef = doc(db, 'users', user?.uid);
+		
 		batch.set(paletteRef, { totalSaves: increment(1), type });
-		batch.set(saveRef, { userId, paletteId, type});
+		batch.update(userRef, { savedPalettes: increment(1) });
+		batch.set(saveRef, { userId: user?.uid, paletteId, type});
 
 		await batch.commit();
 		showToast('Palette saved!');
@@ -53,7 +58,9 @@ const Save = ({data}) => {
 
 	const unSavePalette = async () => {
 		const batch = writeBatch(db);
+		const userRef = doc(db, 'users', user?.uid);
 		batch.update(paletteRef, { totalSaves: increment(-1) });
+		batch.update(userRef, { savedPalettes: increment(-1) });
 		batch.delete(saveRef);
 
 		await batch.commit();

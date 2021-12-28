@@ -12,18 +12,27 @@ export const createUser = createAsyncThunk(
     async (userRef) => {
         const user = {
 			name: userRef.displayName,
-			createdAt: Timestamp.now(),
 			email: userRef.email,
+			photo: userRef.photoURL
 		};
         await setDoc(doc(db, 'users', userRef.uid), user);
-        return { name: user.name, email: user.email, id: userRef.uid };
+        return {
+			name: user.name,
+			email: user.email,
+			id: userRef.uid,
+			photo: userRef.photoURL,
+		};
     }
 );
 
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {},
+	reducers: {
+		logout: (state) => {
+			state.user = {}
+		}
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(createUser.pending, (state) => {
@@ -35,3 +44,5 @@ export const authSlice = createSlice({
 			});
 	},
 });
+
+export const { logout } = authSlice.actions;
