@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Button } from 'components/Button';
+import { Auth } from 'components/Auth';
 
 const Menu = ({ open, setOpen }) => {
 	const router = useRouter();
@@ -27,7 +28,7 @@ const Menu = ({ open, setOpen }) => {
 						router.pathname === '/colors'
 							? 'text-violet-600'
 							: 'text-gray-600'
-						} m-4
+					} m-4
 					`}
 				>
 					Colors
@@ -40,7 +41,7 @@ const Menu = ({ open, setOpen }) => {
 						router.pathname === '/shadows'
 							? 'text-violet-600'
 							: 'text-gray-600'
-						} m-4
+					} m-4
 					`}
 				>
 					Shadows
@@ -53,7 +54,7 @@ const Menu = ({ open, setOpen }) => {
 						router.pathname === '/dark-palette'
 							? 'text-violet-600'
 							: 'text-gray-600'
-						} m-4
+					} m-4
 					`}
 				>
 					Dark Palette
@@ -66,7 +67,7 @@ const Menu = ({ open, setOpen }) => {
 						router.pathname === '/buttons'
 							? 'text-violet-600'
 							: 'text-gray-600'
-						} m-4
+					} m-4
 					`}
 				>
 					Buttons
@@ -79,17 +80,15 @@ const Menu = ({ open, setOpen }) => {
 						router.pathname === '/golden-ratio'
 							? 'text-violet-600'
 							: 'text-gray-600'
-						} m-4
+					} m-4
 					`}
 				>
 					Golden Ratio
 				</a>
 			</Link>
-			<Button
-				variant={`m-4 bg-violet-600 text-white py-2 px-8 hover:bg-violet-800`}
-			>
-				Login
-			</Button>
+			<button onClick={() => setOpen(false)}>
+				<Auth />
+			</button>
 		</div>
 	);
 };

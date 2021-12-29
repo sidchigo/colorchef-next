@@ -14,11 +14,11 @@ export const Auth = () => {
 	const [user] = useAuthState(auth);
 	const dispatch = useDispatch();
 
-	useEffect(async () => {
-		if (user) {
+	useEffect(() => {
+		if (user !== null) {
 			dispatch(createUser(user));
 		}
-	}, []);
+	}, [user]);
 
 	function LoginButton() {
 		const loginWithGoogle = async () => {

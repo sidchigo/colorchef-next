@@ -82,7 +82,9 @@ function Navbar() {
 					</a>
 				</Link>
 			</div>
-			<Auth />
+			<div className={`hidden lg:block`}>
+				<Auth />
+			</div>
 		</nav>
 	);
 }

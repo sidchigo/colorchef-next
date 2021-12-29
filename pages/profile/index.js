@@ -162,7 +162,23 @@ const Profile = () => {
 					</Button>
 				</div>
 			</div>
-			<div className="flex justify-center sm:gap-3 md:gap-32 lg:gap-60  pt-10 pb-10">
+			<div className="flex justify-around overflow-x-auto space-x-12 no-scrollbar py-10">
+				<button>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M15 19l-7-7 7-7"
+						/>
+					</svg>
+				</button>
 				{tabs.map((tab) => (
 					<button
 						key={tab.id}
@@ -180,6 +196,22 @@ const Profile = () => {
 						{tab.title}
 					</button>
 				))}
+				<button>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M9 5l7 7-7 7"
+						/>
+					</svg>
+				</button>
 			</div>
 			<div className="mx-4 sm:mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
 				{tabs.map((tab) => {
@@ -199,7 +231,8 @@ const Profile = () => {
 					if (tab.id === active) {
 						return (
 							tab.content.length !== 0 &&
-							tab.content.length % 12 === 0 && !showMore && (
+							tab.content.length % 12 === 0 &&
+							!showMore && (
 								<Button
 									key={tab.id}
 									variant={`bg-violet-500 hover:bg-violet-600 text-white`}
@@ -213,9 +246,7 @@ const Profile = () => {
 				})}
 			</div>
 			{showMore && (
-				<div className={`flex justify-center italic my-4`}>
-					Fin
-				</div>
+				<div className={`flex justify-center italic my-4`}>Fin</div>
 			)}
 		</AuthCheck>
 	);
