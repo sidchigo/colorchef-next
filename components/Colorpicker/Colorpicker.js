@@ -53,7 +53,7 @@ class ColorPicker extends React.Component {
     }
 
 	handleChange = (data) => {
-		this.props.setColor(data);
+		this.props.setColor(tinycolor(data).toHex());
         this.setState({ currentColor: data })
 	};
 

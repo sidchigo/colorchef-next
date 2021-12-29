@@ -26,10 +26,6 @@ const Colorgeneration = () => {
 		dispatch(inputColor({ hex: 'E9FAE3', scale: 1 }));
 	}, []);
 
-	function showNextCards() {
-		setCounter(counter + 12);
-	}
-
 	return (
 		<div
 			className={`relative container flex flex-col items-center mx-auto`}

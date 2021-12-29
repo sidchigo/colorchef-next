@@ -15,7 +15,7 @@ export const createUser = createAsyncThunk(
 			email: userRef.email,
 			photo: userRef.photoURL
 		};
-        await setDoc(doc(db, 'users', userRef.uid), user);
+        await setDoc(doc(db, 'users', userRef.uid), user, { merge: true });
         return {
 			name: user.name,
 			email: user.email,

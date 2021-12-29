@@ -9,7 +9,7 @@ import AuthCheck from 'components/AuthCheck';
 import { Colorcard } from 'components/Colorcards/Colorcard';
 
 // firebase
-import { collection, query, where, doc, getDocs, onSnapshot, limit } from 'firebase/firestore';
+import { collection, query, where, doc, getDocs, onSnapshot, limit, startAfter } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { auth, db } from 'lib/firebase';
 
@@ -20,25 +20,25 @@ const Profile = () => {
 	const [currentUser, setCurrentUser] = useState({});
 	const [active, setActive] = useState('quoteCard');
 	const [cards, setCards] = useState([]);
-	const [ratios, setRatios] = useState([]);
-	const [palettes, setPalettes] = useState([]);
+	const [start, setStart] = useState();
+	const [showMore, setShowMore] = useState(false);
 	const dispatch = useDispatch();
 
 	const tabs = [
 		{
 			id: 'quoteCard',
 			title: 'Color generation',
-			content: cards
+			content: cards,
 		},
 		{
 			id: 'goldenRatio',
 			title: 'Golden ratio',
-			content: ratios
+			content: cards,
 		},
 		{
 			id: 'darkPalette',
 			title: 'Dark palette',
-			content: palettes
+			content: cards,
 		},
 	];
 
@@ -59,6 +59,7 @@ const Profile = () => {
 				);
 				onSnapshot(q, (snapshot) => {
 					let saveData = [];
+					setStart(snapshot.docs[snapshot.docs.length - 1]);
 					snapshot.forEach((doc) => {
 						saveData.push(doc.data());
 					})
@@ -68,64 +69,50 @@ const Profile = () => {
 		});
 	}, []);
 
-	const getQuoteCard = () => {
+	const getNextResults = (type) => {
+		auth.onAuthStateChanged(async (user) => {
+			if (user) {
+				const saveRef = collection(db, 'saves');
+				if (start !== undefined) {
+					const q = query(
+						saveRef,
+						where('userId', '==', user?.uid),
+						where('type', '==', type),
+						limit(12),
+						startAfter(start)
+					);
+					onSnapshot(q, (snapshot) => {
+						let saveData = [...cards];
+						setStart(snapshot.docs[snapshot.docs.length - 1]);
+						snapshot.forEach((doc) => {
+							saveData.push(doc.data());
+						});
+					});
+				} else {
+					setShowMore(true);
+				}
+			}
+		});
+		
+	}
+
+	const getPaletteData = (type) => {
 		auth.onAuthStateChanged(async (user) => {
 			if (user) {
 				const saveRef = collection(db, 'saves');
 				const q = query(
 					saveRef,
 					where('userId', '==', user?.uid),
-					where('type', '==', 'quoteCard'),
+					where('type', '==', type),
 					limit(12)
 				);
 				onSnapshot(q, (snapshot) => {
 					let saveData = [];
+					setStart(snapshot.docs[snapshot.docs.length - 1]);
 					snapshot.forEach((doc) => {
 						saveData.push(doc.data());
 					});
 					setCards(saveData);
-				});
-			}
-		});
-	}
-
-	const getGoldenRatio = () => {
-		auth.onAuthStateChanged(async (user) => {
-			if (user) {
-				const saveRef = collection(db, 'saves');
-				const q = query(
-					saveRef,
-					where('userId', '==', user?.uid),
-					where('type', '==', 'goldenRatio'),
-					limit(12)
-				);
-				onSnapshot(q, (snapshot) => {
-					let saveData = [];
-					snapshot.forEach((doc) => {
-						saveData.push(doc.data());
-					});
-					setRatios(saveData);
-				});
-			}
-		});
-	}
-
-	const getDarkPalette = () => {
-		auth.onAuthStateChanged(async (user) => {
-			if (user) {
-				const saveRef = collection(db, 'saves');
-				const q = query(
-					saveRef,
-					where('userId', '==', user?.uid),
-					where('type', '==', 'darkPalette'),
-					limit(12)
-				);
-				onSnapshot(q, (snapshot) => {
-					let saveData = [];
-					snapshot.forEach((doc) => {
-						saveData.push(doc.data());
-					});
-					setPalettes(saveData);
 				});
 			}
 		});
@@ -138,19 +125,7 @@ const Profile = () => {
 
 	const handleClick = (tabId) => {
 		setActive(tabId);
-		switch(tabId) {
-			case 'quoteCard':
-				getQuoteCard();
-				break;
-			case 'goldenRatio':
-				getGoldenRatio();
-				break;
-			case 'darkPalette':
-				getDarkPalette();
-				break;
-			default:
-				getQuoteCard();
-		}
+		getPaletteData(tabId);
 	}
 
 	return (
@@ -219,6 +194,29 @@ const Profile = () => {
 					}
 				})}
 			</div>
+			<div className={`flex justify-center my-4`}>
+				{tabs.map((tab) => {
+					if (tab.id === active) {
+						return (
+							tab.content.length !== 0 &&
+							tab.content.length % 12 === 0 && !showMore && (
+								<Button
+									key={tab.id}
+									variant={`bg-violet-500 hover:bg-violet-600 text-white`}
+									onClick={() => getNextResults(tab.id)}
+								>
+									Show more -&gt;
+								</Button>
+							)
+						);
+					}
+				})}
+			</div>
+			{showMore && (
+				<div className={`flex justify-center italic my-4`}>
+					Fin
+				</div>
+			)}
 		</AuthCheck>
 	);
 };
