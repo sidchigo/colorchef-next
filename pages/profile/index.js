@@ -70,7 +70,6 @@ const Profile = () => {
 	}, []);
 
 	const getNextResults = (type) => {
-		console.log('nextRes')
 		auth.onAuthStateChanged(async (user) => {
 			if (user) {
 				const saveRef = collection(db, 'saves');
@@ -193,7 +192,14 @@ const Profile = () => {
 					</button>
 				))}
 			</div>
-			<div className="mx-4 sm:mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
+			<div 
+				className={`
+					mx-4 sm:mx-10 grid grid-cols-1 
+					sm:grid-cols-2 lg:grid-cols-3 
+					xl:grid-cols-4 gap-8 mt-3 mb-3
+					min-h-[500px]
+				`}
+			>
 				{tabs.map((tab) => {
 					if (tab.id === active) {
 						return tab.content.map((doc) => (
