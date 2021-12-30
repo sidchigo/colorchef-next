@@ -10,7 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Button } from 'components/Button';
 
 
-export const Auth = () => {
+export const Auth = ({ extraFunction }) => {
 	const [user] = useAuthState(auth);
 	const dispatch = useDispatch();
 
@@ -24,6 +24,7 @@ export const Auth = () => {
 		const loginWithGoogle = async () => {
 			try {
 				await signInWithPopup(auth, provider);
+				extraFunction?.(false);
 			} catch (err) {
 				console.log(err);
 			}
@@ -31,7 +32,7 @@ export const Auth = () => {
 
 		return (
 			<Button
-				variant={`hidden bg-violet-600 lg:block text-white text-sm py-2 px-6 hover:bg-violet-800`}
+				variant={`bg-violet-600 text-white text-sm py-2 px-6 hover:bg-violet-800`}
 				onClick={loginWithGoogle}
 			>
 				Login
@@ -42,7 +43,7 @@ export const Auth = () => {
 	function ProfileButton() {
 		return (
 			<Link href="/profile">
-				<a>
+				<a onClick={() => extraFunction?.(false)}>
 					<img
 						className={`rounded-full`}
 						src={user?.photoURL}

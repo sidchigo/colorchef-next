@@ -86,9 +86,9 @@ const Menu = ({ open, setOpen }) => {
 					Golden Ratio
 				</a>
 			</Link>
-			<button onClick={() => setOpen(false)}>
-				<Auth />
-			</button>
+			<div className={`m-4`}>
+				<Auth extraFunction={() => setOpen(false)}/>
+			</div>
 		</div>
 	);
 };

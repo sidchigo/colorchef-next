@@ -138,7 +138,7 @@ const Profile = () => {
 				</div>
 			}
 		>
-			<div className="flex flex-row justify-center pt-10 pb-10 gap-6">
+			<div className="flex flex-row justify-center py-4 md:py-10 gap-6">
 				<img
 					className="h-40 w-40 rounded-full object-cover"
 					src={currentUser?.photo}
@@ -155,63 +155,39 @@ const Profile = () => {
 						</span>
 					</div>
 					<Button
-						variant={`hidden bg-gray-800 lg:block text-white text-sm py-2 px-6 hover:bg-gray-900`}
+						variant={`bg-gray-800 text-white text-sm py-2 px-6 hover:bg-gray-900`}
 						onClick={logOut}
 					>
 						Logout
 					</Button>
 				</div>
 			</div>
-			<div className="flex justify-around overflow-x-auto space-x-12 no-scrollbar py-10">
-				<button>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M15 19l-7-7 7-7"
-						/>
-					</svg>
-				</button>
+			<div 
+				className={`
+					flex md:justify-center overflow-x-auto 
+					space-x-4 md:space-x-8 no-scrollbar 
+					py-4 md:py-10 px-4
+					sticky top-[48px] bg-white
+				`}
+			>
 				{tabs.map((tab) => (
 					<button
 						key={tab.id}
 						className={`
 							${
 								active === tab.id
-									? 'border-gray-600 text-gray-600'
-									: 'border-gray-300 text-gray-300'
+									? 'bg-gray-200 text-gray-800'
+									: 'bg-gray-100 text-gray-700'
 							}
-							border-b-[3px] pb-1
-							hover:border-gray-600 hover:text-gray-600
+							flex flex-shrink-0 justify-center
+							rounded-full w-[180px] sm:w-[200px] p-4
+							hover:bg-gray-300
 						`}
 						onClick={() => handleClick(tab.id)}
 					>
 						{tab.title}
 					</button>
 				))}
-				<button>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
-				</button>
 			</div>
 			<div className="mx-4 sm:mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
 				{tabs.map((tab) => {
