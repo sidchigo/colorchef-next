@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Footer = () => {
     return (
-		<footer className={`w-full bg-purple-200`}>
+		<footer className={`w-full bg-purple-200 mt-auto`}>
 			<div className="grid grid-cols-1 sm:grid-cols-2 p-3 md:p-4 lg:p-5 ">
 				<section
 					style={{ color: '#080374' }}

@@ -70,6 +70,7 @@ const Profile = () => {
 	}, []);
 
 	const getNextResults = (type) => {
+		console.log('nextRes')
 		auth.onAuthStateChanged(async (user) => {
 			if (user) {
 				const saveRef = collection(db, 'saves');
@@ -82,11 +83,14 @@ const Profile = () => {
 						startAfter(start)
 					);
 					onSnapshot(q, (snapshot) => {
+						console.log(cards)
 						let saveData = [...cards];
+						console.log(saveData);
 						setStart(snapshot.docs[snapshot.docs.length - 1]);
 						snapshot.forEach((doc) => {
-							saveData.push(doc.data());
+							saveData.push(doc.data());	
 						});
+						setCards(saveData);
 					});
 				} else {
 					setShowMore(true);
@@ -166,8 +170,8 @@ const Profile = () => {
 				className={`
 					flex md:justify-center overflow-x-auto 
 					space-x-4 md:space-x-8 no-scrollbar 
-					py-4 md:py-10 px-4
-					sticky top-[48px] bg-white
+					py-4 md:py-6 px-4
+					sticky top-[48px] md:top-0 md:relative bg-white
 				`}
 			>
 				{tabs.map((tab) => (

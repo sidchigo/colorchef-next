@@ -3,7 +3,7 @@ import styles from './about.module.css';
 
 const About = () => {
 	return (
-		<main className="container mx-auto px-4 md:px-8 lg:px-16 min-h-screen">
+		<main className="container mx-auto px-4 md:px-8 lg:px-16">
 			<div className="grid px-3 mt-5 text-center pb-3 pt-4">
 				<h1 className={`text-4xl`}>About Us</h1>
 			</div>
