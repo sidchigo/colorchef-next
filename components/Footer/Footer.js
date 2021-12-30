@@ -22,7 +22,7 @@ const Footer = () => {
 						<div
 							className={`flex flex-col ${styles.footerContent}`}
 						>
-							<Link href="/colors#">
+							<Link href="/colors">
 								<a className={`${styles.footerLinks} my-3`}>
 									Color generator
 								</a>
@@ -41,12 +41,12 @@ const Footer = () => {
 						<div
 							className={`flex flex-col ${styles.footerContent}`}
 						>
-							<Link href="/Accessibility">
+							<Link href="/buttons">
 								<a className={`${styles.footerLinks} my-3`}>
-									Accessibility options
+									Buttons generator
 								</a>
 							</Link>
-							<Link href="/Golden">
+							<Link href="/golden-ratio">
 								<a className={`${styles.footerLinks} my-3`}>
 									Golden ratio generator
 								</a>
