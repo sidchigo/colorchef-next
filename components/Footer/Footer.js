@@ -4,13 +4,15 @@ import Link from 'next/link';
 
 const Footer = () => {
     return (
-		<footer className={`w-full bg-purple-200 mt-auto`}>
+		<footer className={`bg-purple-200 mt-auto`}>
 			<div className="grid grid-cols-1 sm:grid-cols-2 p-3 md:p-4 lg:p-5 ">
 				<section
 					style={{ color: '#080374' }}
-					className="flex text-3xl font-bold items-center justify-start"
+					className="flex text-xl md:text-3xl font-bold items-center justify-center md:justify-start"
 				>
-					Colorchef
+					<Link href="/">
+						<a>Colorchef</a>
+					</Link>
 				</section>
 				<section className="container">
 					<div
