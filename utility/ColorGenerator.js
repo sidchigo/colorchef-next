@@ -221,26 +221,31 @@ export function findRandomColors() {
 	return findColors(randomColor, colorList, 2);
 }
 
-let colorArry = generateNColors(100);
-let colorRan = tinycolor.random();
-let colorRanRGB= colorRan.toHex();
-console.log(colorRanRGB);
+function getRandomLightColor() {
+	color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+	return color;
+  }
 
-let tempColor1 = findColors(colorRanRGB,colorArry,2,1);
-let colorsParam = tempColor1.colors.map(o => o.hex);
-console.log(colorsParam);
-let InterArray = [`#${colorRanRGB}`].concat(colorsParam[0]);
-console.log(InterArray);
+export function paletteGenerator(){
 
-let tempColor2 = findColors(colorRanRGB,colorArry,1,1);
-let colorsParam2 = tempColor2.colors.map(o => o.hex);
-console.log(colorsParam2);
-let finalArray =InterArray.concat(colorsParam2[0]);
-console.log(finalArray);
+	let colorArry = generateNColors(100);
+	//let colorRan = tinycolor.random();
+	let colorRan = getRandomLightColor();
+	let colorRanRGB= colorRan.toHex();
+	console.log(colorRanRGB);
 
+	let tempColor1 = findColors(colorRanRGB,colorArry,2,1);
+	let colorsParam = tempColor1.colors.map(o => o.hex);
+	let InterArray = [`#${colorRanRGB}`].concat(colorsParam[0]);
+	console.log(InterArray);
 
+	let tempColor2 = findColors(colorRanRGB,colorArry,1,1);
+	let colorsParam2 = tempColor2.colors.map(o => o.hex);
+	let finalArray =InterArray.concat(colorsParam2[0]);
+	console.log(finalArray);
+}
 
-
+paletteGenerator();
 	
 
 	
