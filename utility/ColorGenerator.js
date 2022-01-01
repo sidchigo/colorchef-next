@@ -111,7 +111,7 @@ function compareContrast([luminance, ratio]) {
 	return passingTest;
 }
 
-export function findColors(inputColor, colorList = [], scale) {
+export function findColors(inputColor, colorList = [], scale, limit = 120) {
 	let originalColor = inputColor;
 	inputColor = hexToRGB(inputColor);
 	let sampleColors =
@@ -127,7 +127,7 @@ export function findColors(inputColor, colorList = [], scale) {
 		pair = [inputColor, color];
 		contrastResult = findContrast(pair);
 		result = compareContrast(contrastResult);
-		if (result[scale - 1] === true && foundColors.length < 120) {
+		if (result[scale - 1] === true && foundColors.length < limit) {
 			hexColor = RGBToHex(color);
 			rgbColor = color;
 			hslColor = RGBToHSL(color);
@@ -220,3 +220,37 @@ export function findRandomColors() {
 	let randomColor = colors[Math.floor(Math.random() * colors.length)];
 	return findColors(randomColor, colorList, 2);
 }
+
+let colorArry = generateNColors(100);
+let colorRan = tinycolor.random();
+let colorRanRGB= colorRan.toHex();
+console.log(colorRanRGB);
+
+let tempColor1 = findColors(colorRanRGB,colorArry,2,1);
+let colorsParam = tempColor1.colors.map(o => o.hex);
+console.log(colorsParam);
+let InterArray = [`#${colorRanRGB}`].concat(colorsParam[0]);
+console.log(InterArray);
+
+let tempColor2 = findColors(colorRanRGB,colorArry,1,1);
+let colorsParam2 = tempColor2.colors.map(o => o.hex);
+console.log(colorsParam2);
+let finalArray =InterArray.concat(colorsParam2[0]);
+console.log(finalArray);
+
+
+
+
+	
+
+	
+	
+
+	
+	
+
+
+
+
+	
+	
