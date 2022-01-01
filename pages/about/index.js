@@ -24,7 +24,7 @@ const About = () => {
 						Siddhesh
 					</a>
 					<br />
-					<a target="_blank" href="https://t.me/sekigangantai">
+					<a target="_blank" href="https://t.me/chinmay_99">
 						Chinmay
 					</a>
 				</div>

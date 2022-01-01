@@ -1,117 +1,134 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-import styles from '../styles/utils.module.css';
+// img
+import colorsImg from 'images/colors.png';
 
-// icons
-import Pancake from 'icons/pancake.svg';
-import Juice from 'icons/juice.svg';
-import Melon from 'icons/melon.svg';
-import Pastry from 'icons/pastry.svg';
-import Icecream from 'icons/icecream.svg';
-import hero from 'images/hero.png';
-import { Button, UpButton } from 'components/Button';
+// components
+import { UpButton } from 'components/Button';
+import Paragraph from 'components/Paragraph';
 
 export default function Home() {
-	const pageContent = [
-		{
-			id: 1,
-			icon: Pancake,
-			name: 'Color generator',
-			description: `Color generator tool for generating combination of
-			background colors and foreground colors with
-			appropriate contrast. Specify desired contrast get
-			number of possible combinations.`,
-			link: '/colors',
-		},
-		{
-			id: 2,
-			icon: Juice,
-			name: 'Shadow generator',
-			description: `Days of black shadows are gone. Forget about all
-			that hassle to figure out colors for your shadows.
-			Shadow generator helps you to get styles of most
-			popular shadows only in few steps!`,
-			link: '/shadows',
-		},
-		{
-			id: 3,
-			icon: Melon,
-			name: 'Element colors',
-			description: `Don’t worry about selecting different colors for all
-			your different elements like buttons and links.
-			Element color generator will take care of all the
-			colors for you. Just provide primary color and get
-			started.`,
-			link: '/elements',
-		},
-		{
-			id: 4,
-			icon: Pastry,
-			name: 'Dark palette',
-			description: `Dark mode is the current UI trendsetter. Want to
-			reduce your efforts of selecting double of every
-			color for dark mode, just use dark palette generator
-			and relax.`,
-			link: '/dark-palette',
-		},
-		{
-			id: 5,
-			icon: Icecream,
-			name: 'Golden ratio',
-			description: `Selecting proper combination of colors is difficult,
-			we agree. That’s where the golden ratio generator
-			steps up the game of colors. Choose your favorite
-			palette of colors having ideal 60%, 30% and 10%
-			ratio.`,
-			link: '/golden-ratio',
-		},
-	];
-
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen py-2">
+		<div className="container">
 			<Head>
 				<title>Colorchef - Colors, palettes and contrast</title>
 			</Head>
 
-			<main className="container">
-				<div className="grid grid-cols-1 lg:grid-cols-2 my-16">
-					<div className="my-8 text-left">
-						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-right">
-							Don't worry about colors. We've got you covered.
-						</h1>
-						<h2 className="font-head text-4xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
-							Design. Explore. Innovate.
-						</h2>
-						<UpButton
-							variant={`animate-fadein-right animation-duration-1200 hover:border-purple-600`}
-							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-purple-600'}
-						>
-							Start exploring
-						</UpButton>
-					</div>
+			<div className="flex flex-col justify-center items-center h-screen">
+				<div className="text-7xl font-bold text-center animate-fadein-top mb-4">
+					Colorchef is color-utility website to help out designers and
+					developers.
 				</div>
-				<div className="flex justify-center my-16">
-					<div className="my-8 text-left overflow-hidden">
-						<h1 className="font-body leading-tight text-6xl font-bold animate-fadein-left">
-							Start using appropriate background and text colors
-							for your next project.
-						</h1>
-						<h2 className="font-head text-4xl mt-6 text-gray-500 font-bold animate-fadein-left animation-duration-600">
-							Don't worry about contrast, we've taken care of
-							that.
-						</h2>
+				<Link href="/colors">
+					<UpButton
+						variant={`animate-fadein-bottom animation-duration-1200 hover:border-purple-600`}
+						icon={<span className={``}>--&gt;</span>}
+						hoverFill={'bg-purple-600'}
+					>
+						Start exploring, it's free
+					</UpButton>
+				</Link>
+			</div>
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+				<img src={colorsImg} alt="Color generator" />
+				<Paragraph
+					title="Don't worry about background and text colors."
+					subtitle="Use our color generator to generate good contrast ratio between your text and background colors."
+					buttonLink="/colors"
+					exploreButton={
 						<UpButton
-							variant={`animate-fadein-left animation-duration-1200 hover:border-red-600`}
+							variant={`animate-fadein-right animation-duration-1200 hover:border-green-600`}
 							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-red-600'}
+							hoverFill={'bg-green-600'}
 						>
-							Start exploring
+							Get started, it's free
 						</UpButton>
-					</div>
-				</div>
-			</main>
+					}
+				/>
+			</div>
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+				<Paragraph
+					title="Forget about all that hassle to figure out colors for your shadows."
+					subtitle="Soft shadows are one-click away. Shadow generator helps you to get better shadows from your primary color."
+					buttonLink="/shadows"
+					exploreButton={
+						<UpButton
+							variant={`animate-fadein-right animation-duration-1200 hover:border-pink-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={'bg-pink-600'}
+						>
+							Get started, it's free
+						</UpButton>
+					}
+				/>
+				<img src={colorsImg} alt="Color generator" />
+			</div>
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+				<img src={colorsImg} alt="Color generator" />
+				<Paragraph
+					title="Dark mode is the current UI trendsetter."
+					subtitle="Want to reduce your efforts of selecting double of every color for dark mode, just use dark palette generator and relax."
+					buttonLink="/dark-palette"
+					exploreButton={
+						<UpButton
+							variant={`animate-fadein-right animation-duration-1200 hover:border-blue-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={'bg-blue-600'}
+						>
+							Get started, it's free
+						</UpButton>
+					}
+				/>
+			</div>
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+				<Paragraph
+					title="Buttons are important."
+					subtitle="Button generator will take care of all the colors for you. Just provide primary color and quickly get fancy button styles."
+					buttonLink="/buttons"
+					exploreButton={
+						<UpButton
+							variant={`animate-fadein-right animation-duration-1200 hover:border-indigo-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={'bg-indigo-600'}
+						>
+							Get started, it's free
+						</UpButton>
+					}
+				/>
+				<img src={colorsImg} alt="Color generator" />
+			</div>
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+				<img src={colorsImg} alt="Color generator" />
+				<Paragraph
+					title="Get better palettes."
+					subtitle="Selecting proper combination of colors is difficult, we agree. That’s where the golden ratio generator steps up the game of colors."
+					buttonLink="/golden-ratio"
+					exploreButton={
+						<UpButton
+							variant={`animate-fadein-right animation-duration-1200 hover:border-orange-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={'bg-orange-600'}
+						>
+							Get started, it's free
+						</UpButton>
+					}
+				/>
+			</div>
+			<Paragraph
+				title="About us."
+				subtitle="Colorchef helps in generating better colors with better contrast. We provide different utilities useful for designer and developers."
+				buttonLink="/about"
+				exploreButton={
+					<UpButton
+						variant={`animate-fadein-right animation-duration-1200 hover:border-red-600`}
+						icon={<span className={``}>--&gt;</span>}
+						hoverFill={'bg-red-600'}
+					>
+						Know more
+					</UpButton>
+				}
+			/>
 		</div>
 	);
 }

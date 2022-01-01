@@ -16,7 +16,7 @@ function Navbar() {
 	const router = useRouter();
 
 	return (
-		<nav className="bg-white fixed top-0 w-full z-50 flex justify-between items-center px-8 py-3 lg:py-3">
+		<nav className="bg-white sticky top-0 w-full z-50 flex justify-between items-center px-8 py-3 lg:py-3">
 			<Link href="/">
 				<a className="flex justify-self-center items-center">
 					<img src={logo} width="150" height="150" alt="Colorchef" />

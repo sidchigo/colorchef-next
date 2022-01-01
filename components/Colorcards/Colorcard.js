@@ -99,7 +99,6 @@ export const Colorcard = ({
 	};
 
 	function swapColors(currentColor) {
-		console.log(bgStyle.color === `#${currentColor}`);
 		if (bgStyle.color === `#${currentColor}`) {
 			setBgStyle({
 				color: `#${colorData[1]}`,

@@ -22,7 +22,7 @@ export default function Picker(props) {
 			}}
 		>
 			<Button
-				variant={`px-7 py-3 w-24 ${styles.colorPicker}`}
+				variant={`px-7 py-7 w-24 ${styles.colorPicker}`}
 				style={{
 					backgroundColor:
 						'#' + tinycolor(color).toHex().toUpperCase(),
