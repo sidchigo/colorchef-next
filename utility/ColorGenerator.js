@@ -222,30 +222,35 @@ export function findRandomColors() {
 }
 
 function getRandomLightColor() {
-	color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
-	return color;
-  }
-
-export function paletteGenerator(){
-
-	let colorArry = generateNColors(100);
-	//let colorRan = tinycolor.random();
-	let colorRan = getRandomLightColor();
-	let colorRanRGB= colorRan.toHex();
-	console.log(colorRanRGB);
-
-	let tempColor1 = findColors(colorRanRGB,colorArry,2,1);
-	let colorsParam = tempColor1.colors.map(o => o.hex);
-	let InterArray = [`#${colorRanRGB}`].concat(colorsParam[0]);
-	console.log(InterArray);
-
-	let tempColor2 = findColors(colorRanRGB,colorArry,1,1);
-	let colorsParam2 = tempColor2.colors.map(o => o.hex);
-	let finalArray =InterArray.concat(colorsParam2[0]);
-	console.log(finalArray);
+	const color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+	return tinycolor(color).toHex();
 }
 
-paletteGenerator();
+export function paletteGenerator(limit = 30){
+	const sampleColors = generateNColors(100);
+	let primaryColor, primaryHex, colorArray, goldenRatio;
+	// const primaryHex = tinycolor(primaryColor).toHex();
+
+	let finalArray = [];
+
+	for (let i = 0; i < limit; i++) {
+		primaryColor = getRandomLightColor();
+		primaryHex = tinycolor(primaryColor).toHex();
+		colorArray = findColors(primaryHex, sampleColors, 2, 2);
+		if (colorArray.colors.length !== 0) {
+			goldenRatio = colorArray.colors.map((color) =>
+				color.hex.substring(1)
+			);
+			if (goldenRatio.length === new Set(goldenRatio).size) {
+				goldenRatio.push(primaryHex);
+				goldenRatio.length > 2 && finalArray.push(goldenRatio);
+			}
+			continue;
+		}
+	}
+	finalArray = finalArray.slice(0, 12);
+	return finalArray;
+}
 	
 
 	

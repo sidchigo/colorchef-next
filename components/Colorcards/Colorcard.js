@@ -224,7 +224,3 @@ export const Colorcard = ({
 		</div>
 	);
 };
-
-export const Palettecard = () => {
-	return <h1>HEllOO</h1>;
-};
