@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
-import { Palettecard } from 'components/Colorcards/Colorcard';
+import React, { useEffect, useState } from 'react';
 
 // components
 import Header from 'components/Header/Header';

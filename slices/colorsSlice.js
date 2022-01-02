@@ -29,7 +29,7 @@ export const extractPalette = createAsyncThunk(
 		});
 		return response.data;
 	}
-)
+);
 
 export const randomColors = createAsyncThunk(
 	'colors/randomColors',
@@ -54,6 +54,9 @@ export const colorgenSlice = createSlice({
 		copyColor: (state, action) => {
 			state.isCopied = action.payload;
 		},
+		resetImagePalette: (state, _) => {
+			state.palette = [];
+		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -85,4 +88,4 @@ export const colorgenSlice = createSlice({
 	},
 });
 
-export const { copyColor } = colorgenSlice.actions;
+export const { copyColor, resetImagePalette } = colorgenSlice.actions;
