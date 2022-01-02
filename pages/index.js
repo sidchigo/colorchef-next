@@ -16,7 +16,7 @@ export default function Home() {
 			</Head>
 
 			<div className="flex flex-col justify-center items-center h-screen">
-				<div className="text-7xl font-bold text-center animate-fadein-top mb-4">
+				<div className="text-4xl md:text-7xl font-bold text-center animate-fadein-top mb-4">
 					Colorchef is color-utility website to help out designers and
 					developers.
 				</div>

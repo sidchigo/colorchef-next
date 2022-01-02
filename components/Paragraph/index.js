@@ -15,10 +15,10 @@ const Paragraph = ({ title, subtitle, exploreButton, buttonLink }) => {
 		<div ref={paraRef} className="my-8 text-left">
 			{inView && (
 				<React.Fragment>
-					<h1 className="font-body leading-tight text-5xl font-bold animate-fadein-right">
+					<h1 className="font-body leading-tight text-3xl md:text-5xl font-bold animate-fadein-right">
 						{title}
 					</h1>
-					<h2 className="font-head text-2xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
+					<h2 className="font-head text-lg md:text-2xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
 						{subtitle}
 					</h2>
 					<Link href={buttonLink}>{exploreButton}</Link>
