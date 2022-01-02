@@ -221,46 +221,45 @@ export function findRandomColors() {
 	return findColors(randomColor, colorList, 2);
 }
 
-function getRandomLightColor() {
-	const color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
-	return tinycolor(color).toHex();
+function getRandomLightColorHsl() {
+	const hue = Math.floor(Math.random() * 360);
+	const saturation = Math.floor(Math.random() * (100 + 1)) + '%';
+	const lightness = Math.floor((1 + Math.random()) * (100 / 2 + 1)) + '%';
+	return 'hsl(' + hue + ', ' + saturation + ', ' + lightness + ')';
 }
 
 export function paletteGenerator(limit = 30){
-	const sampleColors = generateNColors(100);
-	let primaryColor, primaryHex, colorArray, goldenRatio;
-	// const primaryHex = tinycolor(primaryColor).toHex();
-
+	const sampleColors = generateNColors(200);
+	let primaryColor, secondaryColor, accentColor, primaryHex, secondaryArray, accentArray, goldenRatio;
 	let finalArray = [];
 
 	for (let i = 0; i < limit; i++) {
-		primaryColor = getRandomLightColor();
+		primaryColor = getRandomLightColorHsl();
 		primaryHex = tinycolor(primaryColor).toHex();
-		colorArray = findColors(primaryHex, sampleColors, 2, 2);
-		if (colorArray.colors.length !== 0) {
-			goldenRatio = colorArray.colors.map((color) =>
-				color.hex.substring(1)
-			);
+		secondaryArray = findColors(primaryHex, sampleColors, 2, 10);
+		accentArray = findColors(primaryHex, sampleColors, 2, 10);
+
+		goldenRatio = [];
+		if (
+			secondaryArray.colors.length !== 0 &&
+			accentArray.colors.length !== 0
+		) {
+			// get random color from array of 10 colors
+			secondaryColor =
+				secondaryArray.colors[
+					Math.floor(Math.random() * secondaryArray.colors.length)
+				];
+			accentColor =
+				accentArray.colors[Math.floor(Math.random() * accentArray.colors.length)];
+
+			goldenRatio.push(primaryHex);
+			goldenRatio.push(secondaryColor.hex.substring(1));
+			goldenRatio.push(accentColor.hex.substring(1));
 			if (goldenRatio.length === new Set(goldenRatio).size) {
-				goldenRatio.push(primaryHex);
 				goldenRatio.length > 2 && finalArray.push(goldenRatio);
 			}
-			continue;
 		}
 	}
 	finalArray = finalArray.slice(0, 12);
 	return finalArray;
 }
-	
-
-	
-	
-
-	
-	
-
-
-
-
-	
-	
