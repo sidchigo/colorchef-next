@@ -3,6 +3,10 @@ import Link from 'next/link';
 
 // img
 import colorsImg from 'images/colors.png';
+import shadowsImg from 'images/shadows.png';
+import darkPaletteImg from 'images/darkPalette.png';
+import buttonsImg from 'images/buttons.png';
+import goldenRatioImg from 'images/goldenRatio.png';
 
 // components
 import { UpButton } from 'components/Button';
@@ -62,10 +66,10 @@ export default function Home() {
 						</UpButton>
 					}
 				/>
-				<img src={colorsImg} alt="Color generator" />
+				<img src={shadowsImg} alt="Shadow generator" />
 			</div>
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
-				<img src={colorsImg} alt="Color generator" />
+				<img src={darkPaletteImg} alt="Dark Palette generator" />
 				<Paragraph
 					title="Dark mode is the current UI trendsetter."
 					subtitle="Want to reduce your efforts of selecting double of every color for dark mode, just use dark palette generator and relax."
@@ -96,10 +100,10 @@ export default function Home() {
 						</UpButton>
 					}
 				/>
-				<img src={colorsImg} alt="Color generator" />
+				<img src={buttonsImg} alt="Buttons generator" />
 			</div>
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
-				<img src={colorsImg} alt="Color generator" />
+				<img src={goldenRatioImg} alt="Golden Ratio generator" />
 				<Paragraph
 					title="Get better palettes."
 					subtitle="Selecting proper combination of colors is difficult, we agree. That’s where the golden ratio generator steps up the game of colors."
