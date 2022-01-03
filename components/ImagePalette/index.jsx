@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // api
-import { extractPalette } from 'slices/colorsSlice';
+import { extractPalette, resetImagePalette } from 'slices/colorsSlice';
 
 // components
 import { Colorcard } from 'components/Colorcards/Colorcard';
@@ -17,15 +17,9 @@ const ImagePalette = () => {
     const [dragged, setDragged] = useState('border-gray-200 w-full');
     const [preview, setPreview] = useState();
     const [file, setFile] = useState();
-    const palette = useSelector((state) => state.colorGeneration.palette);
+    let palette = useSelector((state) => state.colorGeneration.palette);
     const status = useSelector((state) => state.colorGeneration.status);
 	const paletteRef = useRef(null);
-
-	const executeScroll = () => {
-		if (paletteRef.hasOwnProperty("current")) {
-			paletteRef.current.scrollIntoView();
-		}
-	};
     
     const dragOver = (e) => {
 		e.preventDefault();
@@ -103,15 +97,18 @@ const ImagePalette = () => {
 
 		// handle compression and send to api
 		compressImage(file);
+		
 
-		return () => URL.revokeObjectURL(fileUrl);
+		return () => {
+			URL.revokeObjectURL(fileUrl);
+		}
 	}, [file])
 
-	// useEffect(() => {
-	// 	if (palette.length !== 0) {
-	// 		executeScroll();
-	// 	}
-	// }, [palette])
+	useEffect(() => {
+		return () => {
+			dispatch(resetImagePalette())
+		}
+	}, [])
 
     return (
 		<label

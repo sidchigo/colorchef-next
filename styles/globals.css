@@ -14,13 +14,22 @@
     .animation-duration-1200 {
         animation-duration: 1.2s;
     }
+
+    .animation-duration-3000 {
+        animation-duration: 3s;
+    }
+}
+
+#__next {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
 	font-family: Inter, sans-serif;
 	font-weight: 500;
 	font-size: 16px;
-	height: 100%;
 }
 
 h1, h2, h3, h4, h5 {

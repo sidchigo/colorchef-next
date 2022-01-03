@@ -4,13 +4,15 @@ import Link from 'next/link';
 
 const Footer = () => {
     return (
-		<footer className={`w-full bg-purple-200`}>
+		<footer className={`bg-purple-200 mt-auto`}>
 			<div className="grid grid-cols-1 sm:grid-cols-2 p-3 md:p-4 lg:p-5 ">
 				<section
 					style={{ color: '#080374' }}
-					className="flex text-3xl font-bold items-center justify-start"
+					className="flex text-xl md:text-3xl font-bold items-center justify-center md:justify-start"
 				>
-					Colorchef
+					<Link href="/">
+						<a>Colorchef</a>
+					</Link>
 				</section>
 				<section className="container">
 					<div
@@ -20,7 +22,7 @@ const Footer = () => {
 						<div
 							className={`flex flex-col ${styles.footerContent}`}
 						>
-							<Link href="/colors#">
+							<Link href="/colors">
 								<a className={`${styles.footerLinks} my-3`}>
 									Color generator
 								</a>
@@ -39,12 +41,12 @@ const Footer = () => {
 						<div
 							className={`flex flex-col ${styles.footerContent}`}
 						>
-							<Link href="/Accessibility">
+							<Link href="/buttons">
 								<a className={`${styles.footerLinks} my-3`}>
-									Accessibility options
+									Buttons generator
 								</a>
 							</Link>
-							<Link href="/Golden">
+							<Link href="/golden-ratio">
 								<a className={`${styles.footerLinks} my-3`}>
 									Golden ratio generator
 								</a>

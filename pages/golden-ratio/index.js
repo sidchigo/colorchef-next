@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
-import { Palettecard } from 'components/Colorcards/Colorcard';
+import React, { useEffect, useState } from 'react';
 
 // components
 import Header from 'components/Header/Header';
 import ImagePalette from 'components/ImagePalette';
+import PaletteCard from 'components/PaletteCard';
 
 const GoldenRatio = () => {
 	const [type, setType] = useState(2);
@@ -36,9 +36,7 @@ const GoldenRatio = () => {
 				</select>
 			</div>
 			{type == '1' ? (
-				<div>
-					<Palettecard />
-				</div>
+				<PaletteCard />
 			) : (
 				<ImagePalette />
 			)}
