@@ -5,6 +5,6 @@ import { authSlice } from 'slices/authSlice';
 export const store = configureStore({
 	reducer: {
 		colorGeneration: colorgenSlice.reducer,
-		auth: authSlice.reducer
+		auth: authSlice.reducer,
 	},
 });

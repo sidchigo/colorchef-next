@@ -34,7 +34,7 @@ export default function Home() {
 					</UpButton>
 				</Link>
 			</div>
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-screen">
 				<img src={colorsImg} alt="Color generator" />
 				<Paragraph
 					title="Don't worry about background and text colors."
@@ -51,7 +51,7 @@ export default function Home() {
 					}
 				/>
 			</div>
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-screen">
 				<Paragraph
 					title="Forget about all that hassle to figure out colors for your shadows."
 					subtitle="Soft shadows are one-click away. Shadow generator helps you to get better shadows from your primary color."
@@ -66,9 +66,13 @@ export default function Home() {
 						</UpButton>
 					}
 				/>
-				<img src={shadowsImg} alt="Shadow generator" />
+				<img
+					src={shadowsImg}
+					alt="Shadow generator"
+					className="order-1 md:order-2"
+				/>
 			</div>
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-screen">
 				<img src={darkPaletteImg} alt="Dark Palette generator" />
 				<Paragraph
 					title="Dark mode is the current UI trendsetter."
@@ -85,7 +89,7 @@ export default function Home() {
 					}
 				/>
 			</div>
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-screen">
 				<Paragraph
 					title="Buttons are important."
 					subtitle="Button generator will take care of all the colors for you. Just provide primary color and quickly get fancy button styles."
@@ -102,7 +106,7 @@ export default function Home() {
 				/>
 				<img src={buttonsImg} alt="Buttons generator" />
 			</div>
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-screen">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-screen">
 				<img src={goldenRatioImg} alt="Golden Ratio generator" />
 				<Paragraph
 					title="Get better palettes."
