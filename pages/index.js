@@ -4,7 +4,7 @@ import Link from 'next/link';
 // img
 import colorsImg from 'images/colors.png';
 import shadowsImg from 'images/shadows.png';
-import darkPaletteImg from 'images/darkPalette.png';
+import darkPaletteImg from 'images/darkpalette.png';
 import buttonsImg from 'images/buttons.png';
 import goldenRatioImg from 'images/goldenRatio.png';
 
