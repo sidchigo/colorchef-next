@@ -179,7 +179,7 @@ const Profile = () => {
 						className={`
 							${
 								active === tab.id
-									? 'bg-gray-200 text-gray-800'
+									? 'bg-gray-300 text-gray-800'
 									: 'bg-gray-100 text-gray-700'
 							}
 							flex flex-shrink-0 justify-center

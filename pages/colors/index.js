@@ -57,46 +57,42 @@ const Colorgeneration = () => {
 					</select>
 				</div>
 			</div>
-			<div className="justify-content-center align-items-center px-2 mt-8">
-				<div>
-					<div className="grid gap-2">
-						<Button
-							variant={`bg-gray-800 hover:bg-slate-900 py-4 text-white w-full`}
-							onClick={() =>
-								dispatch(
-									inputColor({
-										hex: tinycolor(color)
-											.toHex()
-											.toUpperCase(),
-										scale: quality,
-									})
-								)
-							}
-						>
-							Generate
-						</Button>
-						<div className={`text-gray-400 text-center my-2`}>
-							OR
-						</div>
-						<Button
-							variant={`bg-gray-800 hover:bg-slate-900 py-4 text-white w-full`}
-							onClick={() => {
-								dispatch(randomColors());
-								setCounter(12);
-							}}
-						>
-							Randomize
-						</Button>
-					</div>
-				</div>
-				<div>
-					<h2
-						className={`text-lg md:text-2xl mt-3 flex justify-center items-center`}
+			<div className="justify-content-center align-items-center px-4 mt-8">
+				<div className="grid gap-2 justify-center">
+					<Button
+						variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
+						onClick={() =>
+							dispatch(
+								inputColor({
+									hex: tinycolor(color)
+										.toHex()
+										.toUpperCase(),
+									scale: quality,
+								})
+							)
+						}
 					>
-						{colorData.totalColors} color cards generated!
-						<span className="font-normal">✨</span>
-					</h2>
+						Generate
+					</Button>
+					<div className={`text-gray-400 text-center my-2`}>
+						OR
+					</div>
+					<Button
+						variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
+						onClick={() => {
+							dispatch(randomColors());
+							setCounter(12);
+						}}
+					>
+						Randomize
+					</Button>
 				</div>
+				<h2
+					className={`text-lg md:text-2xl mt-3 flex justify-center items-center`}
+				>
+					{colorData.totalColors} color cards generated!
+					<span className="font-normal">✨</span>
+				</h2>
 			</div>
 			<div className="mx-4 sm:mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
 				{colorData.colors.map((color) => {
