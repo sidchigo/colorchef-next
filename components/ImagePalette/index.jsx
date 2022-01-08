@@ -76,10 +76,10 @@ const ImagePalette = () => {
     }
 
 	const renderPalette = () => {
-		if (palette.length === 0) {
-			return null;
-		} else if (status === 'loading') {
+		if (status === 'loading') {
 			return <Loader />
+		} else if (palette.length === 0) {
+			return null;
 		} else {
 			const hexPalette = palette.map(color => tinycolor(color).toHex().toUpperCase());
 			return <Colorcard colorData={hexPalette} />;
@@ -153,7 +153,8 @@ const ImagePalette = () => {
 				}`}
 				src={preview}
 			/>
-			<>{renderPalette()}</>
+			<>{renderPalette()}
+			</>
 		</label>
 	);
 }
