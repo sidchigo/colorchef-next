@@ -1,5 +1,4 @@
 import React from 'react';
-import { rotate } from 'tailwindcss/defaulttheme';
 import styles from './Burger.module.css';
 
 import Menu from './Menu';

@@ -86,7 +86,7 @@ const ImagePalette = () => {
 		}
 	}
 
-	useEffect(async () => {
+	useEffect(() => {
 		if (!file) {
 			setPreview(undefined);
 			return;
@@ -97,8 +97,7 @@ const ImagePalette = () => {
 
 		// handle compression and send to api
 		compressImage(file);
-		
-
+	
 		return () => {
 			URL.revokeObjectURL(fileUrl);
 		}
