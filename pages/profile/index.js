@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Button } from 'components/Button';
 import AuthCheck from 'components/AuthCheck';
 import { Colorcard } from 'components/Colorcards/Colorcard';
+import Loader from 'components/Loader';
 
 // firebase
 import { collection, query, where, doc, getDocs, onSnapshot, limit, startAfter } from 'firebase/firestore';
@@ -15,6 +16,7 @@ import { auth, db } from 'lib/firebase';
 
 // actions
 import { logout } from 'slices/authSlice';
+import { async } from '@firebase/util';
 
 const Profile = () => {
 	const [currentUser, setCurrentUser] = useState({});
@@ -22,6 +24,7 @@ const Profile = () => {
 	const [cards, setCards] = useState([]);
 	const [start, setStart] = useState();
 	const [showMore, setShowMore] = useState(false);
+	const [status, setStatus] = useState("loading");
 	const dispatch = useDispatch();
 
 	const tabs = [
@@ -57,12 +60,14 @@ const Profile = () => {
 					where('type', '==', 'quoteCard'),
 					limit(12)
 				);
-				onSnapshot(q, (snapshot) => {
+				onSnapshot(q, async (snapshot) => {
 					let saveData = [];
+					setStatus("loading")
 					setStart(snapshot.docs[snapshot.docs.length - 1]);
-					snapshot.forEach((doc) => {
+					await snapshot.forEach((doc) => {
 						saveData.push(doc.data());
 					})
+					setStatus("idle")
 					setCards(saveData);
 				});
 			}
@@ -81,12 +86,12 @@ const Profile = () => {
 						limit(12),
 						startAfter(start)
 					);
-					onSnapshot(q, (snapshot) => {
+					onSnapshot(q, async (snapshot) => {
 						console.log(cards)
 						let saveData = [...cards];
 						console.log(saveData);
 						setStart(snapshot.docs[snapshot.docs.length - 1]);
-						snapshot.forEach((doc) => {
+						await snapshot.forEach((doc) => {
 							saveData.push(doc.data());	
 						});
 						setCards(saveData);
@@ -109,13 +114,16 @@ const Profile = () => {
 					where('type', '==', type),
 					limit(12)
 				);
-				onSnapshot(q, (snapshot) => {
+				onSnapshot(q, async (snapshot) => {
 					let saveData = [];
+					setStatus("loading")
 					setStart(snapshot.docs[snapshot.docs.length - 1]);
-					snapshot.forEach((doc) => {
+					await snapshot.forEach((doc) => {
 						saveData.push(doc.data());
 					});
 					setCards(saveData);
+					setStatus("idle")
+					console.log(cards.length)
 				});
 			}
 		});
@@ -192,26 +200,39 @@ const Profile = () => {
 					</button>
 				))}
 			</div>
-			<div 
-				className={`
-					mx-4 sm:mx-10 grid grid-cols-1 
-					sm:grid-cols-2 lg:grid-cols-3 
-					xl:grid-cols-4 gap-8 mt-3 mb-3
-					min-h-[500px]
-				`}
-			>
-				{tabs.map((tab) => {
-					if (tab.id === active) {
-						return tab.content.map((doc) => (
-							<Colorcard
-								key={doc.paletteId}
-								colorData={doc.paletteId.split('-')}
-								isQuote
-							/>
-						));
-					}
-				})}
-			</div>
+			{
+				status === "loading" 
+				? 
+					<div className='flex justify-center'>
+						<Loader/> 
+					</div>
+				:
+					cards.length === 0 
+					? 
+						<div className='text-center'>No palette saved. Save palettes to get started</div>
+					:
+						<div 
+							className={`
+								mx-4 sm:mx-10 grid grid-cols-1 
+								sm:grid-cols-2 lg:grid-cols-3 
+								xl:grid-cols-4 gap-8 mt-3 mb-3
+								min-h-[500px]
+							`}
+						>
+							{tabs.map((tab) => {
+								if (tab.id === active) {
+									
+									return tab.content.map((doc) => (
+										<Colorcard
+											key={doc.paletteId}
+											colorData={doc.paletteId.split('-')}
+											isQuote
+										/>
+									));
+								}
+							})}
+						</div>
+			}
 			<div className={`flex justify-center my-4`}>
 				{tabs.map((tab) => {
 					if (tab.id === active) {
