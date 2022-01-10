@@ -178,7 +178,7 @@ const Profile = () => {
 					flex md:justify-center overflow-x-auto 
 					space-x-4 md:space-x-8 no-scrollbar 
 					py-4 md:py-6 px-4
-					sticky top-[48px] md:top-0 md:relative bg-white
+					sticky top-[48px] md:top-0 md:relative bg-white z-10
 				`}
 			>
 				{tabs.map((tab) => (
