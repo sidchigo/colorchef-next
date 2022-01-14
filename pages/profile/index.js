@@ -149,34 +149,37 @@ const Profile = () => {
 				</div>
 			}
 		>
-			{currentUser ? 
-				<div className="flex flex-row justify-center py-4 md:py-10 gap-6">
-					<img
-						className="h-40 w-40 rounded-full object-cover"
-						src={currentUser.photo}
-						alt=""
-					/>
-					<div className="flex flex-col justify-evenly items-start">
-						<div className="font-bold text-4xl">
-							{currentUser.name}
+			<div className="flex flex-row justify-center py-4 md:py-10 gap-6">
+				{Object.keys(currentUser).length !== 0 ? (
+					<>
+						<img
+							className="h-40 w-40 rounded-full object-cover"
+							src={currentUser.photo}
+							alt=""
+						/>
+						<div className="flex flex-col justify-evenly items-start">
+							<div className="font-bold text-4xl">
+								{currentUser.name}
+							</div>
+							<div className="">
+								Saved Palettes{' '}
+								<span className="font-bold text-gray-600">
+									{currentUser.savedPalettes ?? 0}
+								</span>
+							</div>
+							<Button
+								variant={`bg-gray-800 text-white text-sm py-2 px-6 hover:bg-gray-900`}
+								onClick={logOut}
+							>
+								Logout
+							</Button>
 						</div>
-						<div className="">
-							Saved Palettes{' '}
-							<span className="font-bold text-gray-600">
-								{currentUser.savedPalettes ?? 0}
-							</span>
-						</div>
-						<Button
-							variant={`bg-gray-800 text-white text-sm py-2 px-6 hover:bg-gray-900`}
-							onClick={logOut}
-						>
-							Logout
-						</Button>
-					</div>
-				</div> : 
-				<PulseProfileLoader/>
-			}
-			<div 
+					</>
+				) : (
+					<PulseProfileLoader />
+				)}
+			</div>
+			<div
 				className={`
 					flex md:justify-center overflow-x-auto 
 					space-x-4 md:space-x-8 no-scrollbar 
@@ -188,11 +191,7 @@ const Profile = () => {
 					<button
 						key={tab.id}
 						className={`
-							${
-								active === tab.id
-									? 'bg-gray-300 text-gray-800'
-									: 'bg-gray-100 text-gray-700'
-							}
+							${active === tab.id ? 'bg-gray-300 text-gray-800' : 'bg-gray-100 text-gray-700'}
 							flex flex-shrink-0 justify-center
 							rounded-full w-[180px] sm:w-[200px] p-4
 							hover:bg-gray-300
@@ -203,39 +202,36 @@ const Profile = () => {
 					</button>
 				))}
 			</div>
-			{
-				status === "loading" 
-				? 
-					<div className='flex justify-center'>
-						<Loader/> 
-					</div>
-				:
-					cards.length === 0 
-					? 
-						<div className='text-center'>No palette saved. Save palettes to get started</div>
-					:
-						<div 
-							className={`
+			{status === 'loading' ? (
+				<div className="flex justify-center">
+					<Loader />
+				</div>
+			) : cards.length === 0 ? (
+				<div className="text-center">
+					No palette saved. Save palettes to get started
+				</div>
+			) : (
+				<div
+					className={`
 								mx-4 sm:mx-10 grid grid-cols-1 
 								sm:grid-cols-2 lg:grid-cols-3 
 								xl:grid-cols-4 gap-8 mt-3 mb-3
 								min-h-[500px]
 							`}
-						>
-							{tabs.map((tab) => {
-								if (tab.id === active) {
-									
-									return tab.content.map((doc) => (
-										<Colorcard
-											key={doc.paletteId}
-											colorData={doc.paletteId.split('-')}
-											isQuote
-										/>
-									));
-								}
-							})}
-						</div>
-			}
+				>
+					{tabs.map((tab) => {
+						if (tab.id === active) {
+							return tab.content.map((doc) => (
+								<Colorcard
+									key={doc.paletteId}
+									colorData={doc.paletteId.split('-')}
+									isQuote
+								/>
+							));
+						}
+					})}
+				</div>
+			)}
 			<div className={`flex justify-center my-4`}>
 				{tabs.map((tab) => {
 					if (tab.id === active) {
@@ -258,7 +254,6 @@ const Profile = () => {
 			{showMore && (
 				<div className={`flex justify-center italic my-4`}>Fin</div>
 			)}
-			
 		</AuthCheck>
 	);
 };

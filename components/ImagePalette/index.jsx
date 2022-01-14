@@ -112,7 +112,7 @@ const ImagePalette = () => {
     return (
 		<label
 			htmlFor="image"
-			className={`flex flex-col md:flex-row justify-between items-center space-x-0 md:space-x-4 my-8`}
+			className={`flex flex-col lg:flex-row justify-between items-center space-x-0 md:space-x-4 my-8`}
 			onDragOver={dragOver}
 			onDragEnter={dragEnter}
 			onDragLeave={dragLeave}
