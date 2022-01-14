@@ -8,6 +8,7 @@ import { Button } from 'components/Button';
 import AuthCheck from 'components/AuthCheck';
 import { Colorcard } from 'components/Colorcards/Colorcard';
 import Loader from 'components/Loader';
+import PulseProfileLoader from 'components/PulseProfileLoader';
 
 // firebase
 import { collection, query, where, doc, getDocs, onSnapshot, limit, startAfter } from 'firebase/firestore';
@@ -171,8 +172,10 @@ const Profile = () => {
 					>
 						Logout
 					</Button>
+					
 				</div>
 			</div>
+			<PulseProfileLoader/>
 			<div 
 				className={`
 					flex md:justify-center overflow-x-auto 
@@ -255,6 +258,7 @@ const Profile = () => {
 			{showMore && (
 				<div className={`flex justify-center italic my-4`}>Fin</div>
 			)}
+			
 		</AuthCheck>
 	);
 };

@@ -6,7 +6,7 @@ import { extractPalette, resetImagePalette } from 'slices/colorsSlice';
 
 // components
 import { Colorcard } from 'components/Colorcards/Colorcard';
-import Loader from 'components/Loader';
+import PulseCardLoader from 'components/PulseCardLoader';
 
 // image compression
 import Resizer from 'react-image-file-resizer';
@@ -77,7 +77,7 @@ const ImagePalette = () => {
 
 	const renderPalette = () => {
 		if (status === 'loading') {
-			return <Loader />
+			return <PulseCardLoader />
 		} else if (palette.length === 0) {
 			return null;
 		} else {
