@@ -11,13 +11,12 @@ import Loader from 'components/Loader';
 import PulseProfileLoader from 'components/PulseProfileLoader';
 
 // firebase
-import { collection, query, where, doc, getDocs, onSnapshot, limit, startAfter } from 'firebase/firestore';
+import { collection, query, where, doc, onSnapshot, limit, startAfter } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { auth, db } from 'lib/firebase';
 
 // actions
 import { logout } from 'slices/authSlice';
-import { async } from '@firebase/util';
 
 const Profile = () => {
 	const [currentUser, setCurrentUser] = useState({});
@@ -150,32 +149,33 @@ const Profile = () => {
 				</div>
 			}
 		>
-			<div className="flex flex-row justify-center py-4 md:py-10 gap-6">
-				<img
-					className="h-40 w-40 rounded-full object-cover"
-					src={currentUser?.photo}
-					alt=""
-				/>
-				<div className="flex flex-col justify-evenly items-start">
-					<div className="font-bold text-4xl">
-						{currentUser?.name}
+			{currentUser ? 
+				<div className="flex flex-row justify-center py-4 md:py-10 gap-6">
+					<img
+						className="h-40 w-40 rounded-full object-cover"
+						src={currentUser.photo}
+						alt=""
+					/>
+					<div className="flex flex-col justify-evenly items-start">
+						<div className="font-bold text-4xl">
+							{currentUser.name}
+						</div>
+						<div className="">
+							Saved Palettes{' '}
+							<span className="font-bold text-gray-600">
+								{currentUser.savedPalettes ?? 0}
+							</span>
+						</div>
+						<Button
+							variant={`bg-gray-800 text-white text-sm py-2 px-6 hover:bg-gray-900`}
+							onClick={logOut}
+						>
+							Logout
+						</Button>
 					</div>
-					<div className="">
-						Saved Palettes{' '}
-						<span className="font-bold text-gray-600">
-							{currentUser?.savedPalettes ?? 0}
-						</span>
-					</div>
-					<Button
-						variant={`bg-gray-800 text-white text-sm py-2 px-6 hover:bg-gray-900`}
-						onClick={logOut}
-					>
-						Logout
-					</Button>
-					
-				</div>
-			</div>
-			<PulseProfileLoader/>
+				</div> : 
+				<PulseProfileLoader/>
+			}
 			<div 
 				className={`
 					flex md:justify-center overflow-x-auto 
