@@ -148,7 +148,7 @@ const ImagePalette = () => {
 			<img
 				className={`${
 					file
-						? 'w-full md:w-2/4 mb-4 h-[300px] object-cover'
+						? 'w-full border-2 border-gray-400 md:w-2/4 mb-4 h-[300px] object-cover'
 						: 'hidden'
 				}`}
 				src={preview}
