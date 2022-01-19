@@ -123,7 +123,6 @@ const Profile = () => {
 					});
 					setCards(saveData);
 					setStatus("idle")
-					console.log(cards.length)
 				});
 			}
 		});
@@ -153,15 +152,15 @@ const Profile = () => {
 				{Object.keys(currentUser).length !== 0 ? (
 					<>
 						<img
-							className="h-40 w-40 rounded-full object-cover"
+							className="h-32 w-32 sm:h-36 sm:w-36 rounded-full object-cover"
 							src={currentUser.photo}
 							alt=""
 						/>
 						<div className="flex flex-col justify-evenly items-start">
-							<div className="font-bold text-4xl">
+							<div className="font-bold text-2xl sm:text-4xl">
 								{currentUser.name}
 							</div>
-							<div className="">
+							<div>
 								Saved Palettes{' '}
 								<span className="font-bold text-gray-600">
 									{currentUser.savedPalettes ?? 0}
