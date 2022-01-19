@@ -1,77 +1,38 @@
 .picker {
-    position: absolute;
-    top: 3rem;
+	position: absolute;
+	top: 3rem;
 	left: 50%;
-    transform: translateX(-50%);
+	transform: translateX(-50%);
 }
 
 .pickerContainer {
-    background-color: white;
-    padding: 0.75rem;
+	background-color: white;
+	padding: 0.75rem;
 	border: 1px solid #d9dfe6;
-    border-radius: 8px;
-    box-shadow: -4px 9px 25px -6px rgba(86, 86, 86, 0.271);
-    margin-top: 1rem;
-    z-index: 10;
+	border-radius: 8px;
+	box-shadow: -4px 9px 25px -6px rgba(86, 86, 86, 0.271);
+	margin-top: 1rem;
+	z-index: 10;
 	box-sizing: border-box;
 }
 
-.saturationBackground {
-    position: relative;
-    width: 250px;
-    height: 200px;
+.pickerContainer :global(.react-colorful) {
+	width: 230px;
+	height: 230px;
 }
 
-.saturationBackground div, 
-.saturationBackground .saturation-white, 
-.saturationBackground .saturation-black {
-    border-radius: 8px;
+.pickerContainer :global(.react-colorful__saturation) {
+	margin-bottom: 0.75rem;
+	border-radius: 5px;
+	border-bottom: none;
 }
 
-.hueBar {
-    margin-top: 1rem;
-    position: relative;
-    width: 250px;
-    height: 18px;
-}
-
-.hueBar :global(.hue-horizontal) {
-	border-radius: 50px;
-}
-
-.pickerEnter {
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-.pickerEnterActive {
-  opacity: 1;
-  transform: translateX(-50%);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.pickerExit {
-  opacity: 1;
-}
-
-.pickerExitActive {
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 300ms, transform 300ms;
+.pickerContainer :global(.react-colorful__hue) {
+	height: 20px;
+  	border-radius: 50px;
 }
 
 .colorPicker {
 	position: relative;
 	display: flex;
-}
-
-/* support for galaxy fold */
-@media only screen and (max-width: 300px) {
-	.saturationBackground {
-		width: 230px;
-	}
-
-	.hueBar {
-		width: 230px;
-	}
 }
