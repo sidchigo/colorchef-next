@@ -20,6 +20,9 @@ const Shadows = () => {
 				Days of grumpy old shadows are gone! <br />
 				Choose background color and get better shadows for your UI.
 			</Header>
+			<div className='block sm:hidden bg-purple-100 text-purple-800 p-4 my-4'>
+				Note: Tap at desired location to move light source and shadow.
+			</div>
 			<div className="flex justify-center items-center">
 				<div xl={3} lg={3} md={4} sm={12} className="mb-3">
 					<Picker color={color} setColor={setColor} />
