@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Header from 'components/Header/Header';
 import Picker from 'components/Colorpicker/Picker';
 import ShadowCard from 'components/ShadowCard/ShadowCard';
+import Meta from 'components/Meta';
 
 const tinycolor = require('tinycolor2');
 

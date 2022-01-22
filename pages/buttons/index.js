@@ -9,6 +9,7 @@ import { ButtonGroup } from 'components/ButtonsGroup';
 
 // csstransition
 import { CSSTransition } from 'react-transition-group';
+import Meta from 'components/Meta';
 
 const Elements = () => {
 	const [solid, setSolid] = useState('#E9FAE3');

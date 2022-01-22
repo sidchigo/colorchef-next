@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Header from 'components/Header/Header';
 import ImagePalette from 'components/ImagePalette';
 import PaletteCard from 'components/PaletteCard';
+import Meta from 'components/Meta';
 
 const GoldenRatio = () => {
 	const [type, setType] = useState(2);

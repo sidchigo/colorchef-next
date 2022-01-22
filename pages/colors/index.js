@@ -10,6 +10,7 @@ import {Button} from 'components/Button';
 
 // redux
 import { randomColors, inputColor } from 'slices/colorsSlice';
+import Meta from 'components/Meta';
 
 // colorpicker
 const tinycolor = require('tinycolor2');

@@ -17,6 +17,8 @@ import { auth, db } from 'lib/firebase';
 
 // actions
 import { logout } from 'slices/authSlice';
+import Head from 'next/head';
+import Meta from 'components/Meta';
 
 const Profile = () => {
 	const [currentUser, setCurrentUser] = useState({});

@@ -14,6 +14,7 @@ import {Button} from 'components/Button';
 
 // utility
 import { generateDarkPalette } from 'utility/ColorGenerator';
+import Meta from 'components/Meta';
 
 const tinycolor = require('tinycolor2');
 
