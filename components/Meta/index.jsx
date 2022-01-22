@@ -3,8 +3,6 @@ const Meta = ({ title, url, image, description }) => {
 		<>
 			<meta name="title" content={title} />
 			<meta name="description" content={description} />
-			<meta name="robots" content="noindex,nofollow" />
-			<meta name="googlebot" content="noindex,nofollow" />
 			<meta name="google" content="nositelinkssearchbox" />
 			<meta
 				name="google-site-verification"
