@@ -28,10 +28,10 @@ export default function Home() {
 			</Head>
 
 			<div className="flex flex-col justify-center items-center h-screen">
-				<div className="text-2xl md:text-4xl lg:text-7xl font-bold text-center animate-fadein-top mb-4">
+				<h1 className="text-2xl md:text-4xl lg:text-7xl font-body font-bold text-center animate-fadein-top mb-4">
 					Colorchef is color-utility website to help out designers and
 					developers.
-				</div>
+				</h1>
 				<Link href="/colors" passHref>
 					<UpButton
 						variant={`animate-fadein-bottom animation-duration-1200 hover:border-purple-600`}
