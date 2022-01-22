@@ -6,6 +6,10 @@ const Meta = ({ title, url, image, description }) => {
 			<meta name="robots" content="noindex,nofollow" />
 			<meta name="googlebot" content="noindex,nofollow" />
 			<meta name="google" content="nositelinkssearchbox" />
+			<meta
+				name="google-site-verification"
+				content="3e0geQdLz85Lt7QW4uuffb3R-dx6IFCf8BbFJ9oLP6g"
+			/>
 
 			{/* Open Graph / Facebook */}
 			<meta property="og:type" content="website" />
