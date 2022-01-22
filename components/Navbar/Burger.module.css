@@ -1,49 +1,50 @@
 .burger {
-    /* position: absolute; */
-    /* top: 0.75rem;
-    left: 1.5rem; */
-    position: relative;
+    --hamDim: 45px;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+    cursor: pointer;
+
+    width: var(--hamDim);
+    height: var(--hamDim);
+    border-radius: 50px;
+    background-color: #373737;
+
+    /* hiding blue highlight on click - mobile devices */
+    -webkit-tap-highlight-color: transparent;
+
+
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 24px;
-    height: 24px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 10;
-}
-
-.burger:focus {
-    outline: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .burger span {
     position: absolute;
-    width: 24px;
+    width: 20px;
     height: 3px;
-    left: 0;
     border-radius: 8px;
     transform: rotate(0deg);
-    background-color: #373737;
+    background-color: white;
     transition: 300ms linear all;
 }
 
 .burger span:nth-child(1) {
-    top: 6px;
+    top: calc(var(--hamDim) / 2 - 7px);
 }
 
 .burger span:nth-child(2) {
-    top: 15px;
+    top: calc(var(--hamDim) / 2 + 7px);
 }
 
 .burgerOpen span:nth-child(1) {
-    top: 12px;
+    top: calc(var(--hamDim) / 2);
     transform: rotate(135deg);
 }
 
 .burgerOpen span:nth-child(2) {
-    top: 12px;
+    top: calc(var(--hamDim) / 2);
     transform: rotate(-135deg);
 }
