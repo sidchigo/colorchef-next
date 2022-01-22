@@ -1,17 +1,52 @@
 const Meta = ({ title, url, image, description }) => {
 	return (
 		<>
-			<meta property="og:title" content={title} />
+			<meta
+				name="title"
+				content={title}
+			/>
+			<meta
+				name="description"
+				content={description}
+			/>
+
+			{/* Open Graph / Facebook */}
+			<meta property="og:type" content="website" />
 			<meta
 				property="og:url"
 				content={`https://colorchef.vercel.app${url}`}
 			/>
 			<meta
+				property="og:title"
+				content={title}
+			/>
+			<meta
+				property="og:description"
+				content={description}
+			/>
+			<meta
 				property="og:image"
 				content={`https://colorchef.vercel.app${image}`}
 			/>
-			<meta property="og:type" content="website" />
-			<meta property="og:description" content={description} />
+
+			{/* Twitter */}
+			<meta property="twitter:card" content="summary_large_image" />
+			<meta
+				property="twitter:url"
+				content={`https://colorchef.vercel.app${url}`}
+			/>
+			<meta
+				property="twitter:title"
+				content={title}
+			/>
+			<meta
+				property="twitter:description"
+				content={description}
+			/>
+			<meta
+				property="twitter:image"
+				content={`https://colorchef.vercel.app${image}`}
+			/>
 		</>
 	);
 };
