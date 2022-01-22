@@ -113,12 +113,6 @@ const Darkpalette = () => {
 							]}
 						/>
 					</div>
-
-					// <Button
-					// 	variant={`ml-4 bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
-					// >
-					// 	Save palette
-					// </Button>
 				)}
 			</div>
 			<div className="flex justify-center items-center m-2 pt-4">

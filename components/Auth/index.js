@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth, provider } from 'lib/firebase';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { createUser } from 'slices/authSlice';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -18,7 +18,7 @@ export const Auth = ({ extraFunction }) => {
 		if (user !== null) {
 			dispatch(createUser(user));
 		}
-	}, [user]);
+	}, [user, dispatch]);
 
 	function LoginButton() {
 		const loginWithGoogle = async () => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // api
@@ -11,6 +11,7 @@ import PulseCardLoader from 'components/PulseCardLoader';
 // image compression
 import Resizer from 'react-image-file-resizer';
 import tinycolor from 'tinycolor2';
+import { useCallback } from 'react';
 
 const ImagePalette = () => {
     const dispatch = useDispatch();
@@ -19,7 +20,6 @@ const ImagePalette = () => {
     const [file, setFile] = useState();
     let palette = useSelector((state) => state.colorGeneration.palette);
     const status = useSelector((state) => state.colorGeneration.status);
-	const paletteRef = useRef(null);
     
     const dragOver = (e) => {
 		e.preventDefault();
@@ -35,30 +35,33 @@ const ImagePalette = () => {
         setDragged('border-gray-200');
 	};
 
-	const compressImage = (file) => {
-		// resizing image to 200 x 200
-		const dimensions = 200;
-		try {
-			new Promise((resolve) => {
-				Resizer.imageFileResizer(
-					file,
-					dimensions,
-					dimensions,
-					'WEBP',
-					100,
-					0,
-					(uri) => {
-						dispatch(extractPalette(uri));
-					},
-					'file',
-					100,
-					100
-				);
-			});
-		} catch (e) {
-			console.log(e)
-		}
-	}
+	const compressImage = useCallback(
+		(file) => {
+			// resizing image to 200 x 200
+			const dimensions = 200;
+			try {
+				new Promise(() => {
+					Resizer.imageFileResizer(
+						file,
+						dimensions,
+						dimensions,
+						'WEBP',
+						100,
+						0,
+						(uri) => {
+							dispatch(extractPalette(uri));
+						},
+						'file',
+						100,
+						100
+					);
+				});
+			} catch (e) {
+				console.log(e);
+			}
+		},
+		[dispatch]
+	);
 
     const handleImage = (e) => {
         e.preventDefault();
@@ -97,17 +100,17 @@ const ImagePalette = () => {
 
 		// handle compression and send to api
 		compressImage(file);
-	
+
 		return () => {
 			URL.revokeObjectURL(fileUrl);
-		}
-	}, [file])
+		};
+	}, [file, compressImage]);
 
 	useEffect(() => {
 		return () => {
 			dispatch(resetImagePalette())
 		}
-	}, [])
+	}, [dispatch])
 
     return (
 		<label
@@ -152,6 +155,7 @@ const ImagePalette = () => {
 						: 'hidden'
 				}`}
 				src={preview}
+				alt="preview"
 			/>
 			<>{renderPalette()}
 			</>

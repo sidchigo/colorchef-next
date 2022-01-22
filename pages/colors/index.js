@@ -24,7 +24,7 @@ const Colorgeneration = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		dispatch(inputColor({ hex: 'E9FAE3', scale: 1 }));
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div

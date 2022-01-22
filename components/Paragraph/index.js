@@ -9,7 +9,7 @@ const Paragraph = ({ title, subtitle, exploreButton, buttonLink }) => {
 			<h2 className="font-head text-md md:text-lg lg:text-2xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
 				{subtitle}
 			</h2>
-			<Link href={buttonLink}>{exploreButton}</Link>
+			<Link href={buttonLink} passHref>{exploreButton}</Link>
 		</div>
 	);
 };

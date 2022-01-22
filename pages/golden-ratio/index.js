@@ -21,8 +21,8 @@ const GoldenRatio = () => {
 				</title>
 			</Head>
 			<Header title={'Golden ratio generator'}>
-				Need to get a good palette instantly? Don't worry we got your
-				back.
+				Need to get a good palette instantly? Don&apos;t worry we got
+				your back.
 			</Header>
 			<div className="mb-3 p-2 sm:mx-0 md:mx-16 lg:mx-64 xl:mx-96">
 				<select
@@ -35,11 +35,7 @@ const GoldenRatio = () => {
 					<option value="2">Image Extraction</option>
 				</select>
 			</div>
-			{type == '1' ? (
-				<PaletteCard />
-			) : (
-				<ImagePalette />
-			)}
+			{type == '1' ? <PaletteCard /> : <ImagePalette />}
 		</div>
 	);
 }

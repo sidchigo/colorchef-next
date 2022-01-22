@@ -11,12 +11,20 @@ import goldenRatioImg from 'images/goldenRatio.png';
 // components
 import { UpButton } from 'components/Button';
 import Paragraph from 'components/Paragraph';
+import Meta from 'components/Meta';
 
 export default function Home() {
 	return (
 		<div className="container">
 			<Head>
 				<title>Colorchef - Colors, palettes and contrast</title>
+				<Meta
+					title="Colorchef - Colors, palettes and contrast"
+					url="/"
+					image={require('/images/hero.png')}
+					description="Colorchef is color-utility website to help out designers and
+					developers."
+				/>
 			</Head>
 
 			<div className="flex flex-col justify-center items-center h-screen">
@@ -24,13 +32,13 @@ export default function Home() {
 					Colorchef is color-utility website to help out designers and
 					developers.
 				</div>
-				<Link href="/colors">
+				<Link href="/colors" passHref>
 					<UpButton
 						variant={`animate-fadein-bottom animation-duration-1200 hover:border-purple-600`}
 						icon={<span className={``}>--&gt;</span>}
 						hoverFill={'bg-purple-600'}
 					>
-						Start exploring, it's free
+						Start exploring, it&apos;s free
 					</UpButton>
 				</Link>
 			</div>
@@ -46,7 +54,7 @@ export default function Home() {
 							icon={<span className={``}>--&gt;</span>}
 							hoverFill={'bg-green-600'}
 						>
-							Get started, it's free
+							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>
@@ -62,7 +70,7 @@ export default function Home() {
 							icon={<span className={``}>--&gt;</span>}
 							hoverFill={'bg-pink-600'}
 						>
-							Get started, it's free
+							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>
@@ -84,7 +92,7 @@ export default function Home() {
 							icon={<span className={``}>--&gt;</span>}
 							hoverFill={'bg-blue-600'}
 						>
-							Get started, it's free
+							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>
@@ -100,7 +108,7 @@ export default function Home() {
 							icon={<span className={``}>--&gt;</span>}
 							hoverFill={'bg-indigo-600'}
 						>
-							Get started, it's free
+							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>
@@ -118,7 +126,7 @@ export default function Home() {
 							icon={<span className={``}>--&gt;</span>}
 							hoverFill={'bg-orange-600'}
 						>
-							Get started, it's free
+							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>

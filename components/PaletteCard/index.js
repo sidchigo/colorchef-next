@@ -11,9 +11,9 @@ import { Button } from "components/Button";
 const PaletteCard = () => {
     const [data, setData] = useState([]);
 	const [status , setStatus] = useState("loading");
-    useEffect( async () => {
+    useEffect(() => {
 		setStatus("loading")
-        await setData(paletteGenerator());
+        setData(paletteGenerator());
 		setStatus("idle")
     }, []);
 
