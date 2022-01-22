@@ -4,6 +4,15 @@ import React from 'react';
 const About = () => {
 	return (
 		<main className="container mx-auto px-4 md:px-10 lg:px-16">
+			<Head>
+				<title>About Colorchef</title>
+				<Meta
+					title="About Colorchef"
+					url="/about"
+					image={require('/images/hero.png')}
+					description="Colorchef is a product derived from the idea to solve the basic color-based problems faced by the UI/UX designers"
+				/>
+			</Head>
 			<div className="text-center py-3">
 				<h1 className={`text-3xl md:text-5xl`}>About Us</h1>
 			</div>

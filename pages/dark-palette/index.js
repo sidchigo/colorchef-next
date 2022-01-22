@@ -65,6 +65,12 @@ const Darkpalette = () => {
 				<title>
 					Generate perfect dark color palette for your website
 				</title>
+				<Meta
+					title="Generate perfect dark color palette for your website"
+					url="/dark-palette"
+					image={require('/images/darkpalette.png')}
+					description="Want to follow the ongoing trend of dark mode? Enter your palette and explore the dark colors."
+				/>
 			</Head>
 			<Header title={'Dark Palette Generator'}>
 				Want to follow the ongoing trend of dark mode? <br /> Enter your

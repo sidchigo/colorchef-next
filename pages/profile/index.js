@@ -151,6 +151,15 @@ const Profile = () => {
 			<div className="flex flex-row justify-center py-4 md:py-10 gap-6">
 				{Object.keys(currentUser).length !== 0 ? (
 					<>
+						<Head>
+							<title>{currentUser.name}&apos;s profile</title>
+							<Meta
+								title="Profile page"
+								url="/profile"
+								image={require('/images/hero.png')}
+								description="View your favorite palettes. All your palettes at one place"
+							/>
+						</Head>
 						<img
 							className="h-32 w-32 sm:h-36 sm:w-36 rounded-full object-cover"
 							src={currentUser.photo}

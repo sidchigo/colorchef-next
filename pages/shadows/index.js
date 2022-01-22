@@ -15,12 +15,18 @@ const Shadows = () => {
 		<div className="mb-4">
 			<Head>
 				<title>Generate perfect soft shadows for your website</title>
+				<Meta
+					title="Generate perfect soft shadows for your website"
+					url="/shadows"
+					image={require('/images/shadows.png')}
+					description="Days of grumpy old shadows are gone! Choose background color and get better shadows for your UI."
+				/>
 			</Head>
 			<Header title={'Shdow Generator'}>
 				Days of grumpy old shadows are gone! <br />
 				Choose background color and get better shadows for your UI.
 			</Header>
-			<div className='block sm:hidden bg-purple-100 text-purple-800 p-4 my-4'>
+			<div className="block sm:hidden bg-purple-100 text-purple-800 p-4 my-4">
 				Note: Tap at desired location to move light source and shadow.
 			</div>
 			<div className="flex justify-center items-center">
@@ -28,13 +34,13 @@ const Shadows = () => {
 					<Picker color={color} setColor={setColor} />
 				</div>
 			</div>
-            <div xl={12} lg={3} md={4} sm={12}>
-                <ShadowCard
-                    backgroundLum={tinycolor(color).toHsl().l}
-                    background={'#' + tinycolor(color).toHex()}
-                    hue={tinycolor(color).toHsl()}
-                />
-            </div>
+			<div xl={12} lg={3} md={4} sm={12}>
+				<ShadowCard
+					backgroundLum={tinycolor(color).toHsl().l}
+					background={'#' + tinycolor(color).toHex()}
+					hue={tinycolor(color).toHsl()}
+				/>
+			</div>
 		</div>
 	);
 };

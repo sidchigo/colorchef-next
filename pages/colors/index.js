@@ -32,6 +32,12 @@ const Colorgeneration = () => {
 		>
 			<Head>
 				<title>Generate color combinations with perfect contrast</title>
+				<Meta
+					title="Generate color combinations with perfect contrast"
+					url="/colors"
+					image={require('/images/colors.png')}
+					description="Still confused finding the perfect color combo? Let us help you solve your confusion."
+				/>
 			</Head>
 			<Header title={'Color Generator'}>
 				Still confused finding the perfect color combo? let us help you
@@ -64,9 +70,7 @@ const Colorgeneration = () => {
 						onClick={() =>
 							dispatch(
 								inputColor({
-									hex: tinycolor(color)
-										.toHex()
-										.toUpperCase(),
+									hex: tinycolor(color).toHex().toUpperCase(),
 									scale: quality,
 								})
 							)
@@ -74,9 +78,7 @@ const Colorgeneration = () => {
 					>
 						Generate
 					</Button>
-					<div className={`text-gray-400 text-center my-2`}>
-						OR
-					</div>
+					<div className={`text-gray-400 text-center my-2`}>OR</div>
 					<Button
 						variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
 						onClick={() => {
