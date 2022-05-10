@@ -4,11 +4,7 @@ const optimizedImages = require('next-optimized-images');
 const nextConfig = {
 	images: {
 		disableStaticImages: true,
-	},
-	i18n: {
-		locales: ['en'],
-		defaultLocale: 'en',
-	},
+	}
 };
 
 module.exports = withPlugins(
