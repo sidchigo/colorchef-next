@@ -28,12 +28,12 @@ const About = () => {
 			<div className="flex flex-col md:flex-row w-3/4 mx-auto justify-around items-center md:items-start text-center py-3">
 				<div className="pb-3">
 					<div className={`text-lg md:text-xl font-head`}>
-						Telegram
+						Linkedin
 					</div>
 					<a
 						className={`text-violet-600`}
 						target="_blank"
-						href="https://t.me/sekigangantai"
+						href="https://www.linkedin.com/in/siddheshnaik26/"
 						rel="noreferrer"
 					>
 						Siddhesh
@@ -42,7 +42,7 @@ const About = () => {
 					<a
 						className={`text-violet-600`}
 						target="_blank"
-						href="https://t.me/chinmay_99"
+						href="https://www.linkedin.com/in/chinmaybhoir/"
 						rel="noreferrer"
 					>
 						Chinmay

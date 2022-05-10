@@ -23,7 +23,7 @@ const Shadows = () => {
 					description="Days of grumpy old shadows are gone! Choose background color and get better shadows for your UI."
 				/>
 			</Head>
-			<Header title={'Shdow Generator'}>
+			<Header title={'Shadow Generator'}>
 				Days of grumpy old shadows are gone! <br />
 				Choose background color and get better shadows for your UI.
 			</Header>
