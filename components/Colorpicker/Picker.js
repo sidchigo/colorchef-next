@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 // styles
 import styles from './Colorpicker.module.css';
@@ -9,13 +10,13 @@ import {Button} from 'components/Button';
 
 const tinycolor = require('tinycolor2');
 
-export default function Picker(props) {
+export default function Picker() {
     const [openPicker, setOpenPicker] = useState(false);
-    const {color, setColor} = props;
+    const color = useSelector((state) => state.colorGeneration.currentColor);
 
     return (
 		<div
-			className={`${styles.colorPicker}`}
+			className={`${styles.colorPicker} rounded-lg`}
 			style={{
 				padding: 0,
 				border: `1px solid #${tinycolor(color).toHex().toUpperCase()}`,
@@ -50,8 +51,6 @@ export default function Picker(props) {
 					/>
 					<Colorpicker
 						isOpen={openPicker}
-						color={color}
-						setColor={setColor}
 						onClose={setOpenPicker}
 					/>
 				</div>

@@ -13,7 +13,8 @@ const initialState = {
 	inputColor: '',
 	quote: '',
 	isCopied: false,
-	palette: []
+	palette: [],
+	currentColor: 'E9FAE3',
 };
 
 export const extractPalette = createAsyncThunk(
@@ -56,7 +57,10 @@ export const colorgenSlice = createSlice({
 		},
 		resetImagePalette: (state, _) => {
 			state.palette = [];
-		}
+		},
+        chooseColor: (state, action) => {
+            state.currentColor = action.payload
+        }
 	},
 	extraReducers: (builder) => {
 		builder
@@ -88,4 +92,4 @@ export const colorgenSlice = createSlice({
 	},
 });
 
-export const { copyColor, resetImagePalette } = colorgenSlice.actions;
+export const { copyColor, resetImagePalette, chooseColor } = colorgenSlice.actions;

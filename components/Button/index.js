@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 const Button = ({ variant, children, style, onClick }) => {
 	return (
 		<button
-			className={`${variant} px-4 py-2`}
+			className={`${variant} px-2 py-4 rounded-lg`}
 			style={style}
 			onClick={onClick}
 		>
