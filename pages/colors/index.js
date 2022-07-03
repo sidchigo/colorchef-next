@@ -18,66 +18,18 @@ const tinycolor = require('tinycolor2');
 
 const Colorgeneration = () => {
 	const dispatch = useDispatch();
-	const colorData = useSelector((state) => state.colorGeneration);
+	const colors = useSelector((state) => state.colorGeneration.colors);
+	const totalColors = useSelector((state) => state.colorGeneration.totalColors);
+	const initialColor = useSelector((state) => state.colorGeneration.inputColor);
 	const [quality, setQuality] = useState(1);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		dispatch(inputColor({ hex: 'E9FAE3', scale: 1 }));
 	}, [dispatch]);
-    
-    useEffect(() => {
-		console.log('rerendered', colorData);
-	}, [colorData]);
 
 	return (
-		<Layout
-			toolbar={{
-				leftMenu: (
-					<div className={`flex space-x-4`}>
-						<Picker />
-						<select
-							className={`p-4 px-8 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 w-full`}
-							id="scaleSelect"
-							value={quality}
-							onChange={(e) => setQuality(e.currentTarget.value)}
-						>
-							<option value="1">Good</option>
-							<option value="2">Very Good</option>
-							<option value="3">Super</option>
-							<option value="4">Ultimate</option>
-						</select>
-					</div>
-				),
-				rightMenu: (
-					<div className={`space-x-6`}>
-						<Button
-							variant={`bg-white border-2 border-gray-800 hover:bg-slate-900 text-gray-800 hover:text-white w-[200px]`}
-							onClick={() => {
-								dispatch(randomColors());
-							}}
-						>
-							Randomize
-						</Button>
-						<Button
-							variant={`bg-gray-800 border-2 border-gray-800 hover:bg-gray-900 text-white w-[200px]`}
-							onClick={() =>
-								dispatch(
-									inputColor({
-										hex: tinycolor(colorData.currentColor)
-											.toHex()
-											.toUpperCase(),
-										scale: quality,
-									})
-								)
-							}
-						>
-							Generate
-						</Button>
-					</div>
-				),
-			}}
-		>
+		<Layout>
 			<div
 				className={`relative container flex flex-col items-center mx-auto`}
 			>
@@ -93,20 +45,20 @@ const Colorgeneration = () => {
 					/>
 				</Head>
 				<div className="mx-4 sm:mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-3 mb-3">
-					{colorData.colors.map((color) => {
+					{colors.map((color) => {
 						return (
 							<Colorcard
 								key={color.hex}
 								colorData={[
 									tinycolor(color.hex).toHex().toUpperCase(),
-									colorData.inputColor,
+									initialColor,
 								]}
 								isQuote
 							/>
 						);
 					})}
 				</div>
-				{colorData.totalColors === 0 ? (
+				{totalColors === 0 ? (
 					<div className="flex flex-col items-center my-4">
 						<h3 className="text-gray-500 my-8 flex justify-center items-center">
 							We are out of colors. This color has low contrast

@@ -10,21 +10,24 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Button } from 'components/Button';
 
 
-export const Auth = ({ extraFunction }) => {
+export const Auth = () => {
 	const [user] = useAuthState(auth);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (user !== null) {
+        let mounted = true;
+		if (user !== null && mounted) {
+            console.log('Auth: user not null');
 			dispatch(createUser(user));
 		}
-	}, [user, dispatch]);
+
+        return () => (mounted = false);
+	}, [user]);
 
 	function LoginButton() {
 		const loginWithGoogle = async () => {
 			try {
 				await signInWithPopup(auth, provider);
-				extraFunction?.(false);
 			} catch (err) {
 				console.log(err);
 			}
@@ -43,7 +46,7 @@ export const Auth = ({ extraFunction }) => {
 	function ProfileButton() {
 		return (
 			<Link href="/profile">
-				<a onClick={() => extraFunction?.(false)}>
+				<a>
 					<img
 						className={`rounded-full`}
 						src={user?.photoURL}
