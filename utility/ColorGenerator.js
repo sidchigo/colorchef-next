@@ -142,6 +142,7 @@ export function findColors(inputColor, colorList = [], scale, limit = 120) {
 		colors: foundColors,
 		inputColor: originalColor,
 		totalColors: foundColors.length,
+        currentQuality: scale
 	};
 }
 

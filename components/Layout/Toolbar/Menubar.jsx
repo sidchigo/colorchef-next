@@ -4,17 +4,18 @@ import { Button } from 'components/Button';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { randomColors, inputColor } from 'slices/colorsSlice';
+import { randomColors, inputColor, chooseQuality } from 'slices/colorsSlice';
 const tinycolor = require('tinycolor2');
 
 const Menu = () => {
-	const [quality, setQuality] = useState(1);
     const currentColor = useSelector(
 		(state) => state.colorGeneration.currentColor
 	);
+    const quality = useSelector(
+		(state) => state.colorGeneration.currentQuality
+	);
 	const dispatch = useDispatch();
 
-	console.log('Menu rerendered');
 	return (
 		<div className={`flex w-full justify-between`}>
 			<div className={`flex space-x-4`}>
@@ -23,7 +24,7 @@ const Menu = () => {
 					className={`p-4 px-8 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 w-full`}
 					id="scaleSelect"
 					value={quality}
-					onChange={(e) => setQuality(e.currentTarget.value)}
+					onChange={(e) => dispatch(chooseQuality(e.currentTarget.value))}
 				>
 					<option value="1">Good</option>
 					<option value="2">Very Good</option>

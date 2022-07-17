@@ -86,7 +86,7 @@ const Menu = ({ open, setOpen }) => {
 				</a>
 			</Link>
 			<div className={`m-4`}>
-				<Auth extraFunction={() => setOpen(false)}/>
+				{/* <Auth /> */}
 			</div>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { auth, provider } from 'lib/firebase';
+import { auth, provider, db } from 'lib/firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { createUser } from 'slices/authSlice';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -9,6 +9,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // components
 import { Button } from 'components/Button';
 
+const loginWithGoogle = async () => {
+	try {
+		await signInWithPopup(auth, provider);
+	} catch (err) {
+		console.log(err);
+	}
+};
 
 export const Auth = () => {
 	const [user] = useAuthState(auth);
@@ -17,22 +24,15 @@ export const Auth = () => {
 	useEffect(() => {
         let mounted = true;
 		if (user !== null && mounted) {
-            console.log('Auth: user not null');
 			dispatch(createUser(user));
 		}
 
-        return () => (mounted = false);
-	}, [user]);
+        return () => {
+            mounted = false
+        };
+	}, []);
 
 	function LoginButton() {
-		const loginWithGoogle = async () => {
-			try {
-				await signInWithPopup(auth, provider);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-
 		return (
 			<Button
 				variant={`bg-violet-600 text-white text-sm py-2 px-6 hover:bg-violet-800`}
@@ -59,8 +59,5 @@ export const Auth = () => {
 		);
 	}
 
-	if (user) {
-		return <ProfileButton />;
-	}
-	return <LoginButton />;
+	return user ? <ProfileButton /> : <LoginButton />;
 };
