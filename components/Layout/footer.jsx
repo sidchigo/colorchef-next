@@ -2,9 +2,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 const Footer = () => {
-    const router = useRouter();
-    const shouldStick = router.pathname !== '/';
-    return (
+	const router = useRouter();
+	const shouldStick = router.pathname !== '/';
+	return (
 		<footer
 			className={`${shouldStick && 'sticky'} bg-white bottom-0 mt-auto`}
 		>
@@ -16,6 +16,6 @@ const Footer = () => {
 			</div>
 		</footer>
 	);
-}
+};
 
 export default Footer;

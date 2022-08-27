@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
-import styles from './Colorpicker.module.css';
+import styles from './picker.module.css';
 
 // components
-import {Button} from 'components/Button';
+import { Button } from 'components/Button';
 import tinycolor from 'tinycolor2';
 
 import { chooseColor } from 'slices/colorsSlice';
 
-const ColorPicker = ({ onClose }) => {
-    const dispatch = useDispatch();
-    const color = useSelector(
-        (state) => state.colorGeneration.currentColor
-    );
-    const [hex, setHex] = useState('f1f2f3');
+export const Picker = ({ onClose }) => {
+	const dispatch = useDispatch();
+	const [hex, setHex] = useState('f1f2f3');
 
 	function handleSave() {
 		dispatch(chooseColor(tinycolor(hex).toHex()));
 		onClose(false);
 	}
 
-    function handleColorChange(e) {
-        console.log('Current color: ', e)
-        setTimeout(() => {
-            console.log("Chosen color: " + e)
-            dispatch(chooseColor(e))
-        }, 3000);
-    }
+	function handleColorChange(e) {
+		setTimeout(() => {
+			console.log('Chosen color: ' + e);
+			dispatch(chooseColor(e));
+		}, 3000);
+	}
 
 	return (
 		<div className={`${styles.picker} ${styles.pickerContainer}`}>
@@ -52,6 +48,4 @@ const ColorPicker = ({ onClose }) => {
 			</div>
 		</div>
 	);
-}
-
-export default ColorPicker;  
+};

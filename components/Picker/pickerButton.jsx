@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 // styles
-import styles from './Colorpicker.module.css';
+import styles from './picker.module.css';
 
 // components
-import Colorpicker from './Colorpicker';
-import {Button} from 'components/Button';
+import { Picker } from '.';
+import { Button } from 'components/Button';
 
 const tinycolor = require('tinycolor2');
 
-export default function Picker() {
-    const [openPicker, setOpenPicker] = useState(false);
-    const color = useSelector((state) => state.colorGeneration.currentColor);
+export const PickerButton = () => {
+	const [openPicker, setOpenPicker] = useState(false);
+	const color = useSelector((state) => state.colorGeneration.currentColor);
 
-    return (
+	return (
 		<div
 			className={`${styles.colorPicker} rounded-lg`}
 			style={{
@@ -49,10 +49,7 @@ export default function Picker() {
 						}}
 						onClick={() => setOpenPicker(false)}
 					/>
-					<Colorpicker
-						isOpen={openPicker}
-						onClose={setOpenPicker}
-					/>
+					<Picker isOpen={openPicker} onClose={setOpenPicker} />
 				</div>
 			)}
 		</div>
