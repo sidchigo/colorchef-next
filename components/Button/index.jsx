@@ -1,1 +1,1 @@
-export { Button } from './button.jsx';
+export { Button, SimpleButton } from './button.jsx';

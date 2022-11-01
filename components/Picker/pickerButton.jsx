@@ -6,7 +6,7 @@ import styles from './picker.module.css';
 
 // components
 import { Picker } from '.';
-import { Button } from 'components/Button';
+import { Button, SimpleButton } from 'components/Button';
 
 const tinycolor = require('tinycolor2');
 
@@ -18,25 +18,24 @@ export const PickerButton = () => {
 		<div
 			className={`${styles.colorPicker} rounded-lg`}
 			style={{
-				padding: 0,
-				border: `1px solid #${tinycolor(color).toHex().toUpperCase()}`,
+				padding: 0
 			}}
 		>
-			<Button
-				variant={`px-7 py-7 w-24 ${styles.colorPicker}`}
+			<SimpleButton
+				variant={`px-7 py-7 w-24 ${styles.colorPicker} rounded-l-lg`}
 				style={{
 					backgroundColor:
 						'#' + tinycolor(color).toHex().toUpperCase(),
 				}}
 				onClick={() => setOpenPicker(!openPicker)}
-			></Button>
-			<Button
+			></SimpleButton>
+			<SimpleButton
 				style={{ flex: 1 }}
-				variant={`px-7 py-4 w-40 bg-white`}
+				variant={`px-7 py-4 w-40 bg-white rounded-r-lg`}
 				onClick={() => setOpenPicker(!openPicker)}
 			>
 				#{tinycolor(color).toHex().toUpperCase()} 🎨
-			</Button>
+			</SimpleButton>
 			{openPicker && (
 				<div>
 					<div

@@ -12,6 +12,18 @@ const Button = ({ variant, children, style, onClick }) => {
 	);
 };
 
+const SimpleButton = ({ variant, children, style, onClick }) => {
+	return (
+		<button
+			className={`${variant} px-2 py-4`}
+			style={style}
+			onClick={onClick}
+		>
+			{children}
+		</button>
+	);
+};
+
 const UpButton = forwardRef(
 	({ variant, children, style, onClick, icon, hoverFill }, ref) => {
 		return (
@@ -45,4 +57,4 @@ const UpButton = forwardRef(
 UpButton.displayName = 'UpButton';
 Button.displayName = 'Button';
 
-export { Button, UpButton };
+export { Button, UpButton, SimpleButton };
