@@ -18,9 +18,9 @@ export const Layout = ({ children }) => {
 	}, [toasts]);
 
 	return (
-		<div className='grid grid-cols-6 h-screen'>
+		<div className='grid grid-cols-7 h-screen'>
             <Sidebar />
-            <div className='col-span-5'>
+            <div className='col-span-6'>
                 <Toolbar />
                 <main className={`container mx-auto px-4 lg:px-8`}>{children}</main>
                 <Footer />
