@@ -9,6 +9,19 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			colors: {
+				'pastel-emerald': '#D5F8EF',
+				'pastel-sakura': '#FFE5F4',
+				'pastel-sky': '#9BF6FF',
+				'pastel-choco': '#EDE0D4',
+				'pastel-gold': '#FDFFB6',
+				'dark-emerald': '#14B789',
+				'dark-sakura': '#E50087',
+				'dark-sky': '#005D66',
+				'dark-choco': '#7F5539',
+				'golden-yellow': '#FFE900',
+				'golden-brown': '#7E7400',
+			},
 			fontFamily: {
 				head: ['Poppins', ...defaultTheme.fontFamily.sans],
 				body: ['Inter', ...defaultTheme.fontFamily.sans],

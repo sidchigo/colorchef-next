@@ -7,19 +7,19 @@ export const Sidebar = () => {
             <div>Colorchef-logo</div>
             <div className={`flex flex-col justify-around capitalize`}>
                 <Link href='colors' passHref>
-                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-emerald-100 hover:text-emerald-500 transition-all`}>color generator</a>
+                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-pastel-emerald hover:text-dark-emerald transition-all`}>color generator</a>
                 </Link>
                 <Link href='shadows' passHref>
-                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-pink-100 hover:text-pink-500 transition-all`}>shadow generator</a>
+                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-pastel-sakura hover:text-dark-sakura transition-all`}>shadow generator</a>
                 </Link>
                 <Link href='dark-palette' passHref>
-                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-cyan-100 hover:text-cyan-500 transition-all`}>dark palette</a>
+                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-pastel-sky hover:text-dark-sky transition-all`}>dark palette</a>
                 </Link>
                 <Link href='buttons' passHref>
-                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-green-100 hover:text-emerald-500 transition-all`}>buttons</a>
+                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-pastel-choco hover:text-dark-choco transition-all`}>buttons</a>
                 </Link>
                 <Link href='golden-ratio' passHref>
-                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-green-100 hover:text-emerald-500 transition-all`}>golden ratio</a>
+                    <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-golden-yellow hover:text-golden-brown transition-all`}>golden ratio</a>
                 </Link>
             </div>
             <div>About</div>
