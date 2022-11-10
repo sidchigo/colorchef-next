@@ -22,7 +22,7 @@ export const PickerButton = () => {
 			}}
 		>
 			<SimpleButton
-				variant={`px-7 py-7 w-24 ${styles.colorPicker} rounded-l-lg`}
+				variant={`w-24 ${styles.colorPicker} rounded-l-lg`}
 				style={{
 					backgroundColor:
 						'#' + tinycolor(color).toHex().toUpperCase(),
@@ -31,7 +31,7 @@ export const PickerButton = () => {
 			></SimpleButton>
 			<SimpleButton
 				style={{ flex: 1 }}
-				variant={`px-7 py-4 w-40 bg-white rounded-r-lg`}
+				variant={`w-40 bg-white rounded-r-lg`}
 				onClick={() => setOpenPicker(!openPicker)}
 			>
 				#{tinycolor(color).toHex().toUpperCase()} 🎨
