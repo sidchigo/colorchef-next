@@ -18,7 +18,8 @@ export const PickerButton = () => {
 		<div
 			className={`${styles.colorPicker} rounded-lg`}
 			style={{
-				padding: 0
+				padding: 0,
+				border: `2px solid #${tinycolor(color).toHex().toUpperCase()}`
 			}}
 		>
 			<SimpleButton

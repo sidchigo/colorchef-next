@@ -1,18 +1,18 @@
 import Link from 'next/link';
-import styles from './sidebar.module.css';
+import styles from './layout.module.css';
 import logo from 'icons/logo.svg';
 
 export const Sidebar = () => {
     return(
-        <aside className={`col-span-1 flex flex-col text-center items-center justify-between z-[3] ${styles.sidebar}`}>
-            <div className={`flex items-center justify-center h-20 w-full p-3`}>
+        <aside className={`col-span-1 h-full flex flex-col text-center justify-between items-center bg-gray-100 z-[3] ${styles.sidebarShadow}`}>
+            <div className={`flex items-center justify-center h-20 w-full p-3 bg-white`}>
                 <Link href="/">
                     <a>
                         <img src={logo} width="150" height="150" alt="Colorchef" />
                     </a>
                 </Link>
             </div>
-            <div className={`flex flex-col justify-around capitalize bg-slate-400 w-full`}>
+            <div className={`flex items-stretch flex-col justify-center py-auto capitalize w-full`}>
                 <Link href='colors' passHref>
                     <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-pastel-emerald hover:text-dark-emerald transition-all`}>color generator</a>
                 </Link>
@@ -29,7 +29,7 @@ export const Sidebar = () => {
                     <a className={`p-4 mx-6 my-3 rounded-xl font-semibold hover:bg-golden-yellow hover:text-golden-brown transition-all`}>golden ratio</a>
                 </Link>
             </div>
-            <div>About</div>
+            <div className={`bg-white flex w-full justify-center py-16`}>About</div>
         </aside>
     )
 }
