@@ -22,7 +22,7 @@ export const Layout = ({ children }) => {
             <Sidebar />
             <div className='w-screen mx-auto pl-[19.5rem]'>
                 <Toolbar />
-                <main className={`container mx-auto px-4 lg:px-8`}>{children}</main>
+                <main className={`container mx-auto px-4 lg:px-8 h-full`}>{children}</main>
                 <Footer />
             </div>
 			<Toaster position="bottom-center" />

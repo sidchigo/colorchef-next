@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 
 // components
-import { QuoteCard } from 'components/Card/quoteCard';
+import { QuoteCard } from 'components/Card';
 // import Header from 'components/Header/Header';
 // import Picker from 'components/Colorpicker/Picker';
 // import {Button} from 'components/Button';
