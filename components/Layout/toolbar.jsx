@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+// redux
+import { randomColors, inputColor } from 'slices/colorsSlice';
+
+// components
 import { Button } from 'components/Button';
 import { PickerButton } from 'components/Picker';
-import { Sidebar } from './sidebar';
+import { Auth } from 'components/Auth';
+
 import styles from './layout.module.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
+
+// colorpicker
+const tinycolor = require('tinycolor2');
 
 const Toolbar = () => {
 	const currentColor = useSelector(
@@ -25,7 +33,7 @@ const Toolbar = () => {
 	}
 
 	return (
-		<div className={`flex h-20 w-full justify-between ${styles.toolbarShadow}`}>
+		<div className={`sticky top-0 w-full bg-white flex h-20 justify-between ${styles.toolbarShadow}`}>
 			<div className={`flex`}>
 				<div className={`flex space-x-4 py-2.5 px-4 ${filter ? '-translate-x-full' : 'translate-x-0'} ${hide ? 'hidden' : 'block'} transition ease-in`}>
 					<PickerButton />
@@ -71,7 +79,13 @@ const Toolbar = () => {
 				>
 					Randomize
 				</Button>
+				<div className={`hidden lg:block`}>
+					<Auth />
+				</div>
 			</div>
+			{/* <div className={`hidden lg:block`}>
+				<Auth />
+			</div> */}
 		</div>
 	);
 };

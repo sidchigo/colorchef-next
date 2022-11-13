@@ -19,7 +19,7 @@ export const PickerButton = () => {
 			className={`${styles.colorPicker} rounded-lg`}
 			style={{
 				padding: 0,
-				border: `2px solid #${tinycolor(color).toHex().toUpperCase()}`
+				// border: `2px solid #${tinycolor(color).toHex().toUpperCase()}`
 			}}
 		>
 			<SimpleButton
@@ -31,7 +31,7 @@ export const PickerButton = () => {
 				onClick={() => setOpenPicker(!openPicker)}
 			></SimpleButton>
 			<SimpleButton
-				style={{ flex: 1 }}
+				style={{ flex: 1, border: `2px solid #${tinycolor(color).toHex().toUpperCase()}` }}
 				variant={`w-40 bg-white rounded-r-lg`}
 				onClick={() => setOpenPicker(!openPicker)}
 			>

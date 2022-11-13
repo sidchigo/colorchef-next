@@ -20,7 +20,7 @@ export const Layout = ({ children }) => {
 	return (
 		<div className='grid grid-cols-7 h-screen'>
             <Sidebar />
-            <div className='col-span-6'>
+            <div className='w-screen mx-auto pl-[19.5rem]'>
                 <Toolbar />
                 <main className={`container mx-auto px-4 lg:px-8`}>{children}</main>
                 <Footer />
