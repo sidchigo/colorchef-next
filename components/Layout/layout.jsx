@@ -18,11 +18,11 @@ export const Layout = ({ children }) => {
 	}, [toasts]);
 
 	return (
-		<div className='grid grid-cols-7 h-screen'>
+		<div className='w-full flex h-screen relative'>
             <Sidebar />
-            <div className='w-screen mx-auto pl-[19.5rem]'>
+            <div className='relative pl-[19.5rem]'>
                 <Toolbar />
-                <main className={`container mx-auto px-4 lg:px-8 h-full`}>{children}</main>
+                <main className={`mx-auto px-4 lg:px-8 pt-20 h-full`}>{children}</main>
                 <Footer />
             </div>
 			<Toaster position="bottom-center" />

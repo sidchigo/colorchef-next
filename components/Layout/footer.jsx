@@ -6,7 +6,7 @@ const Footer = () => {
 	const shouldStick = router.pathname !== '/';
 	return (
 		<footer
-			className={`${shouldStick && 'sticky'} bg-white bottom-0 mt-auto z-0`}
+			className={`${shouldStick && 'fixed'} w-[calc(100%-19.5rem)] bg-white bottom-0 mt-auto z-[3]`}
 		>
 			<div
 				className={`text-center w-full py-2 px-3 md:px-4 lg:px-5 `}

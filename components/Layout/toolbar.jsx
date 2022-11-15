@@ -33,7 +33,7 @@ const Toolbar = () => {
 	}
 
 	return (
-		<div className={`sticky top-0 w-full bg-white flex h-20 justify-between ${styles.toolbarShadow}`}>
+		<div className={`fixed top-0 z-10 w-[calc(100%-19.5rem)] bg-white flex h-20 justify-between ${styles.toolbarStyle}`}>
 			<div className={`flex`}>
 				<div className={`flex space-x-4 py-2.5 px-4 ${filter ? '-translate-x-full' : 'translate-x-0'} ${hide ? 'hidden' : 'block'} transition ease-in`}>
 					<PickerButton />

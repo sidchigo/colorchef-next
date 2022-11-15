@@ -4,7 +4,7 @@ import logo from 'icons/logo.svg';
 
 export const Sidebar = () => {
     return(
-        <aside className={`w-[19.5rem] h-screen fixed flex flex-col text-center justify-between items-center bg-gray-100 z-[3] ${styles.sidebarShadow}`}>
+        <aside className={`w-[19.5rem] h-full fixed flex flex-col text-center justify-between items-center bg-gray-100 z-[11] ${styles.sidebarShadow}`}>
             <div className={`flex items-center justify-center h-20 w-full p-3 bg-white`}>
                 <Link href="/">
                     <a>
