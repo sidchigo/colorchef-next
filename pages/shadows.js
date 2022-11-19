@@ -12,7 +12,7 @@ const Shadows = () => {
 	const [color, setColor] = useState('#F59292');
 
 	return (
-		<div className="mb-4">
+		<div className="mb-4 h-full flex items-center">
 			<Head>
 				<title>Generate perfect soft shadows for your website</title>
 				<Meta
@@ -25,12 +25,7 @@ const Shadows = () => {
 			<div className="block sm:hidden bg-purple-100 text-purple-800 p-4 my-4">
 				Note: Tap at desired location to move light source and shadow.
 			</div>
-			<div className="flex justify-center items-center">
-				<div className="my-3">
-					<PickerButton />
-				</div>
-			</div>
-			<div className="m-4 sm:mx-10">
+			<div className="m-4 sm:mx-10 w-full items-center">
 				<ShadowCard
 					backgroundLum={tinycolor(color).toHsl().l}
 					background={'#' + tinycolor(color).toHex()}
