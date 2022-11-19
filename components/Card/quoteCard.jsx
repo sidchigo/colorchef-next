@@ -15,7 +15,7 @@ import showToast from 'components/Toast';
 // colorpicker
 const tinycolor = require('tinycolor2');
 
-export const QuoteCard = ({
+const QuoteCard = ({
 	colorData,
 	isQuote = false,
 	quote = "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
@@ -223,3 +223,5 @@ export const QuoteCard = ({
 		</div>
 	);
 };
+
+export { QuoteCard };

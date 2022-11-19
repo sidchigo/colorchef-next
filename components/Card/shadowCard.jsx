@@ -5,7 +5,7 @@ import styles from './card.module.css';
 import Copy from 'utility/CopyUtility';
 import showToast from 'components/Toast';
 
-export const ShadowCard = ({ background, hue, backgroundLum }) => {
+const ShadowCard = ({ background, hue, backgroundLum }) => {
 	const [xcord, setXCord] = useState('50%');
 	const [ycord, setYCord] = useState('20px');
 	const [pageX, setPageX] = useState(0);
@@ -131,3 +131,5 @@ export const ShadowCard = ({ background, hue, backgroundLum }) => {
 		</button>
 	);
 }
+
+export { ShadowCard };

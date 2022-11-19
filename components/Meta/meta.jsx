@@ -38,4 +38,4 @@ const Meta = ({ title, url, image, description }) => {
 	);
 };
 
-export default Meta;
+export { Meta };

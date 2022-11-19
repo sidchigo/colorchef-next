@@ -1,2 +1,2 @@
-export { QuoteCard } from './quoteCard';
-export { ShadowCard } from './shadowCard';
+export { QuoteCard } from './quoteCard.jsx';
+export { ShadowCard } from './shadowCard.jsx';

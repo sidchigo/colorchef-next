@@ -6,7 +6,7 @@ const Home = () => {
     const initialColor = useSelector((state) => state.colorGeneration.inputColor);
     return (
         <div>
-            Hello
+            Landing page coming soon...
             {/* {colors.map((color) => (
                 <QuoteCard
                     key={color.hex}
