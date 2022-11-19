@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 
 // components
-import { Picker } from 'components/Picker';
+import { PickerButton } from 'components/Picker';
 import { ShadowCard } from 'components/Card';
-import Meta from 'components/Meta';
+import { Meta } from 'components/Meta';
 
 const tinycolor = require('tinycolor2');
 
@@ -26,11 +26,11 @@ const Shadows = () => {
 				Note: Tap at desired location to move light source and shadow.
 			</div>
 			<div className="flex justify-center items-center">
-				<div xl={3} lg={3} md={4} sm={12} className="mb-3">
-					<Picker color={color} setColor={setColor} />
+				<div className="my-3">
+					<PickerButton />
 				</div>
 			</div>
-			<div className={``}>
+			<div className="m-4 sm:mx-10">
 				<ShadowCard
 					backgroundLum={tinycolor(color).toHsl().l}
 					background={'#' + tinycolor(color).toHex()}

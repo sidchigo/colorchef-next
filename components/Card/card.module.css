@@ -74,9 +74,10 @@
     }
 }
 
-.cardBody {
-    position: relative;
+.shadowCardBody {
+    position: relative;    
     display: flex;
+    width: 100%;
     flex-direction: column;
     -webkit-box-align: center;
     align-items: center;

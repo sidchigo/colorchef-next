@@ -20,7 +20,7 @@ export const Layout = ({ children }) => {
 	return (
 		<div className='w-full flex h-screen relative'>
             <Sidebar />
-            <div className='relative pl-[19.5rem]'>
+            <div className='relative pl-[19.5rem] w-full'>
                 <Toolbar />
                 <main className={`mx-auto px-4 lg:px-8 pt-20 h-full`}>{children}</main>
                 <Footer />

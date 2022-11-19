@@ -88,7 +88,7 @@ const ShadowCard = ({ background, hue, backgroundLum }) => {
 
 	return (
 		<button
-			className={styles.cardBody}
+			className={`${styles.shadowCardBody}`}
 			onMouseMove={(e) => saveCoordinates(e)}
 			onMouseLeave={(e) => resetLightSource(e)}
 			ref={playground}
