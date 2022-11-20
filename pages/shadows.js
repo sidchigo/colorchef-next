@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 
 // components
@@ -9,7 +10,10 @@ import { Meta } from 'components/Meta';
 const tinycolor = require('tinycolor2');
 
 const Shadows = () => {
-	const [color, setColor] = useState('#F59292');
+	// const [color, setColor] = useState('#F59292');
+    const color = useSelector(
+		(state) => state.colorGeneration.currentColor
+	);
 
 	return (
 		<div className="mb-4 h-full flex items-center">
