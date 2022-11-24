@@ -20,6 +20,10 @@
     }
 }
 
+:root {
+    --sidebarSize: 15rem;
+}
+
 #__next {
     min-height: 100vh;
     display: flex;

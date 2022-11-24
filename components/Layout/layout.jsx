@@ -18,13 +18,15 @@ export const Layout = ({ children }) => {
 	}, [toasts]);
 
 	return (
-		<div className='w-full flex h-screen relative'>
-            <Sidebar />
-            <div className='relative pl-[19.5rem] w-full'>
-                <Toolbar />
-                <main className={`mx-auto px-4 lg:px-8 pt-20 h-full`}>{children}</main>
-                <Footer />
-            </div>
+		<div className="w-full flex h-screen relative">
+			<Sidebar />
+			<div className="relative pl-[var(--sidebarSize)] w-full">
+				<Toolbar />
+				<main className={`mx-auto px-4 lg:px-8 pt-20 h-full`}>
+					{children}
+				</main>
+				<Footer />
+			</div>
 			<Toaster position="bottom-center" />
 		</div>
 	);

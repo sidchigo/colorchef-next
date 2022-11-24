@@ -35,7 +35,7 @@ const Toolbar = () => {
 
 	return (
 		<div
-			className={`fixed top-0 z-10 w-[calc(100%-19.5rem)] bg-white flex h-20 justify-between ${styles.toolbarStyle}`}
+			className={`fixed top-0 z-10 w-[calc(100%-var(--sidebarSize))] bg-white flex h-20 justify-between ${styles.toolbarStyle}`}
 		>
 			<div className={`flex`}>
 				<div
