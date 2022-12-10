@@ -37,7 +37,7 @@ export const Colorcard = ({
 		if (isQuote && quote !== '' && colorData.length === 2) {
 			return (
 				<div
-					className={`${styles.cardBody} rounded pb-16 m-2`}
+					className={`${styles.cardBody} pb-16 m-2`}
 					style={bgStyle}
 				>
 					<div className="px-4 py-6">
@@ -146,7 +146,9 @@ export const Colorcard = ({
 	return (
 		<div ref={cardRef}>
 			{inView && (
-				<div className={`border border-gray-100 shadow-lg`}>
+				<div
+					className={`border border-gray-100 transition shadow-lg hover:!scale-105`}
+				>
 					{renderPalette(colorData, isQuote, quote)}
 					<div className={`${styles.cardFooter}`}>
 						<div className={`flex justify-around items-center`}>

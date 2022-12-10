@@ -6,7 +6,7 @@
     align-items: center;
     padding: 8.75rem 1rem;
     border: 0;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     width: 100%;
     box-shadow: -4px 9px 25px -6px rgba(86, 86, 86, 0.271);
     margin-bottom: 1rem;
@@ -27,7 +27,7 @@
 .centerCard {
     width: 150px;
     height: 150px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     will-change: transform;
     filter: var(--drop-shadow);
 }
@@ -59,7 +59,7 @@
     z-index: 10;
     padding: 0.5rem;
     background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 8px 0;
+    /* border-radius: 8px 0; */
     box-shadow: var(--drop-shadow);
     display: flex;
     justify-content: center;
