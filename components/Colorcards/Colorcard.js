@@ -9,7 +9,7 @@ import { useInView } from 'utility/useInView';
 import { copyColor } from 'slices/colorsSlice';
 
 // components
-import { Button } from 'components/Button';
+import { Button, Share } from 'components/Button';
 import Save from 'components/Save';
 import showToast from 'components/Toast';
 
@@ -218,6 +218,7 @@ export const Colorcard = ({
 									</Button>
 								</>
 							)}
+							<Share />
 							<Save data={colorData} />
 						</div>
 					</div>
