@@ -11,6 +11,7 @@ import {Button} from 'components/Button';
 // redux
 import { randomColors, inputColor } from 'slices/colorsSlice';
 import Meta from 'components/Meta';
+import { useRouter } from 'next/router';
 
 // colorpicker
 const tinycolor = require('tinycolor2');
@@ -19,13 +20,41 @@ const Colorgeneration = () => {
 	const dispatch = useDispatch();
 	const colorData = useSelector((state) => state.colorGeneration);
 	const [counter, setCounter] = useState(12);
-	const [color, setColor] = useState('#E9FAE3');
+	const router = useRouter();
+	const { colorcode } = router.query;
+	const [color, setColor] = useState(`#${colorcode}`);
 	const [quality, setQuality] = useState(1);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		dispatch(inputColor({ hex: 'E9FAE3', scale: 1 }));
-	}, [dispatch]);
+		if (colorcode) {
+			dispatch(inputColor({ hex: colorcode.slice(0, 6), scale: colorcode.slice(-1), ts: colorcode.slice(6, -1) }));
+		}
+	}, [dispatch, colorcode]);
+
+	useEffect(() => {
+		const query = router.query.colorcode;
+		if (query) {
+			setColor(`#${query.slice(0, 6)}`)
+			setQuality(query.slice(-1))
+		}
+	}, [router.query.colorcode])
+
+	const handleQuality = (e) => {
+		const quality = e.currentTarget.value;
+		setQuality(quality)
+		router.push(`${tinycolor(color).toHex()}${Date.now()}${quality}`)
+	}
+
+	const handleGenerate = () => {
+		dispatch(
+			inputColor({
+				hex: tinycolor(color).toHex().toUpperCase(),
+				scale: quality,
+			})
+		)
+		router.push(`${tinycolor(color).toHex()}${Date.now()}${quality}`)
+	}
 
 	return (
 		<div
@@ -55,7 +84,7 @@ const Colorgeneration = () => {
 						className={`px-4 py-4 border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 w-full`}
 						id="scaleSelect"
 						value={quality}
-						onChange={(e) => setQuality(e.currentTarget.value)}
+						onChange={handleQuality}
 					>
 						<option value="1">Good</option>
 						<option value="2">Very Good</option>
@@ -64,21 +93,14 @@ const Colorgeneration = () => {
 					</select>
 				</div>
 			</div>
-			<div className="justify-content-center align-items-center px-4 mt-8">
+			<div className="justify-content-center align-items-center px-4">
 				<div className="grid gap-2 justify-center">
-					<Button
+					{/* <Button
 						variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
-						onClick={() =>
-							dispatch(
-								inputColor({
-									hex: tinycolor(color).toHex().toUpperCase(),
-									scale: quality,
-								})
-							)
-						}
+						onClick={handleGenerate}
 					>
 						Generate
-					</Button>
+					</Button> */}
 					<div className={`text-gray-400 text-center my-2`}>OR</div>
 					<Button
 						variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}

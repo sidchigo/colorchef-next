@@ -1,4 +1,5 @@
 const tinycolor = require('tinycolor2');
+const seedrandom = require('seedrandom')
 
 function RGBToHex(RGB) {
 	let r = RGB[0].toString(16);
@@ -51,13 +52,14 @@ const hexToRGB = (hex) => {
 	return aRgb;
 };
 
-function generateNColors(size) {
+function generateNColors(size, inputColor) {
+	const random = seedrandom(inputColor);
 	let colors = [];
 	for (let i = 0; i < size; i++) {
 		let color = [
-			Math.ceil(Math.random() * 255),
-			Math.ceil(Math.random() * 255),
-			Math.ceil(Math.random() * 255),
+			Math.ceil(random() * 255),
+			Math.ceil(random() * 255),
+			Math.ceil(random() * 255),
 		];
 		colors.push(color);
 	}
@@ -111,11 +113,11 @@ function compareContrast([luminance, ratio]) {
 	return passingTest;
 }
 
-export function findColors(inputColor, colorList = [], scale, limit = 120) {
+export function findColors(inputColor, colorList = [], scale, ts, limit = 120) {
 	let originalColor = inputColor;
 	inputColor = hexToRGB(inputColor);
 	let sampleColors =
-		colorList.length !== 0 ? colorList : generateNColors(1000);
+		colorList.length !== 0 ? colorList : generateNColors(1000, originalColor+ts);
 	let foundColors = [],
 		pair,
 		contrastResult,

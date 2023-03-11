@@ -42,7 +42,7 @@ export const randomColors = createAsyncThunk(
 export const inputColor = createAsyncThunk(
 	'colors/inputColor',
 	(args) => {
-		const response = findColors(args.hex, [], args.scale);
+		const response = findColors(args.hex, [], args.scale, args.ts);
 		return response;
 	}
 );

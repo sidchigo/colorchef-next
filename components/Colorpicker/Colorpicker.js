@@ -5,11 +5,15 @@ import styles from './Colorpicker.module.css';
 // components
 import {Button} from 'components/Button';
 import tinycolor from 'tinycolor2';
+import { useRouter } from 'next/router';
 
 const ColorPicker = ({ color, setColor, onClose }) => {
+	const router = useRouter();
 
 	function handleSave() {
 		setColor(tinycolor(color).toHex());
+		const quality = router.query.colorcode.slice(-1);
+		router.push(`${tinycolor(color).toHex()}${Date.now()}${quality}`)
 		onClose(false);
 	}
 
