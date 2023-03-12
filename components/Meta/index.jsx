@@ -1,4 +1,6 @@
 const Meta = ({ title, colorcode, image, description }) => {
+    const staging = "colorchef-git-enhancements-sidchigo";
+    const prod = "colorchef";
     return (
         <>
             <meta name="title" content={title} />
@@ -13,26 +15,23 @@ const Meta = ({ title, colorcode, image, description }) => {
             <meta property="og:type" content="website" />
             <meta
                 property="og:url"
-                content={`https://colorchef.vercel.app/api/og?username=sidchigo`}
+                content={`https://${staging}/api/og?color=${colorcode}`}
             />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-            <meta
-                property="og:image"
-                content={`https://colorchef.vercel.app${image}`}
-            />
+            <meta property="og:image" content={`https://${staging}${image}`} />
 
             {/* Twitter */}
             <meta property="twitter:card" content="summary_large_image" />
             <meta
                 property="twitter:url"
-                content={`https://colorchef.vercel.app/api/og?username=sidchigo`}
+                content={`https://${staging}/api/og?color=${colorcode}`}
             />
             <meta property="twitter:title" content={title} />
             <meta property="twitter:description" content={description} />
             <meta
                 property="twitter:image"
-                content={`https://colorchef.vercel.app/api/og?username=sidchigo`}
+                content={`https://${staging}/api/og?color=${colorcode}`}
             />
         </>
     );
