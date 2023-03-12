@@ -1,4 +1,13 @@
+import { useRouter } from "next/router";
+
 const Meta = ({ title, colorcode, image, description }) => {
+    const router = useRouter();
+    console.log("ROUTER: ", router, colorcode);
+    if (router) {
+        const { color } = router?.query;
+        console.log("CCODE: ", color.slice(0, 6));
+    }
+
     const staging = "colorchef-git-enhancements-sidchigo";
     const prod = "colorchef";
     return (
