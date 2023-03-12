@@ -69,7 +69,7 @@ const Colorgeneration = () => {
         );
     };
 
-    const staging = "colorchef-git-enhancements-sidchigo";
+    const staging = "colorchef-git-enhancements-sidchigo.vercel";
 
     return (
         <div
