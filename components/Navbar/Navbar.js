@@ -26,7 +26,7 @@ function Navbar() {
 				<Burger open={show} setOpen={setShow} />
 			</div>
 			<div className="hidden lg:flex justify-end">
-				<Link href="/colors">
+				<Link href="/colors/[colorcode]" as={`/colors/e9fae3${Date.now()}1`}>
 					<a
 						className={`
 							text-sm mx-2 hover:text-violet-600 

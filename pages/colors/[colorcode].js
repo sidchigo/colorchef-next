@@ -43,7 +43,7 @@ const Colorgeneration = () => {
 	const handleQuality = (e) => {
 		const quality = e.currentTarget.value;
 		setQuality(quality)
-		router.push(`${tinycolor(color).toHex()}${Date.now()}${quality}`)
+		router.push('/colors/[colorcode]', `/colors/${tinycolor(color).toHex()}${Date.now()}${quality}`)
 	}
 
 	const handleGenerate = () => {
@@ -53,7 +53,7 @@ const Colorgeneration = () => {
 				scale: quality,
 			})
 		)
-		router.push(`${tinycolor(color).toHex()}${Date.now()}${quality}`)
+		router.push('/colors/[colorcode]', `/colors/${tinycolor(color).toHex()}${Date.now()}${quality}`)
 	}
 
 	return (
