@@ -1,15 +1,8 @@
-import { useRouter } from "next/router";
-
-const Meta = ({ title, colorcode, image, description }) => {
-    const router = useRouter();
-    console.log("ROUTER: ", router, colorcode);
-    if (router) {
-        const { color } = router?.query;
-        console.log("CCODE: ", color.slice(0, 6));
-    }
-
-    const staging = "colorchef-git-enhancements-sidchigo.vercel";
-    const prod = "colorchef";
+const Meta = ({ title, url, image, description }) => {
+    const staging = "colorchef-git-enhancements-sidchigo.vercel.app";
+    const prod = "colorchef.vercel.app";
+    const env = staging;
+    console.log("URL: ", url);
     return (
         <>
             <meta name="title" content={title} />
@@ -22,28 +15,19 @@ const Meta = ({ title, colorcode, image, description }) => {
 
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
-            <meta
-                property="og:url"
-                content={`https://${staging}.app/api/og?color=${colorcode}`}
-            />
+            <meta property="og:url" content={`https://${env}/${url}`} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-            <meta
-                property="og:image"
-                content={`https://${staging}.app/api/og?color=${colorcode}`}
-            />
+            <meta property="og:image" content={`https://${env}/${image}`} />
 
             {/* Twitter */}
             <meta property="twitter:card" content="summary_large_image" />
-            <meta
-                property="twitter:url"
-                content={`https://${staging}.app/api/og?color=${colorcode}`}
-            />
+            <meta property="twitter:url" content={`https://${env}/${url}`} />
             <meta property="twitter:title" content={title} />
             <meta property="twitter:description" content={description} />
             <meta
                 property="twitter:image"
-                content={`https://${staging}.app/api/og?color=${colorcode}`}
+                content={`https://${env}/${image}`}
             />
         </>
     );

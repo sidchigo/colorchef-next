@@ -2,8 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "static": "next build && next export",
+    "build": "next build && next export",
     "preview": "next build && next start",
     "start": "next start",
     "lint": "next lint"

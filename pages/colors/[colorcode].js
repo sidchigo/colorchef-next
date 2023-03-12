@@ -22,7 +22,7 @@ const Colorgeneration = () => {
     const [counter, setCounter] = useState(12);
     const router = useRouter();
     const { colorcode } = router.query;
-    const [color, setColor] = useState(`#${colorcode?.slice(0, 6)}`);
+    const [color, setColor] = useState(`#${colorcode}`);
     const [quality, setQuality] = useState(1);
 
     useEffect(() => {
@@ -40,7 +40,6 @@ const Colorgeneration = () => {
 
     useEffect(() => {
         const query = router.query.colorcode;
-        console.log("QUERY: ", query);
         if (query) {
             setColor(`#${query.slice(0, 6)}`);
             setQuality(query.slice(-1));
@@ -69,32 +68,23 @@ const Colorgeneration = () => {
         );
     };
 
-    const staging = "colorchef-git-enhancements-sidchigo.vercel";
-
     return (
         <div
             className={`relative container flex flex-col items-center mx-auto`}
         >
             <Head>
                 <title>Generate color combinations with perfect contrast</title>
-                <meta
-                    property="og:url"
-                    content={`https://${staging}.app/api/og?color=${color.slice(
-                        1
-                    )}`}
-                />
-                <meta
-                    property="og:image"
-                    content={`https://${staging}.app/api/og?color=${color.slice(
-                        1
-                    )}`}
-                />
-                {/* <Meta
-                    title="Generate color combinations with perfect contrast"
-                    colorcode={color}
-                    image={require("/images/colors.png")}
-                    description="Still confused finding the perfect color combo? Let us help you solve your confusion."
-                /> */}
+                {console.log("ROUTE: ", router.query.colorcode)}
+                {router.query.colorcode ? (
+                    <Meta
+                        title="Generate color combinations with perfect contrast"
+                        url={`colors/${router.query.colorcode}`}
+                        image={require("/images/banner.svg")}
+                        description="Still confused finding the perfect color combo? Let us help you solve your confusion."
+                    />
+                ) : (
+                    <meta name="title" content={"Generate color"} />
+                )}
             </Head>
             <Header title={"Color Generator"}>
                 Still confused finding the perfect color combo? let us help you
