@@ -41,7 +41,7 @@ export default function handler(req, res) {
                             width="1050"
                             height="206"
                             fill="url(#paint0_radial_2009_5573)"
-                            fill-opacity="0.91"
+                            fillOpacity="0.91"
                         />
                         <rect
                             x="25"
@@ -56,12 +56,12 @@ export default function handler(req, res) {
                             width="1050"
                             height="206"
                             fill="url(#paint2_radial_2009_5573)"
-                            fill-opacity="0.93"
+                            fillOpacity="0.93"
                         />
                         <path d="M984 80H923.72V91.6311H984V80Z" fill="black" />
                         <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             d="M258.327 175C284.485 175 305.69 153.807 305.69 127.665C305.69 101.523 284.485 80.3308 258.327 80.3308C232.17 80.3308 210.965 101.523 210.965 127.665C210.965 153.807 232.17 175 258.327 175ZM258.327 163.369C278.057 163.369 294.052 147.384 294.052 127.665C294.052 107.947 278.057 91.9619 258.327 91.9619C238.597 91.9619 222.603 107.947 222.603 127.665C222.603 147.384 238.597 163.369 258.327 163.369Z"
                             fill="black"
                         />
@@ -74,8 +74,8 @@ export default function handler(req, res) {
                             fill="black"
                         />
                         <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             d="M504.413 127.665C504.413 153.807 483.209 175 457.051 175C430.893 175 409.689 153.807 409.689 127.665C409.689 101.523 430.893 80.3308 457.051 80.3308C483.209 80.3308 504.413 101.523 504.413 127.665ZM492.776 127.665C492.776 147.384 476.781 163.369 457.051 163.369C437.321 163.369 421.327 147.384 421.327 127.665C421.327 107.947 437.321 91.9619 457.051 91.9619C476.781 91.9619 492.776 107.947 492.776 127.665Z"
                             fill="black"
                         />
@@ -116,8 +116,8 @@ export default function handler(req, res) {
                                 gradientUnits="userSpaceOnUse"
                                 gradientTransform="translate(257.617 -4.48224) rotate(24.1511) scale(745.728 2555.75)"
                             >
-                                <stop offset="0.189789" stop-color="#B0C1FF" />
-                                <stop offset="1" stop-color="#C9B0DA" />
+                                <stop offset="0.189789" stopColor="#B0C1FF" />
+                                <stop offset="1" stopColor="#C9B0DA" />
                             </radialGradient>
                             <radialGradient
                                 id="paint1_radial_2009_5573"
@@ -127,8 +127,8 @@ export default function handler(req, res) {
                                 gradientUnits="userSpaceOnUse"
                                 gradientTransform="translate(25 231) rotate(-14.4277) scale(687.309 2210.35)"
                             >
-                                <stop stop-color="#9FFAFE" />
-                                <stop offset="1" stop-color="#B0C1FF" />
+                                <stop stopColor="#9FFAFE" />
+                                <stop offset="1" stopColor="#B0C1FF" />
                             </radialGradient>
                             <radialGradient
                                 id="paint2_radial_2009_5573"
@@ -138,11 +138,11 @@ export default function handler(req, res) {
                                 gradientUnits="userSpaceOnUse"
                                 gradientTransform="translate(1029.57 45.7004) rotate(139.958) scale(572.343 2244.48)"
                             >
-                                <stop offset="0.308364" stop-color="#FF9585" />
+                                <stop offset="0.308364" stopColor="#FF9585" />
                                 <stop
                                     offset="0.887932"
-                                    stop-color="#B0C1FF"
-                                    stop-opacity="0.25"
+                                    stopColor="#B0C1FF"
+                                    stopOpacity="0.25"
                                 />
                             </radialGradient>
                         </defs>
