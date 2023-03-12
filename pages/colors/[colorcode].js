@@ -64,7 +64,7 @@ const Colorgeneration = () => {
 				<title>Generate color combinations with perfect contrast</title>
 				<Meta
 					title="Generate color combinations with perfect contrast"
-					url="/colors"
+					colorcode={tinycolor(color).toHex()}
 					image={require('/images/colors.png')}
 					description="Still confused finding the perfect color combo? Let us help you solve your confusion."
 				/>
