@@ -8,7 +8,7 @@ const Meta = ({ title, colorcode, image, description }) => {
         console.log("CCODE: ", color.slice(0, 6));
     }
 
-    const staging = "colorchef-git-enhancements-sidchigo";
+    const staging = "colorchef-git-enhancements-sidchigo.vercel";
     const prod = "colorchef";
     return (
         <>
