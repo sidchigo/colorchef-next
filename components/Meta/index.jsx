@@ -15,23 +15,26 @@ const Meta = ({ title, colorcode, image, description }) => {
             <meta property="og:type" content="website" />
             <meta
                 property="og:url"
-                content={`https://${staging}/api/og?color=${colorcode}`}
+                content={`https://${staging}.app/api/og?color=${colorcode}`}
             />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content={`https://${staging}${image}`} />
+            <meta
+                property="og:image"
+                content={`https://${staging}.app${image}`}
+            />
 
             {/* Twitter */}
             <meta property="twitter:card" content="summary_large_image" />
             <meta
                 property="twitter:url"
-                content={`https://${staging}/api/og?color=${colorcode}`}
+                content={`https://${staging}.app/api/og?color=${colorcode}`}
             />
             <meta property="twitter:title" content={title} />
             <meta property="twitter:description" content={description} />
             <meta
                 property="twitter:image"
-                content={`https://${staging}/api/og?color=${colorcode}`}
+                content={`https://${staging}.app/api/og?color=${colorcode}`}
             />
         </>
     );
