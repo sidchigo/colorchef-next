@@ -80,14 +80,12 @@ const Colorgeneration = () => {
                 <meta
                     property="og:url"
                     content={`https://${staging}.app/api/og?color=${color.slice(
-                        0,
                         1
                     )}`}
                 />
                 <meta
                     property="og:image"
                     content={`https://${staging}.app/api/og?color=${color.slice(
-                        0,
                         1
                     )}`}
                 />
