@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 // colorpicker
 const tinycolor = require("tinycolor2");
 
-const Colorgeneration = () => {
+const Colorgeneration = (props) => {
     const dispatch = useDispatch();
     const colorData = useSelector((state) => state.colorGeneration);
     const [counter, setCounter] = useState(12);
@@ -51,7 +51,8 @@ const Colorgeneration = () => {
         setQuality(quality);
         router.push(
             "/colors/[colorcode]",
-            `/colors/${tinycolor(color).toHex()}${Date.now()}${quality}`
+            `/colors/${tinycolor(color).toHex()}${Date.now()}${quality}`,
+            { shallow: true }
         );
     };
 
@@ -74,17 +75,12 @@ const Colorgeneration = () => {
         >
             <Head>
                 <title>Generate color combinations with perfect contrast</title>
-                {console.log("ROUTE: ", router.query.colorcode)}
-                {router.query.colorcode ? (
-                    <Meta
-                        title="Generate color combinations with perfect contrast"
-                        url={`colors/${router.query.colorcode}`}
-                        image={require("/images/banner.svg")}
-                        description="Still confused finding the perfect color combo? Let us help you solve your confusion."
-                    />
-                ) : (
-                    <meta name="title" content={"Generate color"} />
-                )}
+                <Meta
+                    title="Generate color combinations with perfect contrast"
+                    url={`/colors`}
+                    image={require("/images/banner.svg")}
+                    description="Still confused finding the perfect color combo? Let us help you solve your confusion."
+                />
             </Head>
             <Header title={"Color Generator"}>
                 Still confused finding the perfect color combo? let us help you
