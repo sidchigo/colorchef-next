@@ -77,7 +77,8 @@ const Colorgeneration = (props) => {
                 <title>Generate color combinations with perfect contrast</title>
                 <Meta
                     title="Generate color combinations with perfect contrast"
-                    url={`/colors/${props.colorcode}`}
+                    url={`/colors`}
+                    color={props.colorcode}
                     image={require("/images/banner.svg")}
                     description="Still confused finding the perfect color combo? Let us help you solve your confusion."
                 />

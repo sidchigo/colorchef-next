@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 
-const Meta = ({ title, url, image, description }) => {
+const Meta = ({ color, title, url, image, description }) => {
     const router = useRouter();
     const staging = "colorchef-git-enhancements-sidchigo.vercel.app";
     const prod = "colorchef.vercel.app";
     const env = staging;
+    console.log({ color });
     return (
         <>
             <meta name="title" content={title} />
