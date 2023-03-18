@@ -4,7 +4,13 @@ const Meta = ({ color, title, url, image, description }) => {
     const staging = "colorchef-git-enhancements-sidchigo.vercel.app";
     const prod = "colorchef.vercel.app";
     const env = staging;
-    const colorCode = color.slice(0, 6);
+
+    let colorCode;
+    let ogImage = `https://${env}${image}`;
+    if (color) {
+        colorCode = color.slice(0, 6);
+        ogImage = `https://${env}/api/og?color=${colorCode}`;
+    }
     return (
         <>
             <meta name="title" content={title} />
@@ -20,20 +26,14 @@ const Meta = ({ color, title, url, image, description }) => {
             <meta property="og:url" content={`https://${env}${url}`} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-            <meta
-                property="og:image"
-                content={`https://${env}/api/og?color=${colorCode}`}
-            />
+            <meta property="og:image" content={ogImage} />
 
             {/* Twitter */}
             <meta property="twitter:card" content="summary_large_image" />
             <meta property="twitter:url" content={`https://${env}${url}`} />
             <meta property="twitter:title" content={title} />
             <meta property="twitter:description" content={description} />
-            <meta
-                property="twitter:image"
-                content={`https://${env}/api/og?color=${colorCode}`}
-            />
+            <meta property="twitter:image" content={ogImage} />
         </>
     );
 };
