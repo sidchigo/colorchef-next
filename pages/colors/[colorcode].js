@@ -170,4 +170,13 @@ const Colorgeneration = (props) => {
     );
 };
 
+export async function getServerSideProps(context) {
+    const { colorcode } = context.params;
+    return {
+        props: {
+            colorcode,
+        }, // will be passed to the page component as props
+    };
+}
+
 export default Colorgeneration;
