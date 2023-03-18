@@ -4,7 +4,7 @@ const Meta = ({ color, title, url, image, description }) => {
     const staging = "colorchef-git-enhancements-sidchigo.vercel.app";
     const prod = "colorchef.vercel.app";
     const env = staging;
-    console.log({ color });
+    const colorCode = color.slice(0, 6);
     return (
         <>
             <meta name="title" content={title} />
@@ -22,7 +22,7 @@ const Meta = ({ color, title, url, image, description }) => {
             <meta property="og:description" content={description} />
             <meta
                 property="og:image"
-                content={`https://${env}.app/api/og?color=${color}`}
+                content={`https://${env}/api/og?color=${colorCode}`}
             />
 
             {/* Twitter */}
@@ -32,7 +32,7 @@ const Meta = ({ color, title, url, image, description }) => {
             <meta property="twitter:description" content={description} />
             <meta
                 property="twitter:image"
-                content={`https://${env}.app/api/og?color=${color}`}
+                content={`https://${env}/api/og?color=${colorCode}`}
             />
         </>
     );
