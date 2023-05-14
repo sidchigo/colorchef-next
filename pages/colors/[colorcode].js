@@ -24,6 +24,7 @@ const Colorgeneration = (props) => {
     const { colorcode } = router.query;
     const [color, setColor] = useState(`#${colorcode}`);
     const [quality, setQuality] = useState(1);
+    const [reverseAll, setReverseAll] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -89,7 +90,7 @@ const Colorgeneration = (props) => {
             </Header>
             <div className={`flex flex-col md:flex-row`}>
                 <div className="mb-3">
-                    <div className="mb-2">Pick your color</div>
+                    <div className="mb-2">Pick background color</div>
                     <Picker color={color} setColor={setColor} />
                 </div>
                 <div className="mb-3 ml-0 md:ml-8">
@@ -109,12 +110,12 @@ const Colorgeneration = (props) => {
             </div>
             <div className="justify-content-center align-items-center px-4">
                 <div className="grid gap-2 justify-center">
-                    {/* <Button
-						variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
-						onClick={handleGenerate}
-					>
-						Generate
-					</Button> */}
+                    <Button
+                        variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
+                        onClick={() => setReverseAll(!reverseAll)}
+                    >
+                        Reverse all
+                    </Button>
                     <div className={`text-gray-400 text-center my-2`}>OR</div>
                     <Button
                         variant={`bg-gray-800 hover:bg-slate-900 text-white w-[300px]`}
@@ -129,7 +130,7 @@ const Colorgeneration = (props) => {
                 <h2
                     className={`text-lg md:text-2xl mt-3 flex justify-center items-center`}
                 >
-                    {colorData.totalColors} color cards generated!
+                    {colorData.totalColors} accent combos generated!
                     <span className="font-normal">✨</span>
                 </h2>
             </div>
@@ -139,10 +140,11 @@ const Colorgeneration = (props) => {
                         <Colorcard
                             key={color.hex}
                             colorData={[
-                                tinycolor(color.hex).toHex().toUpperCase(),
                                 colorData.inputColor,
+                                tinycolor(color.hex).toHex().toUpperCase(),
                             ]}
                             isQuote
+                            isReversed={reverseAll}
                         />
                     );
                 })}

@@ -12,14 +12,16 @@ const ColorPicker = ({ color, setColor, onClose }) => {
 
     function handleSave() {
         setColor(tinycolor(color).toHex());
-        const quality = router.query.colorcode.slice(-1);
-        router.push(
-            "/colors/[colorcode]",
-            `/colors/${tinycolor(color).toHex()}${Date.now()}${quality}`,
-            {
-                shallow: true,
-            }
-        );
+        if (Object.keys(router.query).length) {
+            const quality = router.query.colorcode.slice(-1);
+            router.push(
+                "/colors/[colorcode]",
+                `/colors/${tinycolor(color).toHex()}${Date.now()}${quality}`,
+                {
+                    shallow: true,
+                }
+            );
+        }
         onClose(false);
     }
 
