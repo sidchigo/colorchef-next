@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 class ColorDoc extends Document {
     static async getInitialProps(ctx) {
@@ -24,7 +25,7 @@ class ColorDoc extends Document {
                 <body>
                     <Main />
                     <NextScript />
-                    <script
+                    <Script
                         data-name="BMC-Widget"
                         data-cfasync="false"
                         src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
@@ -35,7 +36,7 @@ class ColorDoc extends Document {
                         data-position="Right"
                         data-x_margin="18"
                         data-y_margin="18"
-                    ></script>
+                    ></Script>
                 </body>
             </Html>
         );
