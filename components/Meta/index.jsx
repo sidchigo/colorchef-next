@@ -8,6 +8,10 @@ const Meta = ({ title, url, image, description }) => {
 				name="google-site-verification"
 				content="3e0geQdLz85Lt7QW4uuffb3R-dx6IFCf8BbFJ9oLP6g"
 			/>
+			<meta
+				name="google-adsense-account"
+				content="ca-pub-7992174123056607"
+			></meta>
 
 			{/* Open Graph / Facebook */}
 			<meta property="og:type" content="website" />
