@@ -26,6 +26,11 @@ class ColorDoc extends Document {
 					<NextScript />
 					<script
 						async
+						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7992174123056607"
+						crossorigin="anonymous"
+					></script>
+					<script
+						async
 						data-name="BMC-Widget"
 						data-cfasync="false"
 						src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
