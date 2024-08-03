@@ -27,7 +27,7 @@ class ColorDoc extends Document {
 					<script
 						async
 						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7992174123056607"
-						crossorigin="anonymous"
+						crossOrigin="anonymous"
 					></script>
 					<script
 						async
