@@ -81,8 +81,6 @@ Use golden ratio to:
 
 ## 📸 Screenshots
 
-> _(Optional: Upload and link real screenshots or demo GIFs here)_
-
 | Module       | Preview                                |
 | ------------ | -------------------------------------- |
 | Colors       | ![Colors](images/colors.png)           |
