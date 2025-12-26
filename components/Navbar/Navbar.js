@@ -81,6 +81,17 @@ function Navbar() {
 						Golden Ratio
 					</a>
 				</Link>
+				<Link href="/cinema">
+					<a
+						className={`
+							text-sm mx-2 hover:text-violet-600 
+							${router.pathname === "/cinema" ? "text-violet-600" : "text-gray-600"} 
+							${styles.navLink}
+						`}
+					>
+						Cinema
+					</a>
+				</Link>
 				<Link href="/about">
 					<a
 						className={`

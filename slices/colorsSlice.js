@@ -4,7 +4,8 @@ import axios from 'axios';
 // utility
 import { findColors, findRandomColors } from 'utility/ColorGenerator';
 
-const BASE = "https://colorchef-152717962787.us-west1.run.app/v1/";
+// const BASE = "https://colorchef-152717962787.us-west1.run.app/v1/";
+const BASE = "http://localhost:5000/v1/";
 
 const initialState = {
 	colors: [],
