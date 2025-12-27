@@ -5,7 +5,7 @@ import Meta from 'components/Meta';
 const tinycolor = require('tinycolor2');
 
 const CinemaIndex = ({ movies, allTags }) => {
-	const [searchQuery, setSearchQuery] = useState('');
+	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedTags, setSelectedTags] = useState([]);
 
 	// Filter movies by search query and selected tags
@@ -20,27 +20,22 @@ const CinemaIndex = ({ movies, allTags }) => {
 				(movie.tags &&
 					selectedTags.some((tag) =>
 						movie.tags
-							.toLowerCase()
-							.split(',')
-							.map((t) => t.trim())
+							.map((t) => t.trim().toLowerCase())
 							.includes(tag.toLowerCase())
 					));
-
 			return matchesSearch && matchesTags;
 		});
 	}, [searchQuery, selectedTags, movies]);
 
 	const toggleTag = (tag) => {
 		setSelectedTags((prev) =>
-			prev.includes(tag)
-				? prev.filter((t) => t !== tag)
-				: [...prev, tag]
+			prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
 		);
 	};
 
 	const convertToHex = (color) => {
 		try {
-			return '#' + tinycolor(color).toHex().toUpperCase();
+			return "#" + tinycolor(color).toHex().toUpperCase();
 		} catch {
 			return color;
 		}
@@ -49,7 +44,10 @@ const CinemaIndex = ({ movies, allTags }) => {
 	return (
 		<div>
 			<Head>
-				<title>Cinema Color Palettes: Asian Horror & Anime Aesthetic Discovery</title>
+				<title>
+					Cinema Color Palettes: Asian Horror & Anime Aesthetic
+					Discovery
+				</title>
 				<Meta
 					title="Cinema Color Palettes: Asian Horror & Anime Aesthetic Discovery"
 					url="/cinema"
@@ -58,7 +56,8 @@ const CinemaIndex = ({ movies, allTags }) => {
 			</Head>
 
 			<Header title="Cinema Color Palettes">
-				Discover color palettes extracted from iconic cinema. Filter by movie theme and explore aesthetic color combinations.
+				Discover color palettes extracted from iconic cinema. Filter by
+				movie theme and explore aesthetic color combinations.
 			</Header>
 
 			<div className="p-4 sm:mx-0 md:mx-8 lg:mx-16">
@@ -77,7 +76,9 @@ const CinemaIndex = ({ movies, allTags }) => {
 					{/* Niche Tags Filter Sidebar */}
 					<div className="lg:w-48 flex-shrink-0">
 						<div className="sticky top-4">
-							<h3 className="text-lg font-bold mb-4">Filter by Theme</h3>
+							<h3 className="text-lg font-bold mb-4">
+								Filter by Theme
+							</h3>
 							<div className="space-y-2 bg-gray-50 p-4 rounded-lg">
 								{allTags.length > 0 ? (
 									allTags.map((tag) => (
@@ -87,7 +88,9 @@ const CinemaIndex = ({ movies, allTags }) => {
 										>
 											<input
 												type="checkbox"
-												checked={selectedTags.includes(tag)}
+												checked={selectedTags.includes(
+													tag
+												)}
 												onChange={() => toggleTag(tag)}
 												className="w-4 h-4 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
 											/>
@@ -158,15 +161,10 @@ const CinemaIndex = ({ movies, allTags }) => {
 											</div>
 
 											{/* Movie Title */}
-											<div className="p-4 bg-white">
-												<h3 className="font-bold text-sm text-gray-800 group-hover:text-purple-600 transition line-clamp-2">
+											<div className="p-4 bg-white h-[60px]">
+												<h3 className="font-bold text-sm text-gray-800 group-hover:text-purple-600 transition line-clamp-1 overflow-hidden">
 													{movie.title}
 												</h3>
-												{movie.tags && (
-													<p className="text-xs text-gray-500 mt-2 line-clamp-1">
-														{movie.tags}
-													</p>
-												)}
 											</div>
 										</div>
 									</a>
@@ -188,7 +186,7 @@ const CinemaIndex = ({ movies, allTags }) => {
 						{/* Results Count */}
 						<div className="mt-8 text-center text-gray-600">
 							<p className="text-sm">
-								Showing {filteredMovies.length} of{' '}
+								Showing {filteredMovies.length} of{" "}
 								{movies.length} movies
 							</p>
 						</div>
@@ -202,7 +200,7 @@ const CinemaIndex = ({ movies, allTags }) => {
 export async function getStaticProps() {
 	try {
 		const response = await fetch(
-			'http://localhost:5000/v1/admin/cinema/data'
+			"http://localhost:5000/v1/admin/cinema/index"
 		);
 		const cinemaData = await response.json();
 
@@ -212,7 +210,6 @@ export async function getStaticProps() {
 			...data,
 		}));
 
-		
 		// Extract unique tags
 		const allTagsSet = new Set();
 		movies.forEach((movie) => {
@@ -226,7 +223,6 @@ export async function getStaticProps() {
 			} catch (e) {
 				console.log({ e, tags: movie.tags });
 			}
-			
 		});
 
 		const allTags = Array.from(allTagsSet).sort();
@@ -239,7 +235,7 @@ export async function getStaticProps() {
 			revalidate: 86400, // Revalidate every 24 hr
 		};
 	} catch (error) {
-		console.error('Error fetching cinema data:', error);
+		console.error("Error fetching cinema data:", error);
 		return {
 			props: {
 				movies: [],
