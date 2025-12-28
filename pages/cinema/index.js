@@ -1,21 +1,30 @@
 import Head from 'next/head';
-import { useState, useMemo } from 'react';
-import Header from 'components/Header/Header';
-import Meta from 'components/Meta';
-const tinycolor = require('tinycolor2');
+import { useState, useMemo, useEffect } from "react";
+import { useRouter } from "next/router";
+import Header from "components/Header/Header";
+import Meta from "components/Meta";
+const tinycolor = require("tinycolor2");
+import { CURATED_FILTERS } from "constants/movieTags";
 
-const CinemaIndex = ({ movies, allTags }) => {
+const CinemaIndex = ({ movies }) => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedTags, setSelectedTags] = useState([]);
+	const [selectedTags, setSelectedTags] = useState(["All"]);
+	const router = useRouter();
 
-	// Filter movies by search query and selected tags
+	// Filter movies by search query and selected filter
 	const filteredMovies = useMemo(() => {
 		return movies.filter((movie) => {
-			const matchesSearch = movie.title
-				.toLowerCase()
-				.includes(searchQuery.toLowerCase());
+			const query = searchQuery.toLowerCase();
 
-			const matchesTags =
+			const matchesSearch =
+				movie.title.toLowerCase().includes(query) ||
+				movie.raw_keywords.some((k) =>
+					k.toLowerCase().includes(query)
+				) ||
+				movie.tags.some((t) => t.toLowerCase().includes(query));
+
+			const matchesFilter =
+				selectedTags.includes("All") ||
 				selectedTags.length === 0 ||
 				(movie.tags &&
 					selectedTags.some((tag) =>
@@ -23,7 +32,8 @@ const CinemaIndex = ({ movies, allTags }) => {
 							.map((t) => t.trim().toLowerCase())
 							.includes(tag.toLowerCase())
 					));
-			return matchesSearch && matchesTags;
+
+			return matchesSearch && matchesFilter;
 		});
 	}, [searchQuery, selectedTags, movies]);
 
@@ -40,6 +50,21 @@ const CinemaIndex = ({ movies, allTags }) => {
 			return color;
 		}
 	};
+
+	useEffect(() => {
+		// Check if there is a filter param in the URL
+		if (router.query.filter) {
+			const filterParam = router.query.filter;
+
+			const matchingFilter = CURATED_FILTERS.find(
+				(f) => f.toLowerCase() === filterParam.toLowerCase()
+			);
+
+			if (matchingFilter) {
+				setSelectedTags([matchingFilter]);
+			}
+		}
+	}, [router.query.filter]);
 
 	return (
 		<div>
@@ -65,7 +90,7 @@ const CinemaIndex = ({ movies, allTags }) => {
 				<div className="mb-8">
 					<input
 						type="text"
-						placeholder="Search by movie title..."
+						placeholder="Search movies, themes, or vibes..."
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
 						className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
@@ -80,30 +105,22 @@ const CinemaIndex = ({ movies, allTags }) => {
 								Filter by Theme
 							</h3>
 							<div className="space-y-2 bg-gray-50 p-4 rounded-lg">
-								{allTags.length > 0 ? (
-									allTags.map((tag) => (
-										<label
-											key={tag}
-											className="flex items-center gap-2 cursor-pointer hover:text-purple-600 transition"
-										>
-											<input
-												type="checkbox"
-												checked={selectedTags.includes(
-													tag
-												)}
-												onChange={() => toggleTag(tag)}
-												className="w-4 h-4 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
-											/>
-											<span className="text-sm text-gray-700">
-												{tag}
-											</span>
-										</label>
-									))
-								) : (
-									<p className="text-sm text-gray-500">
-										No themes available
-									</p>
-								)}
+								{CURATED_FILTERS.map((tag) => (
+									<label
+										key={tag}
+										className="flex items-center gap-2 cursor-pointer hover:text-purple-600 transition"
+									>
+										<input
+											type="checkbox"
+											checked={selectedTags.includes(tag)}
+											onChange={() => toggleTag(tag)}
+											className="w-4 h-4 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
+										/>
+										<span className="text-sm text-gray-700">
+											{tag}
+										</span>
+									</label>
+								))}
 							</div>
 						</div>
 					</div>
@@ -213,15 +230,11 @@ export async function getStaticProps() {
 		// Extract unique tags
 		const allTagsSet = new Set();
 		movies.forEach((movie) => {
-			try {
-				if (movie?.tags.length) {
-					const tags = movie.tags
-						.map((t) => t.trim())
-						.filter((t) => t);
-					tags.forEach((tag) => allTagsSet.add(tag));
-				}
-			} catch (e) {
-				console.log({ e, tags: movie.tags });
+			if (movie?.tags.length) {
+				const tags = movie.tags
+					.map((t) => t.trim().toLowerCase())
+					.filter((t) => t);
+				tags.forEach((tag) => allTagsSet.add(tag));
 			}
 		});
 
