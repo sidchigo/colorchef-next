@@ -20,7 +20,8 @@ export const Colorcard = ({
 	colorData,
 	isQuote = false,
 	quote = "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
-	quoteBy = 'Albert Einstein',
+	quoteBy = "Albert Einstein",
+	isDarkPalette = false,
 }) => {
 	const dispatch = useDispatch();
 	const [inView, setInView] = useState(false);
@@ -34,7 +35,7 @@ export const Colorcard = ({
 	});
 
 	const renderPalette = (colorData, isQuote, quote) => {
-		if (isQuote && quote !== '' && colorData.length === 2) {
+		if (isQuote && quote !== "" && colorData.length === 2) {
 			return (
 				<div
 					className={`${styles.cardBody} rounded pb-16 m-2`}
@@ -56,9 +57,9 @@ export const Colorcard = ({
 					if (index === 3 || index === 0) {
 						return (
 							<React.Fragment key={index}>
-								{colorData.length > 3 && (
+								{isDarkPalette && (
 									<div className={`my-2 text-center`}>
-										{index === 3 ? 'Dark ' : 'Light '}
+										{index === 3 ? "Dark " : "Light "}
 										palette
 									</div>
 								)}
@@ -71,8 +72,8 @@ export const Colorcard = ({
 									<div
 										className={`opacity-0 ${
 											colorData.length > 3
-												? 'py-4'
-												: 'py-8'
+												? "py-4"
+												: "py-8"
 										} px-20 lg:px-22 bg-black uppercase group-hover:opacity-40`}
 									>{`${color}`}</div>
 								</button>
@@ -88,7 +89,7 @@ export const Colorcard = ({
 						>
 							<div
 								className={`opacity-0 ${
-									colorData.length > 3 ? 'py-4' : 'py-8'
+									colorData.length > 3 ? "py-4" : "py-8"
 								} px-20 lg:px-22 bg-black uppercase group-hover:opacity-40`}
 							>{`${color}`}</div>
 						</button>
@@ -113,12 +114,12 @@ export const Colorcard = ({
 	}
 
 	async function copyHex(text) {
-		if ('clipboard' in navigator) {
+		if ("clipboard" in navigator) {
 			await navigator.clipboard.writeText(text);
 		} else {
-			document.execCommand('copy', true, text);
+			document.execCommand("copy", true, text);
 		}
-		showToast('Color copied!');
+		showToast("Color copied!");
 	}
 
 	const copyPalette = (palette) => {
@@ -130,7 +131,7 @@ export const Colorcard = ({
 			}
 			copyHex(JSON.stringify(paletteCss));
 		} else {
-			let nameList = ['primary', 'secondary', 'accent'];
+			let nameList = ["primary", "secondary", "accent"];
 			for (let i = 0; i < palette.length; i++) {
 				paletteCss[nameList[i]] = `#${tinycolor(palette[i])
 					.toHex()
