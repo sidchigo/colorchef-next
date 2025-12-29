@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import Header from "components/Header/Header";
 import Meta from "components/Meta";
 const tinycolor = require("tinycolor2");
-import { CURATED_FILTERS } from "constants/movieTags";
+import { fetchCinemaData } from "lib/api";
 
-const CinemaIndex = ({ movies }) => {
+const CinemaIndex = ({ movies, filters }) => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedTags, setSelectedTags] = useState(["All"]);
 	const router = useRouter();
@@ -56,7 +56,7 @@ const CinemaIndex = ({ movies }) => {
 		if (router.query.filter) {
 			const filterParam = router.query.filter;
 
-			const matchingFilter = CURATED_FILTERS.find(
+			const matchingFilter = filters.find(
 				(f) => f.toLowerCase() === filterParam.toLowerCase()
 			);
 
@@ -64,7 +64,7 @@ const CinemaIndex = ({ movies }) => {
 				setSelectedTags([matchingFilter]);
 			}
 		}
-	}, [router.query.filter]);
+	}, [router.query.filter, filters]);
 
 	return (
 		<div>
@@ -105,7 +105,7 @@ const CinemaIndex = ({ movies }) => {
 								Filter by Theme
 							</h3>
 							<div className="space-y-2 bg-gray-50 p-4 rounded-lg">
-								{CURATED_FILTERS.map((tag) => (
+								{filters.map((tag) => (
 									<label
 										key={tag}
 										className="flex items-center gap-2 cursor-pointer hover:text-purple-600 transition"
@@ -216,43 +216,20 @@ const CinemaIndex = ({ movies }) => {
 
 export async function getStaticProps() {
 	try {
-		const response = await fetch(
-			"http://localhost:5000/v1/admin/cinema/index"
-		);
-		const cinemaData = await response.json();
-
-		// Convert cinema_data object to array with slug
-		const movies = Object.entries(cinemaData).map(([slug, data]) => ({
-			slug,
-			...data,
-		}));
-
-		// Extract unique tags
-		const allTagsSet = new Set();
-		movies.forEach((movie) => {
-			if (movie?.tags.length) {
-				const tags = movie.tags
-					.map((t) => t.trim().toLowerCase())
-					.filter((t) => t);
-				tags.forEach((tag) => allTagsSet.add(tag));
-			}
-		});
-
-		const allTags = Array.from(allTagsSet).sort();
-
+		const { movies, config } = await fetchCinemaData();
 		return {
 			props: {
 				movies,
-				allTags,
+				filters: config.curated_filters || ["All"],
 			},
-			revalidate: 86400, // Revalidate every 24 hr
+			revalidate: process.env.NODE_ENV === "development" ? 1 : 3600, // Revalidate every 1 hr
 		};
 	} catch (error) {
 		console.error("Error fetching cinema data:", error);
 		return {
 			props: {
 				movies: [],
-				allTags: [],
+				filters: [],
 			},
 			revalidate: 60,
 		};

@@ -7,6 +7,7 @@ import Meta from 'components/Meta';
 import Save from 'components/Save';
 import showToast from 'components/Toast';
 import Link from "next/link";
+import { fetchCinemaData, fetchMovieBySlug } from "lib/api";
 const tinycolor = require("tinycolor2");
 
 const MoviePage = ({ movie, slug }) => {
@@ -16,8 +17,7 @@ const MoviePage = ({ movie, slug }) => {
 	const primaryTag = movie.tags[0] || "Cinematic";
 	const pageTitle = `${movie.title} Color Palette: ${primaryTag} Aesthetic & Hex Codes`;
 
-	const amazonTag = "colorchef-21";
-	const amazonLink = `https://www.amazon.com/gp/search?ie=UTF8&tag=${amazonTag}&index=dvd&keywords=${encodeURIComponent(
+	const amazonLink = `https://www.amazon.com/gp/search?ie=UTF8&tag=colorchef-20&index=dvd&keywords=${encodeURIComponent(
 		movie.title
 	)}`;
 
@@ -55,11 +55,11 @@ const MoviePage = ({ movie, slug }) => {
 
 		let paletteCss = {};
 		const colorNames = [
-			"primary",
-			"secondary",
-			"accent",
-			"accent2",
-			"accent3",
+			"color-1",
+			"color-2",
+			"color-3",
+			"color-4",
+			"color-5",
 		];
 
 		movie.palette.forEach((color, index) => {
@@ -77,29 +77,14 @@ const MoviePage = ({ movie, slug }) => {
 		: [];
 
 	const getStreamingOption = (movie) => {
-		const isHorror = movie.tags.some(
-			(tag) =>
-				tag.toLowerCase().includes("horror") ||
-				tag.toLowerCase().includes("thriller")
-		);
+		const isHorror = movie.tags.some((tag) => /horror|thriller/i.test(tag));
 		const providers = movie.providers.map((p) => p.provider_name);
 
 		if (isHorror && providers.includes("Shudder")) {
 			return {
-				label: "Stream on Shudder (Free Trial)",
-				url: "YOUR_SHUDDER_LINK",
-				color: "bg-green-900 text-green-100 border-green-700",
-			};
-		}
-
-		if (
-			["KR", "JP", "CN", "TH", "ID"].includes(movie.region) &&
-			providers.includes("Viki")
-		) {
-			return {
-				label: "Watch on Rakuten Viki",
-				url: "YOUR_VIKI_LINK",
-				color: "bg-blue-600 text-white",
+				label: "Stream on Shudder + MGM+",
+				url: "https://www.amazon.com/gp/video/offers/signup/?tag=colorchef-20&benefitId=amzn1.dv.channel.0c14a07e-f7b1-8055-7c76-d1c19b4fc49c",
+				color: "bg-gray-900 text-white border border-green-500 hover:bg-black",
 			};
 		}
 
@@ -232,14 +217,14 @@ const MoviePage = ({ movie, slug }) => {
 						<span className="font-mono text-purple-600">
 							{convertToHex(movie.palette[1])}
 						</span>
-						, perfect for designers looking for &nbsp;
+						, perfect for designers looking for&nbsp;
 						{movie.tags[0]?.toLowerCase()} inspiration.
 					</p>
 				</div>
 
 				<div className="mt-8">
 					<a
-						href={streamOption.url}
+						href={amazonLink}
 						target="_blank"
 						className={`flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-bold shadow-md transition-transform ${streamOption.color}`}
 						rel="noreferrer"
@@ -261,7 +246,7 @@ const MoviePage = ({ movie, slug }) => {
 						{streamOption.label}
 					</a>
 
-					{movie.region !== "US" && (
+					{/* {movie.region !== "US" && (
 						<p className="text-xs text-center mt-3 text-gray-400">
 							Not available in your country?{" "}
 							<a
@@ -272,7 +257,7 @@ const MoviePage = ({ movie, slug }) => {
 							</a>
 							.
 						</p>
-					)}
+					)} */}
 				</div>
 
 				<div className="flex flex-col gap-4 mt-10">
@@ -302,14 +287,10 @@ const MoviePage = ({ movie, slug }) => {
 
 export async function getStaticPaths() {
 	try {
-		// Fetch cinema_data.json from your backend
-		const response = await fetch(
-			"http://localhost:5000/v1/admin/cinema/index"
-		);
-		const cinemaData = await response.json();
+		const { movies } = await fetchCinemaData();
 
 		// Generate paths for each movie
-		const paths = Object.keys(cinemaData).map((slug) => ({
+		const paths = Object.keys(movies).map((slug) => ({
 			params: { slug },
 		}));
 
@@ -333,14 +314,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 	try {
 		const { slug } = params;
-
-		// Fetch cinema_data.json from your backend
-		const response = await fetch(
-			"http://localhost:5000/v1/admin/cinema/index"
-		);
-		const cinemaData = await response.json();
-		const movie = cinemaData[0];
-
+		const movie = await fetchMovieBySlug(slug);
 		if (!movie) {
 			return {
 				notFound: true,
@@ -353,7 +327,7 @@ export async function getStaticProps({ params }) {
 				movie,
 				slug,
 			},
-			revalidate: 3600, // Revalidate every hour
+			revalidate: process.env.NODE_ENV === "development" ? 1 : 3600, // Revalidate every hour
 		};
 	} catch (error) {
 		console.error("Error fetching cinema data:", error);
