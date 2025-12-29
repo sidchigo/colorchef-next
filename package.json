@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
+    "@vercel/analytics": "^1.6.1",
     "axios": "^0.24.0",
     "firebase": "^9.6.1",
     "imagemin-optipng": "^8.0.0",
