@@ -1,32 +1,41 @@
 import { useState } from 'react';
+import Image from "next/image";
 
 // icons
-import play from 'icons/play.svg';
+import Play from "icons/play.svg";
 
 // components
-import Picker from 'components/Colorpicker/Picker';
-import { Button } from 'components/Button';
-import showToast from 'components/Toast';
+import Picker from "components/Colorpicker/Picker";
+import { Button } from "components/Button";
+import showToast from "components/Toast";
 
 // colorpicker
-const tinycolor = require('tinycolor2');
+const tinycolor = require("tinycolor2");
 
-export function ButtonGroup({ color, setColor, outline, pill, neu, floating, shadow }) {
-	const [btnClass, setBtnClass] = useState('.button');
+export function ButtonGroup({
+	color,
+	setColor,
+	outline,
+	pill,
+	neu,
+	floating,
+	shadow,
+}) {
+	const [btnClass, setBtnClass] = useState(".button");
 
 	async function copyHex(text) {
-		if ('clipboard' in navigator) {
+		if ("clipboard" in navigator) {
 			await navigator.clipboard.writeText(text);
 		} else {
-			document.execCommand('copy', true, text);
+			document.execCommand("copy", true, text);
 		}
-		showToast('Styles copied!')
+		showToast("Styles copied!");
 	}
 
 	const shadows = (type, color, isNeu, isFloating, isShadow) => {
 		if (isFloating) {
-			if (type === 'normal') {
-				return 'none';
+			if (type === "normal") {
+				return "none";
 			}
 			return `0px 5px 15px hsl(${tinycolor(color).toHsl().h}deg ${
 				tinycolor(color).toHsl().s * 100
@@ -38,23 +47,23 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 				tinycolor(color).toHsl().s * 100
 			}% 55% / 0.5)`;
 		} else if (isShadow) {
-			if (type === 'normal') {
-				return 'none';
+			if (type === "normal") {
+				return "none";
 			}
 			return `-5px 5px 0px hsl(${tinycolor(color).toHsl().h}deg ${
 				tinycolor(color).toHsl().s * 100
 			}% 15% / 1)`;
 		}
-		return 'none';
+		return "none";
 	};
 
 	const background = (type, color, isOutline, isNeu, isPill, isShadow) => {
-		if (type === 'normal') {
+		if (type === "normal") {
 			if (isOutline) {
-				return 'white';
+				return "white";
 			}
 			return `#${tinycolor(color).toHex()}`;
-		} else if (type === 'hover') {
+		} else if (type === "hover") {
 			if (isNeu) {
 				return `linear-gradient(225deg, hsl(${
 					tinycolor(color).toHsl().h
@@ -71,9 +80,9 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 			return `hsl(${tinycolor(color).toHsl().h}deg ${
 				tinycolor(color).toHsl().s * 100
 			}% ${Math.abs(tinycolor(color).toHsl().l - 0.1) * 100}%)`;
-		} else if (type === 'disabled') {
+		} else if (type === "disabled") {
 			if (isOutline) {
-				return 'white';
+				return "white";
 			} else if (isNeu) {
 				return `#${tinycolor(color).toHex()}`;
 			} else {
@@ -86,25 +95,25 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 
 	const border = (pill, neu, floating) => {
 		if (pill) {
-			return '50px';
+			return "50px";
 		} else if (neu) {
-			return '8px'
+			return "8px";
 		} else if (floating) {
-			return '50%'
+			return "50%";
 		} else {
 			return 0;
 		}
-	}
+	};
 
 	const borderColor = (type, isNeu, isPill, isShadow) => {
-		if (type.toLowerCase() === 'normal') {
+		if (type.toLowerCase() === "normal") {
 			if (!isNeu) {
 				return `2px solid #${tinycolor(color).toHex()}`;
 			}
-			return 'none'
-		} else if (type.toLowerCase() === 'hover') {
+			return "none";
+		} else if (type.toLowerCase() === "hover") {
 			if (isNeu) {
-				return 'none';
+				return "none";
 			} else if (isPill) {
 				return `2px solid hsl(${tinycolor(color).toHsl().h}deg ${
 					tinycolor(color).toHsl().s * 100
@@ -116,7 +125,7 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 					tinycolor(color).toHsl().s * 100
 				}% ${Math.abs(tinycolor(color).toHsl().l - 0.1) * 100}%)`;
 			}
-		} else if (type.toLowerCase() === 'disabled') {
+		} else if (type.toLowerCase() === "disabled") {
 			if (isNeu) {
 				return `2px solid #${tinycolor({
 					h: tinycolor(color).toHsl().h,
@@ -132,7 +141,7 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 				a: 1,
 			}).toHex()}`;
 		} else {
-			return 'none';
+			return "none";
 		}
 	};
 
@@ -140,7 +149,7 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 		<section
 			className={`flex flex-col justify-between mx-4 md:mx-8 lg:mx-12 my-4 p-4 transition-transform ease-out duration-300 border border-transparent hover:border-purple-500`}
 			style={{
-				backgroundColor: neu ? '#' + tinycolor(color).toHex() : 'white',
+				backgroundColor: neu ? "#" + tinycolor(color).toHex() : "white",
 			}}
 		>
 			<Picker color={color} setColor={setColor} />
@@ -150,104 +159,106 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 				placeholder="Enter .className for button, default is .button"
 				onChange={(e) => setBtnClass(e.target.value)}
 			/>
-			<div className={`flex flex-col xl:flex-row items-center md:justify-around mt-4`}>
+			<div
+				className={`flex flex-col xl:flex-row items-center md:justify-around mt-4`}
+			>
 				<Button
 					variant={`my-4 w-full xl:w-32`}
 					style={{
 						background: background(
-							'normal',
+							"normal",
 							color,
 							outline,
 							neu,
 							pill,
 							shadow
 						),
-						border: borderColor('normal', neu, pill, shadow),
+						border: borderColor("normal", neu, pill, shadow),
 						borderRadius: border(pill, neu, floating),
 						boxShadow: shadows(
-							'normal',
+							"normal",
 							color,
 							neu,
 							floating,
 							shadow
 						),
-						width: floating && '50px',
-						height: floating && '50px',
+						width: floating && "50px",
+						height: floating && "50px",
 					}}
 				>
 					<span
 						style={{
 							color: outline
-								? '#' + tinycolor(color).toHex()
+								? "#" + tinycolor(color).toHex()
 								: tinycolor(color).toHsl().l > 0.8
-								? 'black'
-								: 'white',
+								? "black"
+								: "white",
 						}}
 					>
-						{floating ? <img src={play} alt="play" /> : 'Normal'}
+						{floating ? <Play /> : "Normal"}
 					</span>
 				</Button>
 				<Button
-					variant={'my-4 w-full xl:w-32'}
+					variant={"my-4 w-full xl:w-32"}
 					style={{
 						background: background(
-							'hover',
+							"hover",
 							color,
 							outline,
 							neu,
 							pill,
 							shadow
 						),
-						border: borderColor('hover', neu, pill, shadow),
+						border: borderColor("hover", neu, pill, shadow),
 						borderRadius: border(pill, neu, floating),
 						boxShadow: shadows(
-							'hover',
+							"hover",
 							color,
 							neu,
 							floating,
 							shadow
 						),
-						width: floating && '50px',
-						height: floating && '50px',
+						width: floating && "50px",
+						height: floating && "50px",
 						transform: floating
 							? `translateY(-5px)`
 							: shadow
 							? `translate(5px, -5px)`
-							: '',
+							: "",
 					}}
 				>
 					<span
 						style={{
 							color: outline
-								? 'white'
+								? "white"
 								: tinycolor(color).toHsl().l > 0.8
-								? 'black'
-								: 'white',
+								? "black"
+								: "white",
 						}}
 					>
-						{floating ? <img src={play} alt="play" /> : 'Hover'}
+						{floating ? <Play /> : "Hover"}
 					</span>
 				</Button>
 				<Button
 					variant={`my-4 w-full xl:w-32`}
 					style={{
 						background: background(
-							'disabled',
+							"disabled",
 							color,
 							outline,
 							neu,
 							pill
 						),
-						border: borderColor('disabled', neu, pill, shadow),
+						border: borderColor("disabled", neu, pill, shadow),
 						borderRadius: border(pill, neu, floating),
-						width: floating && '50px',
-						height: floating && '50px',
+						width: floating && "50px",
+						height: floating && "50px",
 					}}
 				>
 					<span
 						style={{
 							color: outline
-								? '#' +
+								? "#" +
 								  tinycolor({
 										h: tinycolor(color).toHsl().h,
 										s: 0.15,
@@ -255,11 +266,11 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 										a: 1,
 								  }).toHex()
 								: tinycolor(color).toHsl().l > 0.8
-								? 'black'
-								: 'white',
+								? "black"
+								: "white",
 						}}
 					>
-						{floating ? <img src={play} alt="play" /> : 'Disabled'}
+						{floating ? <Play /> : "Disabled"}
 					</span>
 				</Button>
 			</div>
@@ -269,38 +280,38 @@ export function ButtonGroup({ color, setColor, outline, pill, neu, floating, sha
 					copyHex(`
 ${btnClass} {
     background-color: ${background(
-		'normal',
+		"normal",
 		color,
 		outline,
 		neu,
 		pill,
 		shadow
 	)};
-    border: ${borderColor('normal', neu, pill, shadow)};
+    border: ${borderColor("normal", neu, pill, shadow)};
 	border-radius: ${border(pill, neu, floating)};
-	box-shadow: ${shadows('normal', color, neu, floating, shadow)};
-	width: ${floating ? '50px' : '8rem'}; /* adjust as required */
-	height: ${floating ? '50px' : '4rem'}; /* adjust as required */
-	${floating || shadow ? `transition: transform 300ms ease-out;` : ''}
+	box-shadow: ${shadows("normal", color, neu, floating, shadow)};
+	width: ${floating ? "50px" : "8rem"}; /* adjust as required */
+	height: ${floating ? "50px" : "4rem"}; /* adjust as required */
+	${floating || shadow ? `transition: transform 300ms ease-out;` : ""}
 }
 
 ${btnClass}:hover {
-    background: ${background('hover', color, outline, neu, pill, shadow)};
-    border: ${borderColor('hover', neu, pill, shadow)};
+    background: ${background("hover", color, outline, neu, pill, shadow)};
+    border: ${borderColor("hover", neu, pill, shadow)};
 	border-radius: ${border(pill, neu, floating)};
-	box-shadow: ${shadows('hover', color, neu, floating, shadow)};
+	box-shadow: ${shadows("hover", color, neu, floating, shadow)};
 	${
 		floating
 			? `transform: translateY(-5px)`
 			: shadow
 			? `transform: translate(5px, -5px);`
-			: ''
+			: ""
 	}
 }
 
 ${btnClass}:disabled {
     background-color: ${background(
-		'disabled',
+		"disabled",
 		color,
 		outline,
 		neu,
@@ -310,14 +321,14 @@ ${btnClass}:disabled {
 	border-radius: ${border(pill, neu, floating)};
     color: ${
 		outline
-			? '#' +
+			? "#" +
 			  tinycolor({
 					h: tinycolor(color).toHsl().h,
 					s: 0.15,
 					l: tinycolor(color).toHsl().l,
 					a: 1,
 			  }).toHex()
-			: 'white'
+			: "white"
 	}
 }
 `)

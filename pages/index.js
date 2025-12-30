@@ -1,17 +1,18 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 
 // img
-import colorsImg from 'images/colors.png';
-import shadowsImg from 'images/shadows.png';
-import darkPaletteImg from 'images/darkpalette.png';
-import buttonsImg from 'images/buttons.png';
-import goldenRatioImg from 'images/goldenRatio.png';
+import colorsImg from "images/colors.png";
+import shadowsImg from "images/shadows.png";
+import darkPaletteImg from "images/darkpalette.png";
+import buttonsImg from "images/buttons.png";
+import goldenRatioImg from "images/goldenRatio.png";
 
 // components
-import { UpButton } from 'components/Button';
-import Paragraph from 'components/Paragraph';
-import Meta from 'components/Meta';
+import { UpButton } from "components/Button";
+import Paragraph from "components/Paragraph";
+import Meta from "components/Meta";
 
 export default function Home() {
 	return (
@@ -21,29 +22,28 @@ export default function Home() {
 				<Meta
 					title="Colorchef - Colors, palettes and contrast"
 					url="/"
-					image={require('/images/hero.png')}
+					image={require("/images/hero.png")}
 					description="Colorchef is color-utility website to help out designers and
 					developers."
 				/>
 			</Head>
-
 			<div className="flex flex-col justify-center items-center h-screen">
 				<h1 className="text-2xl md:text-4xl lg:text-7xl font-body font-bold text-center animate-fadein-top mb-4">
 					Colorchef is color-utility website to help out designers and
 					developers.
 				</h1>
-				<Link href="/colors" passHref>
+				<Link href="/colors">
 					<UpButton
 						variant={`animate-fadein-bottom animation-duration-1200 hover:border-purple-600`}
 						icon={<span className={``}>--&gt;</span>}
-						hoverFill={'bg-purple-600'}
+						hoverFill={"bg-purple-600"}
 					>
 						Start exploring, it&apos;s free
 					</UpButton>
 				</Link>
 			</div>
 			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
-				<img src={colorsImg} alt="Color generator" />
+				<Image src={colorsImg} alt="Color generator" />
 				<Paragraph
 					title="Don't worry about background and text colors."
 					subtitle="Use our color generator to generate good contrast ratio between your text and background colors."
@@ -52,7 +52,7 @@ export default function Home() {
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-green-600`}
 							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-green-600'}
+							hoverFill={"bg-green-600"}
 						>
 							Get started, it&apos;s free
 						</UpButton>
@@ -68,20 +68,20 @@ export default function Home() {
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-pink-600`}
 							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-pink-600'}
+							hoverFill={"bg-pink-600"}
 						>
 							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>
-				<img
+				<Image
 					src={shadowsImg}
 					alt="Shadow generator"
 					className="order-1 lg:order-2"
 				/>
 			</div>
 			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
-				<img src={darkPaletteImg} alt="Dark Palette generator" />
+				<Image src={darkPaletteImg} alt="Dark Palette generator" />
 				<Paragraph
 					title="Dark mode is the current UI trendsetter."
 					subtitle="Want to reduce your efforts of selecting double of every color for dark mode, just use dark palette generator and relax."
@@ -90,7 +90,7 @@ export default function Home() {
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-blue-600`}
 							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-blue-600'}
+							hoverFill={"bg-blue-600"}
 						>
 							Get started, it&apos;s free
 						</UpButton>
@@ -106,16 +106,16 @@ export default function Home() {
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-indigo-600`}
 							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-indigo-600'}
+							hoverFill={"bg-indigo-600"}
 						>
 							Get started, it&apos;s free
 						</UpButton>
 					}
 				/>
-				<img src={buttonsImg} alt="Buttons generator" />
+				<Image src={buttonsImg} alt="Buttons generator" />
 			</div>
 			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
-				<img src={goldenRatioImg} alt="Golden Ratio generator" />
+				<Image src={goldenRatioImg} alt="Golden Ratio generator" />
 				<Paragraph
 					title="Get better palettes."
 					subtitle="Selecting proper combination of colors is difficult, we agree. That’s where the golden ratio generator steps up the game of colors."
@@ -124,7 +124,7 @@ export default function Home() {
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-orange-600`}
 							icon={<span className={``}>--&gt;</span>}
-							hoverFill={'bg-orange-600'}
+							hoverFill={"bg-orange-600"}
 						>
 							Get started, it&apos;s free
 						</UpButton>
@@ -139,7 +139,7 @@ export default function Home() {
 					<UpButton
 						variant={`animate-fadein-right animation-duration-1200 hover:border-red-600`}
 						icon={<span className={``}>--&gt;</span>}
-						hoverFill={'bg-red-600'}
+						hoverFill={"bg-red-600"}
 					>
 						Know more
 					</UpButton>

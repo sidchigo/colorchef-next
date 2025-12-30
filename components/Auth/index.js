@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { auth, provider } from 'lib/firebase';
-import { signInWithPopup } from 'firebase/auth';
-import { createUser } from 'slices/authSlice';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import Image from "next/image";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { auth, provider } from "lib/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { createUser } from "slices/authSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 // components
-import { Button } from 'components/Button';
-
+import { Button } from "components/Button";
 
 export const Auth = ({ extraFunction }) => {
 	const [user] = useAuthState(auth);
@@ -42,16 +42,14 @@ export const Auth = ({ extraFunction }) => {
 
 	function ProfileButton() {
 		return (
-			<Link href="/profile">
-				<a onClick={() => extraFunction?.(false)}>
-					<img
-						className={`rounded-full`}
-						src={user?.photoURL}
-						alt="profile"
-						width={40}
-						height={40}
-					/>
-				</a>
+			<Link href="/profile" onClick={() => extraFunction?.(false)}>
+				<Image
+					className={`rounded-full`}
+					src={user?.photoURL}
+					alt="profile"
+					width={40}
+					height={40}
+				/>
 			</Link>
 		);
 	}

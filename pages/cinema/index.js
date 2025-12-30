@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "components/Header/Header";
@@ -139,9 +140,11 @@ const CinemaIndex = ({ movies, filters }) => {
 											{/* Movie Backdrop */}
 											<div className="relative h-48 w-full bg-gray-200 overflow-hidden">
 												{movie.backdrop_url ? (
-													<img
+													<Image
 														src={movie.backdrop_url}
 														alt={movie.title}
+														width={300}
+														height={200}
 														className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 													/>
 												) : (
