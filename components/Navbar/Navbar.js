@@ -10,6 +10,7 @@ import Logo from "icons/colorchef.svg";
 
 // helpers
 import useOutsideAlerter from "utility/OutsideClickHandler";
+import { memo } from "react";
 
 function Navbar() {
 	const { ref, show, setShow } = useOutsideAlerter(false);
@@ -130,4 +131,4 @@ function Navbar() {
 	);
 }
 
-export default Navbar;
+export default memo(Navbar);
