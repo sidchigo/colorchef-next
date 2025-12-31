@@ -1,13 +1,13 @@
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import { Auth } from 'components/Auth';
+import { Auth } from "components/Auth";
 
 const Menu = ({ open, setOpen }) => {
 	const router = useRouter();
 
-    return (
+	return (
 		<div
 			className={`
 				flex flex-col justify-end
@@ -17,76 +17,71 @@ const Menu = ({ open, setOpen }) => {
 				text-xl
 			`}
 			style={{
-				transform: open ? 'translateX(0)' : 'translateX(100%)',
+				transform: open ? "translateX(0)" : "translateX(100%)",
 			}}
 		>
-			<Link href="/colors">
-				<a
-					onClick={() => setOpen(false)}
-					className={`${
-						router.pathname === '/colors'
-							? 'text-violet-600'
-							: 'text-gray-600'
-					} m-4
-					`}
-				>
-					Colors
-				</a>
+			<Link
+				href="/colors"
+				onClick={() => setOpen(false)}
+				className={`${
+					router.pathname === "/colors"
+						? "text-violet-600"
+						: "text-gray-600"
+				} m-4
+                `}
+			>
+				Colors
 			</Link>
-			<Link href="/shadows">
-				<a
-					onClick={() => setOpen(false)}
-					className={`${
-						router.pathname === '/shadows'
-							? 'text-violet-600'
-							: 'text-gray-600'
-					} m-4
-					`}
-				>
-					Shadows
-				</a>
+			<Link
+				href="/shadows"
+				onClick={() => setOpen(false)}
+				className={`${
+					router.pathname === "/shadows"
+						? "text-violet-600"
+						: "text-gray-600"
+				} m-4
+                `}
+			>
+				Shadows
 			</Link>
-			<Link href="/dark-palette">
-				<a
-					onClick={() => setOpen(false)}
-					className={`${
-						router.pathname === '/dark-palette'
-							? 'text-violet-600'
-							: 'text-gray-600'
-					} m-4
-					`}
-				>
-					Dark Palette
-				</a>
+			<Link
+				href="/dark-palette"
+				onClick={() => setOpen(false)}
+				className={`${
+					router.pathname === "/dark-palette"
+						? "text-violet-600"
+						: "text-gray-600"
+				} m-4
+                `}
+			>
+				Dark Palette
 			</Link>
-			<Link href="/buttons">
-				<a
-					onClick={() => setOpen(false)}
-					className={`${
-						router.pathname === '/buttons'
-							? 'text-violet-600'
-							: 'text-gray-600'
-					} m-4
-					`}
-				>
-					Buttons
-				</a>
+			<Link
+				href="/buttons"
+				onClick={() => setOpen(false)}
+				className={`${
+					router.pathname === "/buttons"
+						? "text-violet-600"
+						: "text-gray-600"
+				} m-4
+                `}
+			>
+				Buttons
 			</Link>
-			<Link href="/golden-ratio">
-				<a
-					onClick={() => setOpen(false)}
-					className={`${
-						router.pathname === '/golden-ratio'
-							? 'text-violet-600'
-							: 'text-gray-600'
-					} m-4
-					`}
-				>
-					Golden Ratio
-				</a>
+			<Link
+				href="/golden-ratio"
+				onClick={() => setOpen(false)}
+				className={`${
+					router.pathname === "/golden-ratio"
+						? "text-violet-600"
+						: "text-gray-600"
+				} m-4
+                `}
+			>
+				Golden Ratio
 			</Link>
 			<div className={`m-4`}>
-				<Auth extraFunction={() => setOpen(false)}/>
+				<Auth extraFunction={() => setOpen(false)} />
 			</div>
 		</div>
 	);

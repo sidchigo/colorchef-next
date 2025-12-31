@@ -14,64 +14,59 @@ import AuthCheck from 'components/AuthCheck';
 import showToast from 'components/Toast';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-// action
-// import { savePalette } from 'slices/authSlice';
-
-const Save = ({data}) => {
-	const dispatch = useDispatch();
-	
-	const paletteId = data.join('-');
+const Save = ({ data }) => {
+	const paletteId = data.join("-");
 	const [user] = useAuthState(auth);
 	const docId = `${user?.uid}_${paletteId}`;
-	const saveRef = doc(db, 'saves', docId);
-	const paletteRef = doc(db, 'palettes', paletteId);
-	
+	const saveRef = doc(db, "saves", docId);
+	const paletteRef = doc(db, "palettes", paletteId);
+
 	const [saved] = useDocument(saveRef);
 
 	const savePalette = async () => {
-		let type = 'quoteCard';
+		let type = "quoteCard";
 		switch (data.length) {
 			case 2:
-				type = 'quoteCard';
+				type = "quoteCard";
 				break;
 			case 3:
-				type = 'goldenRatio';
+				type = "goldenRatio";
 				break;
 			case 6:
-				type = 'darkPalette';
+				type = "darkPalette";
 				break;
 			default:
-				type = 'quoteCard';
+				type = "quoteCard";
 		}
 
 		const batch = writeBatch(db);
-		const saveRef = doc(db, 'saves', docId);
-		const userRef = doc(db, 'users', user?.uid);
-		
+		const saveRef = doc(db, "saves", docId);
+		const userRef = doc(db, "users", user?.uid);
+
 		batch.set(paletteRef, { totalSaves: increment(1), type });
 		batch.update(userRef, { savedPalettes: increment(1) });
-		batch.set(saveRef, { userId: user?.uid, paletteId, type});
+		batch.set(saveRef, { userId: user?.uid, paletteId, type });
 
 		await batch.commit();
-		showToast('Palette saved!');
-	}
+		showToast("Palette saved!");
+	};
 
 	const unSavePalette = async () => {
 		const batch = writeBatch(db);
-		const userRef = doc(db, 'users', user?.uid);
+		const userRef = doc(db, "users", user?.uid);
 		batch.update(paletteRef, { totalSaves: increment(-1) });
 		batch.update(userRef, { savedPalettes: increment(-1) });
 		batch.delete(saveRef);
 
 		await batch.commit();
-	}
+	};
 
 	return (
 		<AuthCheck
 			fallback={
 				<button
 					className={`${styles.SVGButton}`}
-					onClick={() => toast.error('Please login to save')}
+					onClick={() => toast.error("Please login to save")}
 				>
 					<svg
 						className="h-6 w-6 hover:text-violet-600"
@@ -88,9 +83,11 @@ const Save = ({data}) => {
 				</button>
 			}
 		>
-			<button 
+			<button
 				className={`${styles.SVGButton}`}
-				onClick={() => saved?.exists() ? unSavePalette() : savePalette()}
+				onClick={() =>
+					saved?.exists() ? unSavePalette() : savePalette()
+				}
 			>
 				<svg
 					className="h-6 w-6 hover:text-violet-600"

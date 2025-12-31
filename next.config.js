@@ -1,25 +1,29 @@
-const withPlugins = require('next-compose-plugins');
-const optimizedImages = require('next-optimized-images');
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+	reactStrictMode: true,
 	images: {
-		disableStaticImages: true,
-	}
+		unoptimized: false,
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "*.googleusercontent.com",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "http",
+				hostname: "*.googleusercontent.com",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "*.tmdb.org",
+				port: "",
+				pathname: "/**",
+			},
+		],
+	},
 };
 
-module.exports = withPlugins(
-	[
-		[
-			optimizedImages,
-			{
-				handleImages: ['png', 'svg'],
-				inlineImageLimit: -1,
-				optimizeImagesInDev: true,
-				optipng: {
-					optimizationLevel: 7,
-				},
-			},
-		]
-	],
-	nextConfig
-);
+module.exports = nextConfig;

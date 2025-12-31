@@ -1,49 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import Image from "next/image";
 
 // styles
-import styles from './darkpalette.module.css';
+import styles from "./darkpalette.module.css";
 
 // components
-import Header from 'components/Header/Header';
-import Picker from 'components/Colorpicker/Picker';
-import Save from 'components/Save';
+import Header from "components/Header/Header";
+import Picker from "components/Colorpicker/Picker";
+import Save from "components/Save";
 
 // bootstrap
-import {Button} from 'components/Button';
+import { Button } from "components/Button";
 
 // utility
-import { generateDarkPalette } from 'utility/ColorGenerator';
-import Meta from 'components/Meta';
+import { generateDarkPalette } from "utility/ColorGenerator";
+import Meta from "components/Meta";
 
-const tinycolor = require('tinycolor2');
+const tinycolor = require("tinycolor2");
 
 const Darkpalette = () => {
-	const [lightPrimary, setLPrimary] = useState('FCF3EC');
-	const [lightSecondary, setLSecondary] = useState('491515');
-	const [lightAccent, setLAccent] = useState('E78F2E');
-	const [darkPrimary, setDPrimary] = useState('');
-	const [darkSecondary, setDSecondary] = useState('');
-	const [darkAccent, setDAccent] = useState('');
+	const [lightPrimary, setLPrimary] = useState("FCF3EC");
+	const [lightSecondary, setLSecondary] = useState("491515");
+	const [lightAccent, setLAccent] = useState("E78F2E");
+	const [darkPrimary, setDPrimary] = useState("");
+	const [darkSecondary, setDSecondary] = useState("");
+	const [darkAccent, setDAccent] = useState("");
 	const [generated, setGenerated] = useState(false);
 
-    const dummyText = [
-        {
-            title: 'First feature',
-            descr: 'A feature that is the best in industry.'
-        },
-        {
-            title: 'Second feature',
-            descr: 'A feature that is the most wanted in industry.'
-        },
-        {
-            title: 'Third feature',
-            descr: 'A feature that is the best for UX'
-        },
-    ];
+	const dummyText = [
+		{
+			title: "First feature",
+			descr: "A feature that is the best in industry.",
+		},
+		{
+			title: "Second feature",
+			descr: "A feature that is the most wanted in industry.",
+		},
+		{
+			title: "Third feature",
+			descr: "A feature that is the best for UX",
+		},
+	];
 
 	const handleGenerate = () => {
-		const { primary, secondary, accent, darkPrimary, darkSecondary, darkAccent } = generateDarkPalette(lightPrimary, lightSecondary, lightAccent);
+		const {
+			primary,
+			secondary,
+			accent,
+			darkPrimary,
+			darkSecondary,
+			darkAccent,
+		} = generateDarkPalette(lightPrimary, lightSecondary, lightAccent);
 		setLPrimary(primary);
 		setLSecondary(secondary);
 		setLAccent(accent);
@@ -51,14 +59,14 @@ const Darkpalette = () => {
 		setDSecondary(darkSecondary);
 		setDAccent(darkAccent);
 		setGenerated(true);
-	}
+	};
 
 	const handleReset = () => {
-		setDPrimary('FCF3EC');
-		setDSecondary('491515');
-		setDAccent('E78F2E');
+		setDPrimary("FCF3EC");
+		setDSecondary("491515");
+		setDAccent("E78F2E");
 		setGenerated(false);
-	}
+	};
 
 	return (
 		<div>
@@ -69,11 +77,11 @@ const Darkpalette = () => {
 				<Meta
 					title="Generate perfect dark color palette for your website"
 					url="/dark-palette"
-					image={require('/images/darkpalette.png')}
+					image={"/images/darkpalette.png"}
 					description="Want to follow the ongoing trend of dark mode? Enter your palette and explore the dark colors."
 				/>
 			</Head>
-			<Header title={'Dark Palette Generator'}>
+			<Header title={"Dark Palette Generator"}>
 				Want to follow the ongoing trend of dark mode? <br /> Enter your
 				palette and explore the dark colors.
 			</Header>
@@ -105,7 +113,7 @@ const Darkpalette = () => {
 					variant={`bg-purple-800 px-6 text-white hover:bg-purple-900 w-full md:w-auto`}
 					onClick={generated ? handleReset : handleGenerate}
 				>
-					{generated ? 'Reset palette' : 'Generate palette'}
+					{generated ? "Reset palette" : "Generate palette"}
 				</Button>
 				{generated && (
 					<div className={`ml-4`}>
@@ -129,7 +137,7 @@ const Darkpalette = () => {
 				className={`${styles.previewBody} rounded`}
 				style={{
 					backgroundColor:
-						'#' +
+						"#" +
 						tinycolor(
 							generated ? darkPrimary : lightPrimary
 						).toHex(),
@@ -139,7 +147,7 @@ const Darkpalette = () => {
 					className="flex justify-between p-4 rounded-t"
 					style={{
 						backgroundColor:
-							'#' +
+							"#" +
 							tinycolor(
 								generated ? darkSecondary : lightSecondary
 							).toHex(),
@@ -147,8 +155,8 @@ const Darkpalette = () => {
 							tinycolor(
 								generated ? darkSecondary : lightSecondary
 							).toHsl().l > 0.8
-								? 'black'
-								: 'white',
+								? "black"
+								: "white",
 					}}
 				>
 					<div>Your website</div>
@@ -160,16 +168,16 @@ const Darkpalette = () => {
 				</div>
 				<div className="container mx-auto px-4 md:px-16 mt-4">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<img
+						<Image
 							className="mt-4 px-5"
-							src={require('/images/hero.png')}
+							src={"/images/hero.png"}
 							alt="hero-image"
 						/>
 						<div
 							className="flex justify-center items-center"
 							style={{
 								color:
-									'#' +
+									"#" +
 									tinycolor(
 										generated ? darkAccent : lightAccent
 									).toHex(),
@@ -180,9 +188,9 @@ const Darkpalette = () => {
 									Welcome to the Preview
 								</h2>
 								<h3>
-									This preview helps you to see the website{' '}
+									This preview helps you to see the website{" "}
 									<br />
-									with your color palette and also shows{' '}
+									with your color palette and also shows{" "}
 									<br />
 									preview of dark mode for your website.
 								</h3>
@@ -193,7 +201,7 @@ const Darkpalette = () => {
 						className={`${styles.spaceDemo} mt-4 p-6`}
 						style={{
 							backgroundColor:
-								'#' +
+								"#" +
 								tinycolor(
 									generated ? darkSecondary : lightSecondary
 								).toHex(),
@@ -208,8 +216,8 @@ const Darkpalette = () => {
 											? darkSecondary
 											: lightSecondary
 									).toHsl().l > 0.8
-										? 'black'
-										: 'white',
+										? "black"
+										: "white",
 							}}
 						>
 							These are demo text
@@ -226,8 +234,8 @@ const Darkpalette = () => {
 														? darkSecondary
 														: lightSecondary
 												).toHsl().l > 0.8
-													? 'black'
-													: 'white',
+													? "black"
+													: "white",
 										}}
 									>
 										{para.title}

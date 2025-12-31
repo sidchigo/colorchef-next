@@ -30,11 +30,11 @@ const Elements = () => {
 				<Meta
 					title="Generate perfect buttons for your website with perfect colors"
 					url="/buttons"
-					image={require('/images/buttons.png')}
+					image={"/images/buttons.png"}
 					description="Buttons, Buttons, Buttons....! Get the perfect button state ccording to your style."
 				/>
 			</Head>
-			<Header title={'Button state generator'}>
+			<Header title={"Button state generator"}>
 				Buttons, Buttons, Buttons....! <br />
 				These buttons are everywhere. Get the perfect button state
 				according to your style.

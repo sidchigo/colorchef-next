@@ -1,29 +1,30 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Image from "next/image";
 
 // api
-import { extractPalette, resetImagePalette } from 'slices/colorsSlice';
+import { extractPalette, resetImagePalette } from "slices/colorsSlice";
 
 // components
-import { Colorcard } from 'components/Colorcards/Colorcard';
-import PulseCardLoader from 'components/PulseCardLoader';
+import { Colorcard } from "components/Colorcards/Colorcard";
+import PulseCardLoader from "components/PulseCardLoader";
 
 // image compression
-import Resizer from 'react-image-file-resizer';
-import tinycolor from 'tinycolor2';
-import { useCallback } from 'react';
+import Resizer from "react-image-file-resizer";
+import tinycolor from "tinycolor2";
+import { useCallback } from "react";
 
 const ImagePalette = () => {
-    const dispatch = useDispatch();
-    const [dragged, setDragged] = useState('border-gray-200 w-full');
-    const [preview, setPreview] = useState();
-    const [file, setFile] = useState();
-    let palette = useSelector((state) => state.colorGeneration.palette);
-    const status = useSelector((state) => state.colorGeneration.status);
-    
-    const dragOver = (e) => {
+	const dispatch = useDispatch();
+	const [dragged, setDragged] = useState("border-gray-200 w-full");
+	const [preview, setPreview] = useState();
+	const [file, setFile] = useState();
+	let palette = useSelector((state) => state.colorGeneration.palette);
+	const status = useSelector((state) => state.colorGeneration.status);
+
+	const dragOver = (e) => {
 		e.preventDefault();
-        setDragged('border-blue-400');
+		setDragged("border-blue-400");
 	};
 
 	const dragEnter = (e) => {
@@ -32,7 +33,7 @@ const ImagePalette = () => {
 
 	const dragLeave = (e) => {
 		e.preventDefault();
-        setDragged('border-gray-200');
+		setDragged("border-gray-200");
 	};
 
 	const compressImage = useCallback(
@@ -45,13 +46,13 @@ const ImagePalette = () => {
 						file,
 						dimensions,
 						dimensions,
-						'WEBP',
+						"WEBP",
 						100,
 						0,
 						(uri) => {
 							dispatch(extractPalette(uri));
 						},
-						'file',
+						"file",
 						100,
 						100
 					);
@@ -63,31 +64,33 @@ const ImagePalette = () => {
 		[dispatch]
 	);
 
-    const handleImage = (e) => {
-        e.preventDefault();
+	const handleImage = (e) => {
+		e.preventDefault();
 		// using dataTransfer for drag and drop
 		// and target for file input
 		const fileHandler =
-			e.type === 'drop' ? e.dataTransfer.files : e.target.files;
+			e.type === "drop" ? e.dataTransfer.files : e.target.files;
 		if (!fileHandler || fileHandler.length === 0) {
 			setFile(undefined);
 			return;
 		}
 		const image = fileHandler[0];
 		setFile(image);
-        setDragged('border-gray-200');
-    }
+		setDragged("border-gray-200");
+	};
 
 	const renderPalette = () => {
-		if (status === 'loading') {
-			return <PulseCardLoader />
+		if (status === "loading") {
+			return <PulseCardLoader />;
 		} else if (palette.length === 0) {
 			return null;
 		} else {
-			const hexPalette = palette.map(color => tinycolor(color).toHex().toUpperCase());
+			const hexPalette = palette.map((color) =>
+				tinycolor(color).toHex().toUpperCase()
+			);
 			return <Colorcard colorData={hexPalette} />;
 		}
-	}
+	};
 
 	useEffect(() => {
 		if (!file) {
@@ -108,11 +111,11 @@ const ImagePalette = () => {
 
 	useEffect(() => {
 		return () => {
-			dispatch(resetImagePalette())
-		}
-	}, [dispatch])
+			dispatch(resetImagePalette());
+		};
+	}, [dispatch]);
 
-    return (
+	return (
 		<label
 			htmlFor="image"
 			className={`flex flex-col lg:flex-row justify-between items-center space-x-0 md:space-x-4 my-8`}
@@ -123,7 +126,7 @@ const ImagePalette = () => {
 		>
 			<div
 				className={`border ${
-					palette.length !== 0 ? 'w-full md:w-2/4 mb-4' : 'w-full'
+					palette.length !== 0 ? "w-full md:w-2/4 mb-4" : "w-full"
 				} transition h-[300px] flex flex-col justify-center items-center`}
 			>
 				<svg
@@ -148,19 +151,20 @@ const ImagePalette = () => {
 					onChange={handleImage}
 				/>
 			</div>
-			<img
+			<Image
 				className={`${
 					file
-						? 'w-full border-2 border-gray-400 md:w-2/4 mb-4 h-[300px] object-cover'
-						: 'hidden'
+						? "w-full border-2 border-gray-400 md:w-2/4 mb-4 h-[300px] object-cover"
+						: "hidden"
 				}`}
 				src={preview}
 				alt="preview"
+				width={450}
+				height={300}
 			/>
-			<>{renderPalette()}
-			</>
+			<>{renderPalette()}</>
 		</label>
 	);
-}
+};
 
 export default ImagePalette;

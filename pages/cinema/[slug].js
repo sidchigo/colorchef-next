@@ -1,11 +1,12 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from 'lib/firebase';
-import Header from 'components/Header/Header';
-import Meta from 'components/Meta';
-import Save from 'components/Save';
-import showToast from 'components/Toast';
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "lib/firebase";
+import Header from "components/Header/Header";
+import Meta from "components/Meta";
+import Save from "components/Save";
+import showToast from "components/Toast";
 import Link from "next/link";
 import { fetchCinemaData, fetchMovieBySlug } from "lib/api";
 const tinycolor = require("tinycolor2");
@@ -111,31 +112,34 @@ const MoviePage = ({ movie, slug }) => {
 			<Header title={movie.title}>
 				{movie.year} {primaryTag} Aesthetic • Color Palette & Hex Codes
 			</Header>
-
 			<div className="p-4 sm:mx-0 md:mx-16 lg:mx-32 xl:mx-64">
 				{/* Aesthetic themes */}
 				<div className="flex flex-wrap gap-2 mb-4 justify-center">
-					{movie.tags.map((tag) => (
-						<Link
-							href={`/cinema?filter=${encodeURIComponent(tag)}`}
-							key={tag}
-						>
-							<a className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium border border-purple-100 hover:bg-purple-100 hover:border-purple-300 transition-colors whitespace-nowrap">
+					{movie.tags.map((tag) => {
+						const slug = tag.toLowerCase().replace(/\s+/g, "-");
+						return (
+							<Link
+								href={`/cinema?filter=${slug}`}
+								key={tag}
+								className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium border border-purple-100 hover:bg-purple-100 hover:border-purple-300 transition-colors whitespace-nowrap"
+							>
 								{tag}
 								{/* This span is invisible to humans but visible to Google */}
 								<span className="sr-only"> Aesthetic</span>
-							</a>
-						</Link>
-					))}
+							</Link>
+						);
+					})}
 				</div>
 
 				{/* Backdrop Image */}
 				{movie.backdrop_url && (
 					<div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-						<img
+						<Image
 							src={movie.backdrop_url}
 							alt={`${movie.title} movie color palette and ${movie.tags[0]} aesthetic background`}
 							className="w-full h-auto rounded-lg object-cover"
+							width={1000}
+							height={550}
 						/>
 					</div>
 				)}
@@ -268,12 +272,14 @@ const MoviePage = ({ movie, slug }) => {
 							</span>
 							<div className="flex gap-3">
 								{movie.providers.map((p) => (
-									<img
+									<Image
 										key={p.provider_name}
 										src={`https://image.tmdb.org/t/p/original${p.logo_path}`}
 										alt={p.provider_name}
 										className="w-8 h-8 rounded-md shadow-sm"
 										title={p.provider_name}
+										width={32}
+										height={32}
 									/>
 								))}
 							</div>

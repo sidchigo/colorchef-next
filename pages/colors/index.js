@@ -36,11 +36,11 @@ const Colorgeneration = () => {
 				<Meta
 					title="Generate color combinations with perfect contrast"
 					url="/colors"
-					image={require('/images/colors.png')}
+					image={"/images/colors.png"}
 					description="Still confused finding the perfect color combo? Let us help you solve your confusion."
 				/>
 			</Head>
-			<Header title={'Color Generator'}>
+			<Header title={"Color Generator"}>
 				Still confused finding the perfect color combo? let us help you
 				solve your confusion.
 			</Header>

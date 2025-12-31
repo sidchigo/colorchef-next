@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 
 // api
 import { extractPalette, resetImagePalette } from "slices/colorsSlice";
@@ -150,7 +151,7 @@ const ImagePalette = () => {
 					onChange={handleImage}
 				/>
 			</div>
-			<img
+			<Image
 				className={`${
 					file
 						? "w-full border-2 border-gray-400 md:w-2/4 mb-4 h-[300px] object-cover"

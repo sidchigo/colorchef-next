@@ -23,11 +23,11 @@ const GoldenRatio = () => {
 				<Meta
 					title="Generate perfect palette for your website with Golden ratio generator"
 					url="/golden-ratio"
-					image={require('/images/goldenRatio.png')}
+					image={"/images/goldenRatio.png"}
 					description="Need to get a good palette instantly? Don't worry we got your back."
 				/>
 			</Head>
-			<Header title={'Golden ratio generator'}>
+			<Header title={"Golden ratio generator"}>
 				Need to get a good palette instantly? Don&apos;t worry we got
 				your back.
 			</Header>
@@ -42,7 +42,7 @@ const GoldenRatio = () => {
 					<option value="2">Image Extraction</option>
 				</select>
 			</div>
-			{type == '1' ? <PaletteCard /> : <ImagePalette />}
+			{type == "1" ? <PaletteCard /> : <ImagePalette />}
 		</div>
 	);
 }

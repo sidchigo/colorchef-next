@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 const Paragraph = ({ title, subtitle, exploreButton, buttonLink }) => {
 	return (
@@ -9,7 +9,7 @@ const Paragraph = ({ title, subtitle, exploreButton, buttonLink }) => {
 			<div className="font-head text-md md:text-lg lg:text-2xl mt-6 text-gray-500 font-bold animate-fadein-right animation-duration-600">
 				{subtitle}
 			</div>
-			<Link href={buttonLink} passHref>{exploreButton}</Link>
+			<Link href={buttonLink}>{exploreButton}</Link>
 		</div>
 	);
 };
