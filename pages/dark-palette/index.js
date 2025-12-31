@@ -170,7 +170,7 @@ const Darkpalette = () => {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						<Image
 							className="mt-4 px-5"
-							src={require("/images/hero.png")}
+							src={"/images/hero.png"}
 							alt="hero-image"
 						/>
 						<div
