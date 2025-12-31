@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Image from "next/image";
 
 // icons
-import Play from "icons/play.svg";
+import play from "icons/play.svg";
 
 // components
 import Picker from "components/Colorpicker/Picker";
@@ -195,7 +195,11 @@ export function ButtonGroup({
 								: "white",
 						}}
 					>
-						{floating ? <Play /> : "Normal"}
+						{floating ? (
+							<img src={play.src} alt="Play" />
+						) : (
+							"Normal"
+						)}
 					</span>
 				</Button>
 				<Button
@@ -236,7 +240,7 @@ export function ButtonGroup({
 								: "white",
 						}}
 					>
-						{floating ? <Play /> : "Hover"}
+						{floating ? <img src={play.src} alt="Play" /> : "Hover"}
 					</span>
 				</Button>
 				<Button
@@ -270,7 +274,11 @@ export function ButtonGroup({
 								: "white",
 						}}
 					>
-						{floating ? <Play /> : "Disabled"}
+						{floating ? (
+							<img src={play.src} alt="Play" />
+						) : (
+							"Disabled"
+						)}
 					</span>
 				</Button>
 			</div>

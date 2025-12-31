@@ -18,7 +18,7 @@ function Navbar() {
 	return (
 		<nav className="bg-white sticky top-0 w-full z-50 flex justify-center sm:justify-between items-center px-8 py-3 lg:py-3">
 			<Link href="/" className="flex justify-self-center items-center">
-				<Logo />
+				<img src={Logo.src} alt="Colorchef" />
 			</Link>
 			<div className="block lg:hidden" ref={ref}>
 				<Burger open={show} setOpen={setShow} />
