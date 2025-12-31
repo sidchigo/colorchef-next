@@ -9,7 +9,7 @@
 
 Colorchef is a modular, all-in-one color and UI utility tool designed for indie developers, designers, and solopreneurs. It simplifies decision-making around color, shadows, layout, and components, helping you move faster without sacrificing visual quality.
 
-![Colorchef Preview](images/hero.png)
+![Colorchef Preview](public/images/hero.png)
 
 ---
 
@@ -83,11 +83,11 @@ Use golden ratio to:
 
 | Module       | Preview                                |
 | ------------ | -------------------------------------- |
-| Colors       | ![Colors](images/colors.png)           |
-| Shadows      | ![Shadows](images/shadows.png)         |
-| Dark Palette | ![DarkPalette](images/darkpalette.png) |
-| Buttons      | ![Buttons](images/buttons.png)         |
-| Golden Ratio | ![GoldenRatio](images/goldenRatio.png) |
+| Colors       | ![Colors](public/images/colors.png)           |
+| Shadows      | ![Shadows](public/images/shadows.png)         |
+| Dark Palette | ![DarkPalette](public/images/darkpalette.png) |
+| Buttons      | ![Buttons](public/images/buttons.png)         |
+| Golden Ratio | ![GoldenRatio](public/images/goldenRatio.png) |
 
 ---
 
