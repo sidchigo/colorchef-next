@@ -166,7 +166,7 @@ const Profile = () => {
 							<Meta
 								title="Profile page"
 								url="/profile"
-								image={require("/images/hero.png")}
+								image={"/images/hero.png"}
 								description="View your favorite palettes. All your palettes at one place"
 							/>
 						</Head>

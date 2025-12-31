@@ -19,11 +19,11 @@ const Shadows = () => {
 				<Meta
 					title="Generate perfect soft shadows for your website"
 					url="/shadows"
-					image={require('/images/shadows.png')}
+					image={"/images/shadows.png"}
 					description="Days of grumpy old shadows are gone! Choose background color and get better shadows for your UI."
 				/>
 			</Head>
-			<Header title={'Shadow Generator'}>
+			<Header title={"Shadow Generator"}>
 				Days of grumpy old shadows are gone! <br />
 				Choose background color and get better shadows for your UI.
 			</Header>
@@ -38,7 +38,7 @@ const Shadows = () => {
 			<div xl={12} lg={3} md={4} sm={12}>
 				<ShadowCard
 					backgroundLum={tinycolor(color).toHsl().l}
-					background={'#' + tinycolor(color).toHex()}
+					background={"#" + tinycolor(color).toHex()}
 					hue={tinycolor(color).toHsl()}
 				/>
 			</div>

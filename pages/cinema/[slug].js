@@ -115,17 +115,20 @@ const MoviePage = ({ movie, slug }) => {
 			<div className="p-4 sm:mx-0 md:mx-16 lg:mx-32 xl:mx-64">
 				{/* Aesthetic themes */}
 				<div className="flex flex-wrap gap-2 mb-4 justify-center">
-					{movie.tags.map((tag) => (
-						<Link
-							href={`/cinema?filter=${encodeURIComponent(tag)}`}
-							key={tag}
-							className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium border border-purple-100 hover:bg-purple-100 hover:border-purple-300 transition-colors whitespace-nowrap"
-						>
-							{tag}
-							{/* This span is invisible to humans but visible to Google */}
-							<span className="sr-only"> Aesthetic</span>
-						</Link>
-					))}
+					{movie.tags.map((tag) => {
+						const slug = tag.toLowerCase().replace(/\s+/g, "-");
+						return (
+							<Link
+								href={`/cinema?filter=${slug}`}
+								key={tag}
+								className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium border border-purple-100 hover:bg-purple-100 hover:border-purple-300 transition-colors whitespace-nowrap"
+							>
+								{tag}
+								{/* This span is invisible to humans but visible to Google */}
+								<span className="sr-only"> Aesthetic</span>
+							</Link>
+						);
+					})}
 				</div>
 
 				{/* Backdrop Image */}
