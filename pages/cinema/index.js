@@ -185,51 +185,56 @@ const CinemaIndex = ({ movies, filters }) => {
 
 					<div className="flex-1">
 						{filteredMovies.length > 0 ? (
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-								{filteredMovies.map((movie) => (
-									<a
-										key={movie.slug}
-										href={`/cinema/${movie.slug}`}
-										className="group"
-									>
-										<div className="rounded-lg overflow-hidden shadow-lg bg-gray-100">
-											<div className="relative h-48 w-full bg-gray-200">
-												{movie.backdrop_url && (
-													<Image
-														src={movie.backdrop_url}
-														alt={movie.title}
-														width={300}
-														height={200}
-														unoptimized // Use unoptimized for crispness as we discussed
-														className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-													/>
-												)}
-											</div>
-											<div className="flex h-12 gap-1 p-2 bg-gray-50">
-												{movie.palette
-													?.slice(0, 5)
-													.map((color, idx) => (
-														<div
-															key={idx}
-															className="flex-1 rounded"
-															style={{
-																backgroundColor:
-																	color,
-															}}
-															title={convertToHex(
-																color
-															)}
+							<div>
+								<div className="mb-4 text-gray-600">
+									Showing {filteredMovies.length} of {movies.length} movies.
+								</div>
+								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+									{filteredMovies.map((movie) => (
+										<a
+											key={movie.slug}
+											href={`/cinema/${movie.slug}`}
+											className="group"
+										>
+											<div className="rounded-lg overflow-hidden shadow-lg bg-gray-100">
+												<div className="relative h-48 w-full bg-gray-200">
+													{movie.backdrop_url && (
+														<Image
+															src={movie.backdrop_url}
+															alt={movie.title}
+															width={300}
+															height={200}
+															unoptimized // Use unoptimized for crispness as we discussed
+															className="w-full h-full object-cover group-hover:scale-105 transition-transform"
 														/>
-													))}
+													)}
+												</div>
+												<div className="flex h-12 gap-1 p-2 bg-gray-50">
+													{movie.palette
+														?.slice(0, 5)
+														.map((color, idx) => (
+															<div
+																key={idx}
+																className="flex-1 rounded"
+																style={{
+																	backgroundColor:
+																		color,
+																}}
+																title={convertToHex(
+																	color
+																)}
+															/>
+														))}
+												</div>
+												<div className="p-4 bg-white">
+													<h3 className="font-bold text-sm text-gray-800 line-clamp-1">
+														{movie.title}
+													</h3>
+												</div>
 											</div>
-											<div className="p-4 bg-white">
-												<h3 className="font-bold text-sm text-gray-800 line-clamp-1">
-													{movie.title}
-												</h3>
-											</div>
-										</div>
-									</a>
-								))}
+										</a>
+									))}
+								</div>
 							</div>
 						) : (
 							<div className="text-center py-16 text-gray-500">
