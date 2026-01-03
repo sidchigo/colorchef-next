@@ -12,27 +12,27 @@ import { fetchCinemaData, fetchMovieBySlug } from "lib/api";
 const tinycolor = require("tinycolor2");
 
 const MoviePage = ({ movie, slug }) => {
-	const router = useRouter();
+    const router = useRouter();
 	const [user] = useAuthState(auth);
 
-	const primaryTag = movie.tags[0] || "Cinematic";
-	const pageTitle = `${movie.title} Color Palette: ${primaryTag} Aesthetic & Hex Codes`;
-
-	const amazonLink = `https://www.amazon.com/gp/search?ie=UTF8&tag=colorchef-20&index=dvd&keywords=${encodeURIComponent(
-		movie.title
-	)}`;
-
-	if (router.isFallback) {
-		return <div>Loading...</div>;
-	}
-
-	if (!movie) {
+	if (router.isFallback)
+		return (
+			<div className="flex justify-center items-center h-screen">
+				Loading...
+			</div>
+		);
+	if (!movie)
 		return (
 			<div className="text-center p-8">
 				<h1 className="text-2xl font-bold">Movie not found</h1>
 			</div>
 		);
-	}
+
+	const primaryTag = movie.tags[0] || "Cinematic";
+	const pageTitle = `${movie.title} Color Palette: ${primaryTag} Aesthetic & Hex Codes`;
+	const amazonLink = `https://www.amazon.com/gp/search?ie=UTF8&tag=colorchef-20&index=dvd&keywords=${encodeURIComponent(
+		movie.title
+	)}`;
 
 	const convertToHex = (color) => {
 		try {
@@ -45,34 +45,19 @@ const MoviePage = ({ movie, slug }) => {
 	const copyColor = (color) => {
 		const hexColor = convertToHex(color);
 		navigator.clipboard.writeText(hexColor);
-		showToast("Color copied!");
+		showToast(`Hex code ${hexColor} copied!`);
 	};
 
 	const copyPalette = () => {
-		if (!movie.palette || movie.palette.length === 0) {
-			showToast("No palette to copy");
-			return;
-		}
-
-		let paletteCss = {};
-		const colorNames = [
-			"color-1",
-			"color-2",
-			"color-3",
-			"color-4",
-			"color-5",
-		];
-
+		if (!movie.palette?.length) return showToast("No palette to copy");
+		const paletteCss = {};
 		movie.palette.forEach((color, index) => {
-			const colorName = colorNames[index] || `color${index + 1}`;
-			paletteCss[colorName] = convertToHex(color);
+			paletteCss[`color-${index + 1}`] = convertToHex(color);
 		});
-
 		navigator.clipboard.writeText(JSON.stringify(paletteCss, null, 2));
-		showToast("Palette copied!");
+		showToast("JSON Palette copied!");
 	};
 
-	// Format palette data for Save component (as array of hex values)
 	const paletteData = movie.palette
 		? movie.palette.map((color) => convertToHex(color).substring(1))
 		: [];
@@ -80,7 +65,6 @@ const MoviePage = ({ movie, slug }) => {
 	const getStreamingOption = (movie) => {
 		const isHorror = movie.tags.some((tag) => /horror|thriller/i.test(tag));
 		const providers = movie.providers.map((p) => p.provider_name);
-
 		if (isHorror && providers.includes("Shudder")) {
 			return {
 				label: "Stream on Shudder + MGM+",
@@ -88,7 +72,6 @@ const MoviePage = ({ movie, slug }) => {
 				color: "bg-gray-900 text-white border border-green-500 hover:bg-black",
 			};
 		}
-
 		return {
 			label: "Rent or Buy on Amazon",
 			url: amazonLink,
@@ -99,194 +82,185 @@ const MoviePage = ({ movie, slug }) => {
 	const streamOption = getStreamingOption(movie);
 
 	return (
-		<div>
+		<div className="min-h-screen bg-white">
 			<Head>
 				<title>{pageTitle} | ColorChef</title>
 				<Meta
 					title={`${movie.title} - Color Palette`}
 					url={`/cinema/${slug}`}
 					image={movie.backdrop_url}
-					description={`Get the hex codes for ${movie.title}. A ${primaryTag} movie with a unique color palette suitable for designers and editors.`}
+					description={`Get the hex codes for ${movie.title}. A ${primaryTag} movie with a unique color palette.`}
 				/>
 			</Head>
+
 			<Header title={movie.title}>
-				{movie.year} {primaryTag} Aesthetic • Color Palette & Hex Codes
+				{movie.year} • {primaryTag} Aesthetic • Palette & Hex Codes
 			</Header>
-			<div className="p-4 sm:mx-0 md:mx-16 lg:mx-32 xl:mx-64">
-				{/* Aesthetic themes */}
-				<div className="flex flex-wrap gap-2 mb-4 justify-center">
-					{movie.tags.map((tag) => {
-						const slug = tag.toLowerCase().replace(/\s+/g, "-");
-						return (
-							<Link
-								href={`/cinema?filter=${slug}`}
-								key={tag}
-								className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium border border-purple-100 hover:bg-purple-100 hover:border-purple-300 transition-colors whitespace-nowrap"
-							>
-								{tag}
-								{/* This span is invisible to humans but visible to Google */}
-								<span className="sr-only"> Aesthetic</span>
-							</Link>
-						);
-					})}
+
+			{/* Responsive Container */}
+			<main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+				{/* Dynamic Tags */}
+				<div className="flex flex-wrap gap-2 mb-6 justify-center">
+					{movie.tags.map((tag) => (
+						<Link
+							href={`/cinema?filter=${tag
+								.toLowerCase()
+								.replace(/\s+/g, "-")}`}
+							key={tag}
+							className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-[10px] md:text-xs font-medium border border-purple-100 hover:bg-purple-100 transition-all active:scale-95"
+						>
+							{tag}
+							<span className="sr-only"> Aesthetic</span>
+						</Link>
+					))}
 				</div>
 
-				{/* Backdrop Image */}
+				{/* Hero Image Section */}
 				{movie.backdrop_url && (
-					<div className="mb-8 rounded-lg overflow-hidden shadow-lg">
+					<section className="mb-10 relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl ring-1 ring-black/5">
 						<Image
 							src={movie.backdrop_url}
-							alt={`${movie.title} movie color palette and ${movie.tags[0]} aesthetic background`}
-							className="w-full h-auto rounded-lg object-cover"
-							width={1000}
-							height={550}
+							alt={`${movie.title} palette background`}
+							className="object-cover"
+							fill
+							priority
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
 						/>
-					</div>
+					</section>
 				)}
 
-				{/* Color Palette */}
-				<div className="mb-8">
-					<div className="flex justify-between items-center mb-4">
-						<h2 className="text-2xl font-bold">Color Palette</h2>
-						{movie.palette && movie.palette.length > 0 && (
-							<div className="flex gap-4">
-								{/* Copy Palette Icon */}
-								<button
-									className="p-2 rounded-lg transition-colors"
-									onClick={copyPalette}
-									title="Copy palette"
-								>
-									<svg
-										className="h-6 w-6 text-gray-700 hover:text-purple-600"
-										viewBox="0 0 24 24"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										stroke="currentColor"
-									>
-										<path
-											strokeWidth={2}
-											d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-										/>
-									</svg>
-								</button>
-
-								{/* Save Palette Icon */}
-								{user && <Save data={paletteData} />}
-							</div>
-						)}
-					</div>
-					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-						{movie.palette && movie.palette.length > 0 ? (
-							movie.palette.map((color, idx) => (
-								<div
-									key={idx}
-									className="flex flex-col items-center gap-2"
-								>
-									<div
-										className="w-full h-24 rounded-lg shadow-md border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow"
-										style={{ backgroundColor: color }}
-										title={`Click to copy ${convertToHex(
-											color
-										)}`}
-										onClick={() => copyColor(color)}
-									/>
-									<span className="text-xs font-mono text-gray-600">
-										{convertToHex(color)}
-									</span>
-								</div>
-							))
-						) : (
-							<p className="text-gray-500">
-								No palette data available
+				{/* Palette Section */}
+				<section className="mb-12">
+					<div className="flex justify-between items-end mb-6">
+						<div>
+							<h2 className="text-xl md:text-2xl font-bold text-gray-900">
+								Color Palette
+							</h2>
+							<p className="text-xs text-gray-500 mt-1">
+								Tap a color to copy hex code
 							</p>
-						)}
-					</div>
-				</div>
-
-				{/* Movie Info */}
-				<div className="border-t pt-6 prose max-w-none mt-8">
-					<h2 className="text-xl font-bold mb-4">
-						About the {movie.title} Aesthetic
-					</h2>
-					<p className="text-gray-600">
-						Explore the haunting visual identity of
-						<strong>&nbsp;{movie.title}</strong>. This film helps
-						define the <strong>{movie.tags.join(", ")}</strong>{" "}
-						genre through its unique color grading. The palette
-						features distinct tones like &nbsp;
-						<span className="font-mono text-purple-600">
-							{convertToHex(movie.palette[0])}
-						</span>
-						&nbsp;and&nbsp;
-						<span className="font-mono text-purple-600">
-							{convertToHex(movie.palette[1])}
-						</span>
-						, perfect for designers looking for&nbsp;
-						{movie.tags[0]?.toLowerCase()} inspiration.
-					</p>
-				</div>
-
-				<div className="mt-8">
-					<a
-						href={amazonLink}
-						target="_blank"
-						className={`flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-bold shadow-md transition-transform ${streamOption.color}`}
-						rel="noreferrer"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="h-6 w-6"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
-							/>
-						</svg>
-						{streamOption.label}
-					</a>
-
-					{/* {movie.region !== "US" && (
-						<p className="text-xs text-center mt-3 text-gray-400">
-							Not available in your country?{" "}
-							<a
-								href="VPN_LINK"
-								className="underline hover:text-purple-400"
-							>
-								Unlock via VPN
-							</a>
-							.
-						</p>
-					)} */}
-				</div>
-
-				<div className="flex flex-col gap-4 mt-10">
-					{movie.providers && movie.providers.length > 0 && (
-						<div className="flex items-center gap-3">
-							<span className="text-xs text-gray-500 uppercase font-bold">
-								Streaming on:
-							</span>
-							<div className="flex gap-3">
-								{movie.providers.map((p) => (
-									<Image
-										key={p.provider_name}
-										src={`https://image.tmdb.org/t/p/original${p.logo_path}`}
-										alt={p.provider_name}
-										className="w-8 h-8 rounded-md shadow-sm"
-										title={p.provider_name}
-										width={32}
-										height={32}
-									/>
-								))}
-							</div>
 						</div>
-					)}
-				</div>
-			</div>
+						<div className="flex gap-2">
+							<button
+								className="p-2.5 bg-gray-50 rounded-full border border-gray-200 hover:bg-gray-100 transition-colors"
+								onClick={copyPalette}
+								title="Copy JSON"
+							>
+								<svg
+									className="h-5 w-5 text-gray-600"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+									/>
+								</svg>
+							</button>
+							{user && <Save data={paletteData} />}
+						</div>
+					</div>
+
+					{/* Responsive Grid: 2 cols on mobile, 5 on desktop */}
+					<div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 md:gap-6">
+						{movie.palette?.map((color, idx) => (
+							<div
+								key={idx}
+								className="group flex flex-col items-center"
+							>
+								<button
+									className="w-full aspect-square rounded-xl shadow-sm border border-black/5 cursor-pointer hover:scale-[1.02] transition-transform active:scale-95"
+									style={{ backgroundColor: color }}
+									onClick={() => copyColor(color)}
+									aria-label={`Copy hex ${convertToHex(
+										color
+									)}`}
+								/>
+								<span className="mt-2 text-[10px] md:text-xs font-mono font-bold text-gray-500">
+									{convertToHex(color)}
+								</span>
+							</div>
+						))}
+					</div>
+				</section>
+
+				{/* Content Section */}
+				<article className="grid md:grid-cols-3 gap-8 border-t pt-10">
+					<div className="md:col-span-2">
+						<h2 className="text-lg md:text-xl font-bold mb-4 text-gray-900">
+							About the {movie.title} Aesthetic
+						</h2>
+						<p className="text-sm md:text-base text-gray-600 leading-relaxed">
+							Explore the haunting visual identity of{" "}
+							<strong className="text-black">
+								{movie.title}
+							</strong>
+							. This film defines the{" "}
+							<span className="italic">
+								{movie.tags.join(", ")}
+							</span>{" "}
+							genre through its unique color grading. Featuring
+							tones like
+							<span className="mx-1 px-1 bg-gray-100 rounded text-purple-600 font-mono">
+								{convertToHex(movie.palette[0])}
+							</span>
+							and{" "}
+							<span className="px-1 bg-gray-100 rounded text-purple-600 font-mono">
+								{convertToHex(movie.palette[1])}
+							</span>
+							, it provides distinct inspiration for designers.
+						</p>
+					</div>
+
+					{/* Sticky-ish CTA Area */}
+					<aside className="bg-gray-50 p-6 rounded-2xl border border-gray-100 h-fit">
+						<h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">
+							Watch Now
+						</h3>
+						<a
+							href={amazonLink}
+							target="_blank"
+							rel="noreferrer"
+							className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold shadow-lg transition-all hover:shadow-xl active:scale-95 ${streamOption.color}`}
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								className="h-5 w-5"
+							>
+								<path d="M8 5v14l11-7z" />
+							</svg>
+							<span className="text-sm">
+								{streamOption.label}
+							</span>
+						</a>
+
+						{movie.providers?.length > 0 && (
+							<div className="mt-8">
+								<span className="text-[10px] text-gray-400 uppercase font-black block mb-3">
+									Available on:
+								</span>
+								<div className="flex flex-wrap gap-2">
+									{movie.providers.map((p) => (
+										<Image
+											key={p.provider_name}
+											src={`https://image.tmdb.org/t/p/original${p.logo_path}`}
+											alt={p.provider_name}
+											className="w-8 h-8 rounded-lg shadow-sm"
+											title={p.provider_name}
+											width={32}
+											height={32}
+										/>
+									))}
+								</div>
+							</div>
+						)}
+					</aside>
+				</article>
+			</main>
 		</div>
 	);
 };
