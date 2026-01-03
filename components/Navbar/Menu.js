@@ -80,6 +80,18 @@ const Menu = ({ open, setOpen }) => {
 			>
 				Golden Ratio
 			</Link>
+			<Link
+				href="/cinema"
+				onClick={() => setOpen(false)}
+				className={`${
+					router.pathname === "/cinema"
+						? "text-violet-600"
+						: "text-gray-600"
+				} m-4
+                `}
+			>
+				Cinema
+			</Link>
 			<div className={`m-4`}>
 				<Auth extraFunction={() => setOpen(false)} />
 			</div>

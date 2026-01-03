@@ -2,7 +2,8 @@
     --hamDim: 45px;
     position: fixed;
     bottom: 1.5rem;
-    right: 1.5rem;
+    right: 50%;
+    transform: translateX(50%);
     z-index: 10;
     cursor: pointer;
 
