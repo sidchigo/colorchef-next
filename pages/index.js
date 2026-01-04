@@ -32,7 +32,7 @@ export default function Home() {
 				<Link href={HERO_EXPLORE_LINK}>
 					<UpButton
 						variant={`animate-fadein-bottom animation-duration-1200 hover:border-purple-600`}
-						icon={<span className={``}>--&gt;</span>}
+						icon={<span className={``}>-&gt;</span>}
 						hoverFill={"bg-purple-600"}
 					>
 						Start exploring, it&apos;s free
@@ -47,7 +47,7 @@ export default function Home() {
 					exploreButton={
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-red-600`}
-							icon={<span className={``}>--&gt;</span>}
+							icon={<span className={``}>-&gt;</span>}
 							hoverFill={"bg-red-600"}
 						>
 							Get started, it&apos;s free
@@ -76,7 +76,7 @@ export default function Home() {
 					exploreButton={
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-green-600`}
-							icon={<span className={``}>--&gt;</span>}
+							icon={<span className={``}>-&gt;</span>}
 							hoverFill={"bg-green-600"}
 						>
 							Get started, it&apos;s free
@@ -92,7 +92,7 @@ export default function Home() {
 					exploreButton={
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-pink-600`}
-							icon={<span className={``}>--&gt;</span>}
+							icon={<span className={``}>-&gt;</span>}
 							hoverFill={"bg-pink-600"}
 						>
 							Get started, it&apos;s free
@@ -121,7 +121,7 @@ export default function Home() {
 					exploreButton={
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-blue-600`}
-							icon={<span className={``}>--&gt;</span>}
+							icon={<span className={``}>-&gt;</span>}
 							hoverFill={"bg-blue-600"}
 						>
 							Get started, it&apos;s free
@@ -137,7 +137,7 @@ export default function Home() {
 					exploreButton={
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-indigo-600`}
-							icon={<span className={``}>--&gt;</span>}
+							icon={<span className={``}>-&gt;</span>}
 							hoverFill={"bg-indigo-600"}
 						>
 							Get started, it&apos;s free
@@ -165,7 +165,7 @@ export default function Home() {
 					exploreButton={
 						<UpButton
 							variant={`animate-fadein-right animation-duration-1200 hover:border-orange-600`}
-							icon={<span className={``}>--&gt;</span>}
+							icon={<span className={``}>-&gt;</span>}
 							hoverFill={"bg-orange-600"}
 						>
 							Get started, it&apos;s free
@@ -180,7 +180,7 @@ export default function Home() {
 				exploreButton={
 					<UpButton
 						variant={`animate-fadein-right animation-duration-1200 hover:border-red-600`}
-						icon={<span className={``}>--&gt;</span>}
+						icon={<span className={``}>-&gt;</span>}
 						hoverFill={"bg-red-600"}
 					>
 						Know more
