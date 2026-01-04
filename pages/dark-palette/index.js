@@ -172,6 +172,8 @@ const Darkpalette = () => {
 							className="mt-4 px-5"
 							src={"/images/hero.png"}
 							alt="hero-image"
+							width={625}
+							height={500}
 						/>
 						<div
 							className="flex justify-center items-center"

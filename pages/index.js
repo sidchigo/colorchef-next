@@ -7,6 +7,8 @@ import { UpButton } from "components/Button";
 import Paragraph from "components/Paragraph";
 import Meta from "components/Meta";
 
+const HERO_EXPLORE_LINK = "/cinema";
+
 export default function Home() {
 	return (
 		<div className="container">
@@ -16,16 +18,18 @@ export default function Home() {
 					title="Colorchef - Colors, palettes and contrast"
 					url="/"
 					image={"/images/hero.png"}
-					description="Colorchef is color-utility website to help out designers and
-					developers."
+					description="Professional color utilities for designers and developers. Generate accessible contrast ratios, CSS shadows, and discover aesthetic color palettes inspired by cinema."
 				/>
 			</Head>
-			<div className="flex flex-col justify-center items-center h-screen">
-				<h1 className="text-2xl md:text-4xl lg:text-7xl font-body font-bold text-center animate-fadein-top mb-4">
-					Colorchef is color-utility website to help out designers and
-					developers.
+			<header className="flex flex-col justify-center items-center h-screen">
+				<h1 className="text-3xl md:text-4xl lg:text-7xl font-body font-bold text-center animate-fadein-top mb-4">
+					Color utilities for the modern web.
 				</h1>
-				<Link href="/colors">
+				<div className="text-lg md:text-2xl lg:text-4xl text-gray-500 font-head font-bold text-center animate-fadein-top mb-4">
+					Professional tools for shadows, contrast, and cinematic
+					inspiration.
+				</div>
+				<Link href={HERO_EXPLORE_LINK}>
 					<UpButton
 						variant={`animate-fadein-bottom animation-duration-1200 hover:border-purple-600`}
 						icon={<span className={``}>--&gt;</span>}
@@ -34,6 +38,29 @@ export default function Home() {
 						Start exploring, it&apos;s free
 					</UpButton>
 				</Link>
+			</header>
+			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
+				<Paragraph
+					title="Cinema-grade palettes for your next project."
+					subtitle="Extract high-fidelity hex codes and aesthetic color schemes from iconic film frames."
+					buttonLink="/cinema"
+					exploreButton={
+						<UpButton
+							variant={`animate-fadein-right animation-duration-1200 hover:border-red-600`}
+							icon={<span className={``}>--&gt;</span>}
+							hoverFill={"bg-red-600"}
+						>
+							Get started, it&apos;s free
+						</UpButton>
+					}
+				/>
+				<Image
+					src={"/images/cinema.png"}
+					alt="Cinema Palette generator"
+					className="order-1 lg:order-2 object-contain rounded-lg shadow-sm"
+					width={600}
+					height={400}
+				/>
 			</div>
 			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
 				<Image

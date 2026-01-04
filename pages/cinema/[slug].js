@@ -140,7 +140,7 @@ const MoviePage = ({ movie, slug }) => {
 								Tap a color to copy hex code
 							</p>
 						</div>
-						<div className="flex gap-2">
+						<div className="flex gap-5 justify-center align-middle">
 							<button
 								className="p-2.5 bg-gray-50 rounded-full border border-gray-200 hover:bg-gray-100 transition-colors"
 								onClick={copyPalette}
@@ -160,7 +160,7 @@ const MoviePage = ({ movie, slug }) => {
 									/>
 								</svg>
 							</button>
-							{user && <Save data={paletteData} />}
+							<Save data={paletteData} />
 						</div>
 					</div>
 

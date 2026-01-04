@@ -34,25 +34,25 @@ const TABS = [
 		id: "cinemaPalette",
 		index: 1,
 		route: "/cinema",
-		title: "Cinema Palettes",
+		title: "Cinema",
 	},
 	{
 		id: "goldenRatio",
 		index: 2,
 		route: "/golden-ratio",
-		title: "Golden ratio",
+		title: "Golden Ratio",
 	},
 	{
 		id: "quoteCard",
 		index: 3,
 		route: "/colors",
-		title: "Color generation",
+		title: "Colors",
 	},
 	{
 		id: "darkPalette",
 		index: 4,
 		route: "/dark-palette",
-		title: "Dark palette",
+		title: "Dark Palette",
 	},
 ];
 
@@ -71,6 +71,7 @@ const Profile = () => {
 				const userRef = doc(db, "users", user?.uid);
 				onSnapshot(userRef, (doc) => {
 					setCurrentUser(doc.data());
+					console.log("User:", doc.data());
 				});
 
 				const saveRef = collection(db, "saves");
@@ -89,6 +90,7 @@ const Profile = () => {
 					});
 					setStatus("idle");
 					setCards(saveData);
+					console.log({ saveData });
 				});
 			}
 		});
@@ -133,6 +135,7 @@ const Profile = () => {
 					where("type", "==", type),
 					limit(12)
 				);
+				console.log({ q, type });
 				onSnapshot(q, async (snapshot) => {
 					let saveData = [];
 					setStatus("loading");
@@ -141,6 +144,7 @@ const Profile = () => {
 						saveData.push(doc.data());
 					});
 					setCards(saveData);
+					console.log({ saveData });
 					setStatus("idle");
 				});
 			}
@@ -191,9 +195,9 @@ const Profile = () => {
 								{currentUser.name}
 							</div>
 							<div>
-								Saved Palettes{" "}
+								Saved Palettes:
 								<span className="font-bold text-gray-600">
-									{currentUser.savedPalettes ?? 0}
+									&nbsp;{currentUser.savedPalettes ?? 0}
 								</span>
 							</div>
 							<Button
@@ -208,18 +212,23 @@ const Profile = () => {
 					<PulseProfileLoader />
 				)}
 			</div>
-			<div
-				className={`
+			{currentUser?.savedPalettes?.length !== 0 ? (
+				<>
+					<h3 className="flex justify-center text-lg">
+						Palette Collection
+					</h3>
+					<div
+						className={`
 					flex md:justify-center overflow-x-auto 
 					space-x-4 md:space-x-8 no-scrollbar 
 					py-4 md:py-6 px-4
 					sticky top-[48px] md:top-0 md:relative bg-white z-10
 				`}
-			>
-				{TABS.map((tab) => (
-					<button
-						key={tab.id}
-						className={`
+					>
+						{TABS.map((tab) => (
+							<button
+								key={tab.id}
+								className={`
 							${
 								active === tab.index
 									? "bg-gray-300 text-gray-800"
@@ -229,63 +238,89 @@ const Profile = () => {
 							rounded-full w-[180px] sm:w-[200px] p-4
 							hover:bg-gray-300
 						`}
-						onClick={() => handleClick(tab.id, tab.index)}
-					>
-						{tab.title}
-					</button>
-				))}
-			</div>
-			{status === "loading" ? (
-				<div className="flex justify-center">
-					<Loader />
-				</div>
-			) : cards.length === 0 ? (
-				<div className="text-center">
-					No palette saved. Save palettes to get started
-				</div>
-			) : (
-				<div
-					className={`
+								onClick={() => handleClick(tab.id, tab.index)}
+							>
+								{tab.title}
+							</button>
+						))}
+					</div>
+					{status === "loading" ? (
+						<div className="flex justify-center">
+							<Loader />
+						</div>
+					) : cards.length === 0 ? (
+						<div className="text-center">
+							Explore{" "}
+							<Link
+								href={
+									TABS.filter(
+										(tab) => tab.index === active
+									)[0].route
+								}
+								className="text-violet-600"
+							>
+								{
+									TABS.filter(
+										(tab) => tab.index === active
+									)[0].title
+								}
+							</Link>
+							&nbsp;and save palettes to get started.
+						</div>
+					) : (
+						<div
+							className={`
 								mx-4 sm:mx-10 grid grid-cols-1 
 								sm:grid-cols-2 lg:grid-cols-3 
 								xl:grid-cols-4 gap-8 mt-3 mb-3
 								min-h-[500px]
 							`}
-				>
-					{TABS.map((tab) => {
-						if (tab.index === active) {
-							return cards.map((doc) => (
-								<Colorcard
-									key={doc.paletteId}
-									colorData={doc.paletteId.split("-")}
-									isQuote
-								/>
-							));
-						}
-					})}
+						>
+							{TABS.map((tab) => {
+								if (tab.index === active) {
+									return cards.map((doc) => (
+										<Colorcard
+											key={doc.paletteId}
+											colorData={doc.paletteId.split("-")}
+											isQuote
+										/>
+									));
+								}
+							})}
+						</div>
+					)}
+					<div className={`flex justify-center my-4`}>
+						{TABS.map((tab) => {
+							if (tab.index === active) {
+								return (
+									cards.length !== 0 &&
+									cards.length % 12 === 0 &&
+									!showMore && (
+										<Button
+											key={tab.id}
+											variant={`bg-violet-500 hover:bg-violet-600 text-white`}
+											onClick={() =>
+												getNextResults(tab.id)
+											}
+										>
+											Show more -&gt;
+										</Button>
+									)
+								);
+							}
+						})}
+					</div>
+					{showMore && (
+						<div className={`flex justify-center italic my-4`}>
+							Fin
+						</div>
+					)}
+				</>
+			) : (
+				<div className="flex justify-center my-4">
+					Explore Colorchef and save palettes and see your collection
+					here.
 				</div>
-			)}
-			<div className={`flex justify-center my-4`}>
-				{TABS.map((tab) => {
-					if (tab.index === active) {
-						return (
-							cards.length !== 0 &&
-							cards.length % 12 === 0 &&
-							!showMore && (
-								<Button
-									key={tab.id}
-									variant={`bg-violet-500 hover:bg-violet-600 text-white`}
-									onClick={() => getNextResults(tab.id)}
-								>
-									Show more -&gt;
-								</Button>
-							)
-						);
-					}
-				})}
-			</div>
-			{showMore && (
-				<div className={`flex justify-center italic my-4`}>Fin</div>
 			)}
 		</AuthCheck>
 	);
