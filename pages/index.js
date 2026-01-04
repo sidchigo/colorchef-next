@@ -68,7 +68,6 @@ export default function Home() {
 					alt="Color generator"
 					width={581}
 					height={388}
-					unoptimized
 				/>
 				<Paragraph
 					title="Don't worry about background and text colors."
@@ -106,7 +105,6 @@ export default function Home() {
 					className="order-1 lg:order-2 object-contain"
 					width={560}
 					height={364}
-					unoptimized
 				/>
 			</div>
 			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
@@ -115,7 +113,6 @@ export default function Home() {
 					alt="Dark Palette generator"
 					width={720}
 					height={342}
-					unoptimized
 				/>
 				<Paragraph
 					title="Dark mode is the current UI trendsetter."
@@ -152,7 +149,6 @@ export default function Home() {
 					alt="Buttons generator"
 					width={472}
 					height={304}
-					unoptimized
 				/>
 			</div>
 			<div className="my-16 lg:my-2 grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 items-center justify-items-center h-full lg:h-screen">
@@ -161,7 +157,6 @@ export default function Home() {
 					alt="Golden Ratio generator"
 					width={591}
 					height={369}
-					unoptimized
 				/>
 				<Paragraph
 					title="Get better palettes."
