@@ -29,32 +29,41 @@ import { auth, db } from "lib/firebase";
 import { logout } from "slices/authSlice";
 import Meta from "components/Meta";
 
+const TABS = [
+	{
+		id: "cinemaPalette",
+		index: 1,
+		route: "/cinema",
+		title: "Cinema",
+	},
+	{
+		id: "goldenRatio",
+		index: 2,
+		route: "/golden-ratio",
+		title: "Golden Ratio",
+	},
+	{
+		id: "quoteCard",
+		index: 3,
+		route: "/colors",
+		title: "Colors",
+	},
+	{
+		id: "darkPalette",
+		index: 4,
+		route: "/dark-palette",
+		title: "Dark Palette",
+	},
+];
+
 const Profile = () => {
 	const [currentUser, setCurrentUser] = useState({});
-	const [active, setActive] = useState("quoteCard");
+	const [active, setActive] = useState(1);
 	const [cards, setCards] = useState([]);
 	const [start, setStart] = useState();
 	const [showMore, setShowMore] = useState(false);
 	const [status, setStatus] = useState("loading");
 	const dispatch = useDispatch();
-
-	const tabs = [
-		{
-			id: "quoteCard",
-			title: "Color generation",
-			content: cards,
-		},
-		{
-			id: "goldenRatio",
-			title: "Golden ratio",
-			content: cards,
-		},
-		{
-			id: "darkPalette",
-			title: "Dark palette",
-			content: cards,
-		},
-	];
 
 	useEffect(() => {
 		auth.onAuthStateChanged(async (user) => {
@@ -62,13 +71,14 @@ const Profile = () => {
 				const userRef = doc(db, "users", user?.uid);
 				onSnapshot(userRef, (doc) => {
 					setCurrentUser(doc.data());
+					console.log("User:", doc.data());
 				});
 
 				const saveRef = collection(db, "saves");
 				const q = query(
 					saveRef,
 					where("userId", "==", user?.uid),
-					where("type", "==", "quoteCard"),
+					where("type", "==", TABS[0].id),
 					limit(12)
 				);
 				onSnapshot(q, async (snapshot) => {
@@ -80,6 +90,7 @@ const Profile = () => {
 					});
 					setStatus("idle");
 					setCards(saveData);
+					console.log({ saveData });
 				});
 			}
 		});
@@ -124,6 +135,7 @@ const Profile = () => {
 					where("type", "==", type),
 					limit(12)
 				);
+				console.log({ q, type });
 				onSnapshot(q, async (snapshot) => {
 					let saveData = [];
 					setStatus("loading");
@@ -132,6 +144,7 @@ const Profile = () => {
 						saveData.push(doc.data());
 					});
 					setCards(saveData);
+					console.log({ saveData });
 					setStatus("idle");
 				});
 			}
@@ -143,8 +156,8 @@ const Profile = () => {
 		await signOut(auth);
 	};
 
-	const handleClick = (tabId) => {
-		setActive(tabId);
+	const handleClick = (tabId, tabIndex = 1) => {
+		setActive(tabIndex);
 		getPaletteData(tabId);
 	};
 
@@ -173,16 +186,18 @@ const Profile = () => {
 						<Image
 							className="h-32 w-32 sm:h-36 sm:w-36 rounded-full object-cover"
 							src={currentUser.photo}
-							alt=""
+							alt="currentUser.name"
+							width={144}
+							height={144}
 						/>
 						<div className="flex flex-col justify-evenly items-start">
 							<div className="font-bold text-2xl sm:text-4xl">
 								{currentUser.name}
 							</div>
 							<div>
-								Saved Palettes{" "}
+								Saved Palettes:
 								<span className="font-bold text-gray-600">
-									{currentUser.savedPalettes ?? 0}
+									&nbsp;{currentUser.savedPalettes ?? 0}
 								</span>
 							</div>
 							<Button
@@ -197,80 +212,115 @@ const Profile = () => {
 					<PulseProfileLoader />
 				)}
 			</div>
-			<div
-				className={`
+			{currentUser?.savedPalettes?.length !== 0 ? (
+				<>
+					<h3 className="flex justify-center text-lg">
+						Palette Collection
+					</h3>
+					<div
+						className={`
 					flex md:justify-center overflow-x-auto 
 					space-x-4 md:space-x-8 no-scrollbar 
 					py-4 md:py-6 px-4
 					sticky top-[48px] md:top-0 md:relative bg-white z-10
 				`}
-			>
-				{tabs.map((tab) => (
-					<button
-						key={tab.id}
-						className={`
-							${active === tab.id ? "bg-gray-300 text-gray-800" : "bg-gray-100 text-gray-700"}
+					>
+						{TABS.map((tab) => (
+							<button
+								key={tab.id}
+								className={`
+							${
+								active === tab.index
+									? "bg-gray-300 text-gray-800"
+									: "bg-gray-100 text-gray-700"
+							}
 							flex flex-shrink-0 justify-center
 							rounded-full w-[180px] sm:w-[200px] p-4
 							hover:bg-gray-300
 						`}
-						onClick={() => handleClick(tab.id)}
-					>
-						{tab.title}
-					</button>
-				))}
-			</div>
-			{status === "loading" ? (
-				<div className="flex justify-center">
-					<Loader />
-				</div>
-			) : cards.length === 0 ? (
-				<div className="text-center">
-					No palette saved. Save palettes to get started
-				</div>
-			) : (
-				<div
-					className={`
+								onClick={() => handleClick(tab.id, tab.index)}
+							>
+								{tab.title}
+							</button>
+						))}
+					</div>
+					{status === "loading" ? (
+						<div className="flex justify-center">
+							<Loader />
+						</div>
+					) : cards.length === 0 ? (
+						<div className="text-center">
+							Explore{" "}
+							<Link
+								href={
+									TABS.filter(
+										(tab) => tab.index === active
+									)[0].route
+								}
+								className="text-violet-600"
+							>
+								{
+									TABS.filter(
+										(tab) => tab.index === active
+									)[0].title
+								}
+							</Link>
+							&nbsp;and save palettes to get started.
+						</div>
+					) : (
+						<div
+							className={`
 								mx-4 sm:mx-10 grid grid-cols-1 
 								sm:grid-cols-2 lg:grid-cols-3 
 								xl:grid-cols-4 gap-8 mt-3 mb-3
 								min-h-[500px]
 							`}
-				>
-					{tabs.map((tab) => {
-						if (tab.id === active) {
-							return tab.content.map((doc) => (
-								<Colorcard
-									key={doc.paletteId}
-									colorData={doc.paletteId.split("-")}
-									isQuote
-								/>
-							));
-						}
-					})}
+						>
+							{TABS.map((tab) => {
+								if (tab.index === active) {
+									return cards.map((doc) => (
+										<Colorcard
+											key={doc.paletteId}
+											colorData={doc.paletteId.split("-")}
+											isQuote
+										/>
+									));
+								}
+							})}
+						</div>
+					)}
+					<div className={`flex justify-center my-4`}>
+						{TABS.map((tab) => {
+							if (tab.index === active) {
+								return (
+									cards.length !== 0 &&
+									cards.length % 12 === 0 &&
+									!showMore && (
+										<Button
+											key={tab.id}
+											variant={`bg-violet-500 hover:bg-violet-600 text-white`}
+											onClick={() =>
+												getNextResults(tab.id)
+											}
+										>
+											Show more -&gt;
+										</Button>
+									)
+								);
+							}
+						})}
+					</div>
+					{showMore && (
+						<div className={`flex justify-center italic my-4`}>
+							Fin
+						</div>
+					)}
+				</>
+			) : (
+				<div className="flex justify-center my-4">
+					Explore Colorchef and save palettes and see your collection
+					here.
 				</div>
-			)}
-			<div className={`flex justify-center my-4`}>
-				{tabs.map((tab) => {
-					if (tab.id === active) {
-						return (
-							tab.content.length !== 0 &&
-							tab.content.length % 12 === 0 &&
-							!showMore && (
-								<Button
-									key={tab.id}
-									variant={`bg-violet-500 hover:bg-violet-600 text-white`}
-									onClick={() => getNextResults(tab.id)}
-								>
-									Show more -&gt;
-								</Button>
-							)
-						);
-					}
-				})}
-			</div>
-			{showMore && (
-				<div className={`flex justify-center italic my-4`}>Fin</div>
 			)}
 		</AuthCheck>
 	);

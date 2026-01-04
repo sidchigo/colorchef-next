@@ -187,7 +187,8 @@ const CinemaIndex = ({ movies, filters }) => {
 						{filteredMovies.length > 0 ? (
 							<div>
 								<div className="mb-4 text-gray-600">
-									Showing {filteredMovies.length} of {movies.length} movies.
+									Showing {filteredMovies.length} of{" "}
+									{movies.length} movies.
 								</div>
 								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 									{filteredMovies.map((movie) => (
@@ -200,11 +201,13 @@ const CinemaIndex = ({ movies, filters }) => {
 												<div className="relative h-48 w-full bg-gray-200">
 													{movie.backdrop_url && (
 														<Image
-															src={movie.backdrop_url}
+															src={
+																movie.backdrop_url
+															}
 															alt={movie.title}
 															width={300}
 															height={200}
-															unoptimized // Use unoptimized for crispness as we discussed
+															unoptimized
 															className="w-full h-full object-cover group-hover:scale-105 transition-transform"
 														/>
 													)}

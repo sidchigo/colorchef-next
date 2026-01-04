@@ -119,7 +119,7 @@ export const Colorcard = ({
 		} else {
 			document.execCommand("copy", true, text);
 		}
-		showToast("Color copied!");
+		showToast("Palette copied!");
 	}
 
 	const copyPalette = (palette) => {
