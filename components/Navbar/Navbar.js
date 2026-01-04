@@ -108,7 +108,7 @@ function Navbar() {
                         ${styles.navLink}
                     `}
 				>
-					Cinema{" "}
+					Cinema
 					<span className="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded ml-1 font-bold uppercase tracking-tighter">
 						New
 					</span>

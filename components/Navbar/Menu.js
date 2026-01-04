@@ -91,6 +91,9 @@ const Menu = ({ open, setOpen }) => {
                 `}
 			>
 				Cinema
+				<sup className="bg-red-600 align-super text-white text-[8px] px-1.5 py-1 rounded ml-1 font-bold uppercase tracking-tighter">
+					New
+				</sup>
 			</Link>
 			<div className={`m-4`}>
 				<Auth extraFunction={() => setOpen(false)} />
