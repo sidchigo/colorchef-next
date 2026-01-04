@@ -32,6 +32,9 @@ const Save = ({ data }) => {
 			case 3:
 				type = "goldenRatio";
 				break;
+			case 5:
+				type = "cinemaPalette";
+				break;
 			case 6:
 				type = "darkPalette";
 				break;

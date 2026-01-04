@@ -29,32 +29,41 @@ import { auth, db } from "lib/firebase";
 import { logout } from "slices/authSlice";
 import Meta from "components/Meta";
 
+const TABS = [
+	{
+		id: "cinemaPalette",
+		index: 1,
+		route: "/cinema",
+		title: "Cinema Palettes",
+	},
+	{
+		id: "goldenRatio",
+		index: 2,
+		route: "/golden-ratio",
+		title: "Golden ratio",
+	},
+	{
+		id: "quoteCard",
+		index: 3,
+		route: "/colors",
+		title: "Color generation",
+	},
+	{
+		id: "darkPalette",
+		index: 4,
+		route: "/dark-palette",
+		title: "Dark palette",
+	},
+];
+
 const Profile = () => {
 	const [currentUser, setCurrentUser] = useState({});
-	const [active, setActive] = useState("quoteCard");
+	const [active, setActive] = useState(1);
 	const [cards, setCards] = useState([]);
 	const [start, setStart] = useState();
 	const [showMore, setShowMore] = useState(false);
 	const [status, setStatus] = useState("loading");
 	const dispatch = useDispatch();
-
-	const tabs = [
-		{
-			id: "quoteCard",
-			title: "Color generation",
-			content: cards,
-		},
-		{
-			id: "goldenRatio",
-			title: "Golden ratio",
-			content: cards,
-		},
-		{
-			id: "darkPalette",
-			title: "Dark palette",
-			content: cards,
-		},
-	];
 
 	useEffect(() => {
 		auth.onAuthStateChanged(async (user) => {
@@ -68,7 +77,7 @@ const Profile = () => {
 				const q = query(
 					saveRef,
 					where("userId", "==", user?.uid),
-					where("type", "==", "quoteCard"),
+					where("type", "==", TABS[0].id),
 					limit(12)
 				);
 				onSnapshot(q, async (snapshot) => {
@@ -143,8 +152,8 @@ const Profile = () => {
 		await signOut(auth);
 	};
 
-	const handleClick = (tabId) => {
-		setActive(tabId);
+	const handleClick = (tabId, tabIndex = 1) => {
+		setActive(tabIndex);
 		getPaletteData(tabId);
 	};
 
@@ -173,7 +182,9 @@ const Profile = () => {
 						<Image
 							className="h-32 w-32 sm:h-36 sm:w-36 rounded-full object-cover"
 							src={currentUser.photo}
-							alt=""
+							alt="currentUser.name"
+							width={144}
+							height={144}
 						/>
 						<div className="flex flex-col justify-evenly items-start">
 							<div className="font-bold text-2xl sm:text-4xl">
@@ -205,16 +216,20 @@ const Profile = () => {
 					sticky top-[48px] md:top-0 md:relative bg-white z-10
 				`}
 			>
-				{tabs.map((tab) => (
+				{TABS.map((tab) => (
 					<button
 						key={tab.id}
 						className={`
-							${active === tab.id ? "bg-gray-300 text-gray-800" : "bg-gray-100 text-gray-700"}
+							${
+								active === tab.index
+									? "bg-gray-300 text-gray-800"
+									: "bg-gray-100 text-gray-700"
+							}
 							flex flex-shrink-0 justify-center
 							rounded-full w-[180px] sm:w-[200px] p-4
 							hover:bg-gray-300
 						`}
-						onClick={() => handleClick(tab.id)}
+						onClick={() => handleClick(tab.id, tab.index)}
 					>
 						{tab.title}
 					</button>
@@ -237,9 +252,9 @@ const Profile = () => {
 								min-h-[500px]
 							`}
 				>
-					{tabs.map((tab) => {
-						if (tab.id === active) {
-							return tab.content.map((doc) => (
+					{TABS.map((tab) => {
+						if (tab.index === active) {
+							return cards.map((doc) => (
 								<Colorcard
 									key={doc.paletteId}
 									colorData={doc.paletteId.split("-")}
@@ -251,11 +266,11 @@ const Profile = () => {
 				</div>
 			)}
 			<div className={`flex justify-center my-4`}>
-				{tabs.map((tab) => {
-					if (tab.id === active) {
+				{TABS.map((tab) => {
+					if (tab.index === active) {
 						return (
-							tab.content.length !== 0 &&
-							tab.content.length % 12 === 0 &&
+							cards.length !== 0 &&
+							cards.length % 12 === 0 &&
 							!showMore && (
 								<Button
 									key={tab.id}
